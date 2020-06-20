@@ -13,10 +13,6 @@ endif
 let s:cpo_save = &cpo
 set cpo&vim
 
-if has("folding") && exists("g:fennel_fold") && g:fennel_fold > 0
-  setlocal foldmethod=syntax
-endif
-
 syntax keyword fennelCommentTodo contained FIXME XXX TODO FIXME: XXX: TODO:
 
 " Fennel comments
@@ -256,9 +252,9 @@ syntax match fennelNumber "\v\c<[-+]?0x[0-9A-F]*\.?[0-9A-F]*>"
 " Grammar root
 syntax cluster fennelTop contains=@Spell,fennelComment,fennelConstant,fennelQuote,fennelKeyword,LuaSpecialValue,fennelSymbol,fennelNumber,fennelString,fennelList,fennelArray,fennelTable,fennelSpecialForm,fennelBoolean
 
-syntax region fennelList matchgroup=fennelParen start="("  end=")" contains=@fennelTop fold
-syntax region fennelArray matchgroup=fennelParen start="\[" end="]" contains=@fennelTop fold
-syntax region fennelTable matchgroup=fennelParen start="{"  end="}" contains=@fennelTop fold
+syntax region fennelList matchgroup=fennelParen start="("  end=")" contains=@fennelTop
+syntax region fennelArray matchgroup=fennelParen start="\[" end="]" contains=@fennelTop
+syntax region fennelTable matchgroup=fennelParen start="{"  end="}" contains=@fennelTop
 
 " Highlight superfluous closing parens, brackets and braces.
 syntax match fennelError "]\|}\|)"
