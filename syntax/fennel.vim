@@ -17,77 +17,77 @@ if has("folding") && exists("g:fennel_fold") && g:fennel_fold > 0
   setlocal foldmethod=syntax
 endif
 
-syntax keyword FennelCommentTodo contained FIXME XXX TODO FIXME: XXX: TODO:
+syntax keyword fennelCommentTodo contained FIXME XXX TODO FIXME: XXX: TODO:
 
-" FENNEL comments
-syn match FennelComment ";.*$" contains=FennelCommentTodo,@Spell
+" Fennel comments
+syn match fennelComment ";.*$" contains=fennelCommentTodo,@Spell
 
-syntax match FennelStringEscape '\v\\%([abfnrtv'"\\]|x[[0-9a-fA-F]]\{2}|25[0-5]|2[0-4][0-9]|[0-1][0-9][0-9])' contained
-syntax region FennelString matchgroup=FennelStringDelimiter start=/"/ skip=/\\\\\|\\"/ end=/"/ contains=FennelStringEscape,@Spell
-syntax region FennelString matchgroup=FennelStringDelimiter start=/'/ skip=/\\\\\|\\'/ end=/'/ contains=FennelStringEscape,@Spell
+syntax match fennelStringEscape '\v\\%([abfnrtv'"\\]|x[[0-9a-fA-F]]\{2}|25[0-5]|2[0-4][0-9]|[0-1][0-9][0-9])' contained
+syntax region fennelString matchgroup=fennelStringDelimiter start=/"/ skip=/\\\\\|\\"/ end=/"/ contains=fennelStringEscape,@Spell
+syntax region fennelString matchgroup=fennelStringDelimiter start=/'/ skip=/\\\\\|\\'/ end=/'/ contains=fennelStringEscape,@Spell
 
-syn keyword FennelConstant nil
+syn keyword fennelConstant nil
 
-syn keyword FennelBoolean true
-syn keyword FennelBoolean false
+syn keyword fennelBoolean true
+syn keyword fennelBoolean false
 
 " Fennel special forms
-syn keyword FennelSpecialForm #
-syn keyword FennelSpecialForm %
-syn keyword FennelSpecialForm *
-syn keyword FennelSpecialForm +
-syn keyword FennelSpecialForm -
-syn keyword FennelSpecialForm ->
-syn keyword FennelSpecialForm ->>
-syn keyword FennelSpecialForm -?>
-syn keyword FennelSpecialForm -?>>
-syn keyword FennelSpecialForm .
-syn keyword FennelSpecialForm ..
-syn keyword FennelSpecialForm /
-syn keyword FennelSpecialForm //
-syn keyword FennelSpecialForm :
-syn keyword FennelSpecialForm <
-syn keyword FennelSpecialForm <=
-syn keyword FennelSpecialForm =
-syn keyword FennelSpecialForm >
-syn keyword FennelSpecialForm >=
-syn keyword FennelSpecialForm ^
-syn keyword FennelSpecialForm and
-syn keyword FennelSpecialForm comment
-syn keyword FennelSpecialForm do
-syn keyword FennelSpecialForm doc
-syn keyword FennelSpecialForm doto
-syn keyword FennelSpecialForm each
-syn keyword FennelSpecialForm eval-compiler
-syn keyword FennelSpecialForm fn
-syn keyword FennelSpecialForm for
-syn keyword FennelSpecialForm global
-syn keyword FennelSpecialForm hashfn
-syn keyword FennelSpecialForm if
-syn keyword FennelSpecialForm include
-syn keyword FennelSpecialForm lambda
-syn keyword FennelSpecialForm length
-syn keyword FennelSpecialForm let
-syn keyword FennelSpecialForm local
-syn keyword FennelSpecialForm lua
-syn keyword FennelSpecialForm macro
-syn keyword FennelSpecialForm macros
-syn keyword FennelSpecialForm match
-syn keyword FennelSpecialForm not
-syn keyword FennelSpecialForm not=
-syn keyword FennelSpecialForm or
-syn keyword FennelSpecialForm partial
-syn keyword FennelSpecialForm quote
-syn keyword FennelSpecialForm require-macros
-syn keyword FennelSpecialForm set
-syn keyword FennelSpecialForm set-forcibly!
-syn keyword FennelSpecialForm tset
-syn keyword FennelSpecialForm values
-syn keyword FennelSpecialForm var
-syn keyword FennelSpecialForm when
-syn keyword FennelSpecialForm while
-syn keyword FennelSpecialForm ~=
-syn keyword FennelSpecialForm λ
+syn keyword fennelSpecialForm #
+syn keyword fennelSpecialForm %
+syn keyword fennelSpecialForm *
+syn keyword fennelSpecialForm +
+syn keyword fennelSpecialForm -
+syn keyword fennelSpecialForm ->
+syn keyword fennelSpecialForm ->>
+syn keyword fennelSpecialForm -?>
+syn keyword fennelSpecialForm -?>>
+syn keyword fennelSpecialForm .
+syn keyword fennelSpecialForm ..
+syn keyword fennelSpecialForm /
+syn keyword fennelSpecialForm //
+syn keyword fennelSpecialForm :
+syn keyword fennelSpecialForm <
+syn keyword fennelSpecialForm <=
+syn keyword fennelSpecialForm =
+syn keyword fennelSpecialForm >
+syn keyword fennelSpecialForm >=
+syn keyword fennelSpecialForm ^
+syn keyword fennelSpecialForm and
+syn keyword fennelSpecialForm comment
+syn keyword fennelSpecialForm do
+syn keyword fennelSpecialForm doc
+syn keyword fennelSpecialForm doto
+syn keyword fennelSpecialForm each
+syn keyword fennelSpecialForm eval-compiler
+syn keyword fennelSpecialForm fn
+syn keyword fennelSpecialForm for
+syn keyword fennelSpecialForm global
+syn keyword fennelSpecialForm hashfn
+syn keyword fennelSpecialForm if
+syn keyword fennelSpecialForm include
+syn keyword fennelSpecialForm lambda
+syn keyword fennelSpecialForm length
+syn keyword fennelSpecialForm let
+syn keyword fennelSpecialForm local
+syn keyword fennelSpecialForm lua
+syn keyword fennelSpecialForm macro
+syn keyword fennelSpecialForm macros
+syn keyword fennelSpecialForm match
+syn keyword fennelSpecialForm not
+syn keyword fennelSpecialForm not=
+syn keyword fennelSpecialForm or
+syn keyword fennelSpecialForm partial
+syn keyword fennelSpecialForm quote
+syn keyword fennelSpecialForm require-macros
+syn keyword fennelSpecialForm set
+syn keyword fennelSpecialForm set-forcibly!
+syn keyword fennelSpecialForm tset
+syn keyword fennelSpecialForm values
+syn keyword fennelSpecialForm var
+syn keyword fennelSpecialForm when
+syn keyword fennelSpecialForm while
+syn keyword fennelSpecialForm ~=
+syn keyword fennelSpecialForm λ
 
 " Lua keywords
 syntax keyword LuaSpecialValue
@@ -242,44 +242,44 @@ syntax keyword LuaSpecialValue
 " Fennel Symbols
 let s:symcharnodig = '\!\$%\&\#\*\+\-./:<=>?A-Z^_a-z|\x80-\U10FFFF'
 let s:symchar = '0-9' . s:symcharnodig
-execute 'syn match FennelSymbol "\v<%([' . s:symcharnodig . '])%([' . s:symchar . '])*>"'
-execute 'syn match FennelKeyword "\v<:%([' . s:symchar . '])*>"'
+execute 'syn match fennelSymbol "\v<%([' . s:symcharnodig . '])%([' . s:symchar . '])*>"'
+execute 'syn match fennelKeyword "\v<:%([' . s:symchar . '])*>"'
 unlet! s:symchar s:symcharnodig
 
-syn match FennelQuote "`"
-syn match FennelQuote "@"
+syn match fennelQuote "`"
+syn match fennelQuote "@"
 
-" FENNEL numbers
-syntax match FennelNumber "\v\c<[-+]?\d*\.?\d*%([eE][-+]?\d+)?>"
-syntax match FennelNumber "\v\c<[-+]?0x[0-9A-F]*\.?[0-9A-F]*>"
+" Fennel numbers
+syntax match fennelNumber "\v\c<[-+]?\d*\.?\d*%([eE][-+]?\d+)?>"
+syntax match fennelNumber "\v\c<[-+]?0x[0-9A-F]*\.?[0-9A-F]*>"
 
 " Grammar root
-syntax cluster FennelTop contains=@Spell,FennelComment,FennelConstant,FennelQuote,FennelKeyword,LuaSpecialValue,FennelSymbol,FennelNumber,FennelString,FennelList,FennelArray,FennelTable,FennelSpecialForm,FennelBoolean
+syntax cluster fennelTop contains=@Spell,fennelComment,fennelConstant,fennelQuote,fennelKeyword,LuaSpecialValue,fennelSymbol,fennelNumber,fennelString,fennelList,fennelArray,fennelTable,fennelSpecialForm,fennelBoolean
 
-syntax region FennelList matchgroup=FennelParen start="("  end=")" contains=@FennelTop fold
-syntax region FennelArray matchgroup=FennelParen start="\[" end="]" contains=@FennelTop fold
-syntax region FennelTable matchgroup=FennelParen start="{"  end="}" contains=@FennelTop fold
+syntax region fennelList matchgroup=fennelParen start="("  end=")" contains=@fennelTop fold
+syntax region fennelArray matchgroup=fennelParen start="\[" end="]" contains=@fennelTop fold
+syntax region fennelTable matchgroup=fennelParen start="{"  end="}" contains=@fennelTop fold
 
 " Highlight superfluous closing parens, brackets and braces.
-syntax match FennelError "]\|}\|)"
+syntax match fennelError "]\|}\|)"
 
 syntax sync fromstart
 
 " Highlighting
-hi def link FennelComment Comment
-hi def link FennelSymbol Identifier
-hi def link FennelNumber Number
-hi def link FennelConstant Constant
-hi def link FennelKeyword Keyword
-hi def link FennelSpecialForm Special
+hi def link fennelComment Comment
+hi def link fennelSymbol Identifier
+hi def link fennelNumber Number
+hi def link fennelConstant Constant
+hi def link fennelKeyword Keyword
+hi def link fennelSpecialForm Special
 hi def link LuaSpecialValue Special
-hi def link FennelString String
-hi def link FennelBuffer String
-hi def link FennelStringDelimiter String
-hi def link FennelBoolean Boolean
+hi def link fennelString String
+hi def link fennelBuffer String
+hi def link fennelStringDelimiter String
+hi def link fennelBoolean Boolean
 
-hi def link FennelQuote SpecialChar
-hi def link FennelParen Delimiter
+hi def link fennelQuote SpecialChar
+hi def link fennelParen Delimiter
 
 let b:current_syntax = "fennel"
 
