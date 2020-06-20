@@ -16,20 +16,78 @@ set cpo&vim
 " Any uncaught syntax is highlighted as error.
 syn match fennelError /[^[:space:]\n]/
 
-" Fennel comments
+" Comments {{{1
 syn region fennelComment start=/;/ end=/$/ contains=fennelCommentTodo,@Spell
 syntax match fennelCommentTodo contained /\(FIXME\|XXX\|TODO\):\?/
 
-syntax match fennelStringEscape '\v\\%([abfnrtv'"\\]|x[[0-9a-fA-F]]\{2}|25[0-5]|2[0-4][0-9]|[0-1][0-9][0-9])' contained
-syntax region fennelString matchgroup=fennelStringDelimiter start=/"/ skip=/\\\\\|\\"/ end=/"/ contains=fennelStringEscape,@Spell
-syntax region fennelString matchgroup=fennelStringDelimiter start=/'/ skip=/\\\\\|\\'/ end=/'/ contains=fennelStringEscape,@Spell
+" }}}
 
+" Unquoted and quasiquoted data
+syn cluster fennelData contains=@fennelSimpleData,@fennelCompoundData
+syn cluster fennelDataQQ contains=@fennelSimpleData,@fennelCompoundDataQQ
+
+" Simple data {{{1
+syn cluster fennelSimpleData contains=fennelConstant,fennelSymbol,fennelKeyword,fennelBoolean,fennelNumber,fennelString
+
+" Fennel constant (nil) {{{2
 syn keyword fennelConstant nil
 
-syn keyword fennelBoolean true
-syn keyword fennelBoolean false
+" Symbol and keyword {{{2
+let s:symcharnodig = '\!\$%\&\#\*\+\-./:<=>?A-Z^_a-z|\x80-\U10FFFF'
+let s:symchar = '0-9' . s:symcharnodig
+execute 'syn match fennelSymbol "\v<%([' . s:symcharnodig . '])%([' . s:symchar . '])*>"'
+execute 'syn match fennelKeyword "\v<:%([' . s:symchar . '])*>"'
+unlet s:symchar s:symcharnodig
 
-" Fennel special forms
+" Boolean {{{2
+syn keyword fennelBoolean true false
+
+" Numbers {{{2
+syn match fennelNumber "\v\c<[-+]?\d*\.?\d*%([eE][-+]?\d+)?>"
+syn match fennelNumber "\v\c<[-+]?0x[0-9A-F]*\.?[0-9A-F]*>"
+
+" String {{{2
+syntax region fennelString matchgroup=fennelDelimiter start=/"/ skip=/\\\\\|\\"/ end=/"/ contains=fennelStringEscape,@Spell
+syntax match fennelStringEscape '\v\\%([abfnrtv'"\\]|x[[0-9a-fA-F]]\{2}|25[0-5]|2[0-4][0-9]|[0-1][0-9][0-9])' contained
+
+" Compound data {{{1
+syn cluster fennelCompoundData contains=fennelList,fennelArray,fennelTable,fennelQuasiQuote
+syn cluster fennelCompoundDataQQ contains=fennelListQQ,fennelArrayQQ,fennelTableQQ,fennelQuasiQuote
+
+" TODO: hash function
+
+" Unquoted list, array, and table {{{2
+syn region fennelList matchgroup=fennelDelimiter start=/#\@<!(/ end=/)/ contains=fennelError,@fennelComments,@fennelData,@fennelExpressions
+syn region fennelArray matchgroup=fennelDelimiter start=/#\@<!\[/ end=/]/ contains=fennelError,@fennelComments,@fennelData,@fennelExpressions
+syn region fennelTable matchgroup=fennelDelimiter start=/#\@<!{/ end=/}/ contains=fennelError,@fennelComments,@fennelData,@fennelExpressions
+
+" Apparently unquoted but quasiquoted list, array, and table {{{2
+syn region fennelListQQ matchgroup=fennelDelimiter start=/#\@<!(/ end=/)/ contained contains=fennelError,@fennelComments,@fennelDataQQ,fennelUnquote
+syn region fennelArrayQQ matchgroup=fennelDelimiter start=/#\@<!\[/ end=/]/ contained contains=fennelError,@fennelComments,@fennelDataQQ,fennelUnquote
+syn region fennelTableQQ matchgroup=fennelDelimiter start=/#\@<!{/ end=/}/ contained contains=fennelError,@fennelComments,@fennelDataQQ,fennelUnquote
+
+" Quasiquoted simple data {{{2
+syn match fennelQuasiQuote /`\ze[^[:space:]\n();'`,\\#\[\]{}]/ nextgroup=@fennelSimpleData
+
+" Quasiquoted compound data {{{2
+syn match fennelQuasiQuote /`\ze(/ nextgroup=fennelQuasiQuoteList
+syn region fennelQuasiQuoteList matchgroup=fennelDelimiter start=/(/ end=/)/ contained contains=fennelError,@fennelComments,@fennelDataQQ,fennelUnquote
+syn match fennelQuasiQuote /`\ze\[/ nextgroup=fennelQuasiQuoteArray
+syn region fennelQuasiQuoteArray matchgroup=fennelDelimiter start=/\[/ end=/]/ contained contains=fennelError,@fennelComments,@fennelDataQQ,fennelUnquote
+syn match fennelQuasiQuote /`\ze{/ nextgroup=fennelQuasiQuoteTable
+syn region fennelQuasiQuoteTable matchgroup=fennelDelimiter start=/{/ end=/}/ contained contains=fennelError,@fennelComments,@fennelDataQQ,fennelUnquote
+
+" Quasiquoted (un)quotes {{{2
+syn match fennelQuasiQuote /`\ze`/ nextgroup=fennelQuasiQuote
+syn match fennelQuasiQuote /`\ze,/ nextgroup=fennelUnquote
+
+" Unquote {{{2
+syn match fennelUnquote /,/ contained nextgroup=@fennelData,@fennelExpressions
+
+" Expressions {{{1
+syn cluster fennelExpressions contains=fennelSpecialForm,fennelLuaKeyword
+
+" Special forms {{{2
 syn keyword fennelSpecialForm #
 syn keyword fennelSpecialForm %
 syn keyword fennelSpecialForm *
@@ -87,8 +145,8 @@ syn keyword fennelSpecialForm while
 syn keyword fennelSpecialForm ~=
 syn keyword fennelSpecialForm λ
 
-" Lua keywords
-syntax keyword LuaSpecialValue
+" Lua keywords {{{2
+syntax keyword fennelLuaKeyword
       \ _G
       \ _VERSION
       \ assert
@@ -237,44 +295,26 @@ syntax keyword LuaSpecialValue
       \ utf8.len
       \ utf8.offset
 
-" Fennel Symbols
-let s:symcharnodig = '\!\$%\&\#\*\+\-./:<=>?A-Z^_a-z|\x80-\U10FFFF'
-let s:symchar = '0-9' . s:symcharnodig
-execute 'syn match fennelSymbol "\v<%([' . s:symcharnodig . '])%([' . s:symchar . '])*>"'
-execute 'syn match fennelKeyword "\v<:%([' . s:symchar . '])*>"'
-unlet! s:symchar s:symcharnodig
-
-syn match fennelQuote "`"
-syn match fennelQuote "@"
-
-" Fennel numbers
-syntax match fennelNumber "\v\c<[-+]?\d*\.?\d*%([eE][-+]?\d+)?>"
-syntax match fennelNumber "\v\c<[-+]?0x[0-9A-F]*\.?[0-9A-F]*>"
-
-" Grammar root
-syntax cluster fennelTop contains=@Spell,fennelComment,fennelConstant,fennelQuote,fennelKeyword,LuaSpecialValue,fennelSymbol,fennelNumber,fennelString,fennelList,fennelArray,fennelTable,fennelSpecialForm,fennelBoolean
-
-syntax region fennelList matchgroup=fennelParen start="("  end=")" contains=@fennelTop
-syntax region fennelArray matchgroup=fennelParen start="\[" end="]" contains=@fennelTop
-syntax region fennelTable matchgroup=fennelParen start="{"  end="}" contains=@fennelTop
-
+" Highlighting {{{1
 syntax sync fromstart
 
-" Highlighting
+hi def link fennelError Error
+hi def link fennelDelimiter Delimiter
 hi def link fennelComment Comment
-hi def link fennelSymbol Identifier
-hi def link fennelNumber Number
+hi def link fennelCommentTodo TODO
 hi def link fennelConstant Constant
-hi def link fennelKeyword Keyword
-hi def link fennelSpecialForm Special
-hi def link LuaSpecialValue Special
-hi def link fennelString String
-hi def link fennelBuffer String
-hi def link fennelStringDelimiter String
+hi def link fennelSymbol Identifier
+hi def link fennelKeyword String
 hi def link fennelBoolean Boolean
+hi def link fennelNumber Number
+hi def link fennelString String
+hi def link fennelStringEscape Character
+hi def link fennelQuasiQuote fennelSpecialForm
+hi def link fennelUnquote fennelSpecialForm
+hi def link fennelSpecialForm Special
+hi def link fennelLuaKeyword Function
 
-hi def link fennelQuote SpecialChar
-hi def link fennelParen Delimiter
+" }}}
 
 let b:current_syntax = "fennel"
 
