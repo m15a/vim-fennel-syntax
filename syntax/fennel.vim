@@ -16,10 +16,9 @@ set cpo&vim
 " Any uncaught syntax is highlighted as error.
 syn match fennelError /[^[:space:]\n]/
 
-syntax keyword fennelCommentTodo contained FIXME XXX TODO FIXME: XXX: TODO:
-
 " Fennel comments
-syn match fennelComment ";.*$" contains=fennelCommentTodo,@Spell
+syn region fennelComment start=/;/ end=/$/ contains=fennelCommentTodo,@Spell
+syntax match fennelCommentTodo contained /\(FIXME\|XXX\|TODO\):\?/
 
 syntax match fennelStringEscape '\v\\%([abfnrtv'"\\]|x[[0-9a-fA-F]]\{2}|25[0-5]|2[0-4][0-9]|[0-1][0-9][0-9])' contained
 syntax region fennelString matchgroup=fennelStringDelimiter start=/"/ skip=/\\\\\|\\"/ end=/"/ contains=fennelStringEscape,@Spell
