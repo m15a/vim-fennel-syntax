@@ -43,8 +43,8 @@ unlet s:symchar s:symcharnodig
 syn keyword fennelBoolean true false
 
 " Numbers {{{2
-syn match fennelNumber "\v\c<[-+]?\d*\.?\d*%([eE][-+]?\d+)?>"
-syn match fennelNumber "\v\c<[-+]?0x[0-9A-F]*\.?[0-9A-F]*>"
+syn match fennelNumber "\v\c<[-+]?%(\d+|\.\d+|\d+\.\d*)%(e[-+]?\d+)?>"
+syn match fennelNumber "\v\c<[-+]?0x%(\x+|\.\x+|\x+\.\x*)%(p[-+]?\d+)?>"
 
 " String {{{2
 syntax region fennelString matchgroup=fennelDelimiter start=/"/ skip=/\\\\\|\\"/ end=/"/ contains=fennelStringEscape,@Spell
