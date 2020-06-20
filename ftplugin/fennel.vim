@@ -20,9 +20,6 @@ setlocal iskeyword=!,$,%,#,*,+,-,.,/,:,<,=,>,?,_,a-z,A-Z,48-57,128-247,124,126,3
 " of user-defined def* definitions.
 setlocal define=\\v[(/]def(ault)@!\\S*
 
-" Remove 't' from 'formatoptions' to avoid auto-wrapping code.
-setlocal formatoptions-=t
-
 setlocal comments=n:;
 setlocal commentstring=;\ %s
 
