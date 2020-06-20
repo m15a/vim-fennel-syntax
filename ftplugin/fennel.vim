@@ -23,6 +23,11 @@ setlocal define=\\v[(/]def(ault)@!\\S*
 setlocal comments=n:;
 setlocal commentstring=;\ %s
 
+setl lisp
+setl lispwords=fn,lambda,let,match,when,each,for,while,doto,macro
+
+let b:undo_ftplugin = 'setl isk< def< com< cms< lisp< lw<'
+
 let b:did_ftplugin = 1
 
 let &cpo = s:cpo_save
