@@ -24,3 +24,5 @@ setlocal comments=n:;
 setlocal commentstring=;\ %s
 
 let &cpo = s:cpo_save
+
+" vim: et sw=2 sts=-1 tw=100 fdm=marker

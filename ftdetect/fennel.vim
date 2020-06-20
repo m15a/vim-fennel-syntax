@@ -6,3 +6,5 @@ endfun
 
 autocmd BufRead,BufNewFile *.fnl setlocal filetype=fennel
 autocmd BufNewFile,BufRead * call s:DetectFennel()
+
+" vim: et sw=2 sts=-1 tw=100 fdm=marker

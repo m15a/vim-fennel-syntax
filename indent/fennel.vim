@@ -18,3 +18,5 @@ let b:undo_indent .= '| setlocal lisp<'
 
 let &cpo = s:save_cpo
 unlet! s:save_cpo
+
+" vim: et sw=2 sts=-1 tw=100 fdm=marker
