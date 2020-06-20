@@ -1,6 +1,10 @@
-" Vim filetype plugin file
-" Language: FENNEL
-" Maintainer: Calvin Rose
+" Vim indent file
+" Language: Fennel
+" Last Change: 2020-06-20
+" Original Maintainer: Calvin Rose
+" Maintainer: Mitsuhiro Nakamura <m.nacamura@gmail.com>
+" URL: https://github.com/mnacamura/vim-fennel-syntax
+" License: MIT
 
 if exists("b:did_indent")
   finish
