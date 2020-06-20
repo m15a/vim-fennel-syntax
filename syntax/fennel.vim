@@ -1,6 +1,6 @@
 " Vim syntax file
 " Language: Fennel
-" Last Change: 2020-06-20
+" Last Change: 2020-06-21
 " Original Maintainer: Calvin Rose
 " Maintainer: Mitsuhiro Nakamura <m.nacamura@gmail.com>
 " URL: https://github.com/mnacamura/vim-fennel-syntax
@@ -12,6 +12,9 @@ endif
 
 let s:cpo_save = &cpo
 set cpo&vim
+
+" Any uncaught syntax is highlighted as error.
+syn match fennelError /[^[:space:]\n]/
 
 syntax keyword fennelCommentTodo contained FIXME XXX TODO FIXME: XXX: TODO:
 
@@ -255,9 +258,6 @@ syntax cluster fennelTop contains=@Spell,fennelComment,fennelConstant,fennelQuot
 syntax region fennelList matchgroup=fennelParen start="("  end=")" contains=@fennelTop
 syntax region fennelArray matchgroup=fennelParen start="\[" end="]" contains=@fennelTop
 syntax region fennelTable matchgroup=fennelParen start="{"  end="}" contains=@fennelTop
-
-" Highlight superfluous closing parens, brackets and braces.
-syntax match fennelError "]\|}\|)"
 
 syntax sync fromstart
 
