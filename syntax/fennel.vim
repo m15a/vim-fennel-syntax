@@ -62,22 +62,23 @@ syn cluster fennelCompoundData contains=fennelList,fennelArray,fennelTable,fenne
 syn cluster fennelCompoundDataQ contains=fennelListQ,fennelArrayQ,fennelTableQ,fennelQuote,fennelQuasiQuote
 syn cluster fennelCompoundDataQQ contains=fennelListQQ,fennelArrayQQ,fennelTableQQ,fennelQuote,fennelQuasiQuote
 
-" TODO: hash function
+" TODO: hash function as compound data
+" It would be better if $ and $1-$9 are only highlighted in hashfn.
 
 " Unquoted list, array, and table {{{2
-syn region fennelList matchgroup=fennelDelimiter start=/#\@<!(/ end=/)/ contains=fennelError,@fennelComments,@fennelData,@fennelExpressions
-syn region fennelArray matchgroup=fennelDelimiter start=/#\@<!\[/ end=/]/ contains=fennelError,@fennelComments,@fennelData,@fennelExpressions
-syn region fennelTable matchgroup=fennelDelimiter start=/#\@<!{/ end=/}/ contains=fennelError,@fennelComments,@fennelData,@fennelExpressions
+syn region fennelList matchgroup=fennelDelimiter start=/(/ end=/)/ contains=fennelError,@fennelComments,@fennelData,@fennelExpressions
+syn region fennelArray matchgroup=fennelDelimiter start=/\[/ end=/]/ contains=fennelError,@fennelComments,@fennelData,@fennelExpressions
+syn region fennelTable matchgroup=fennelDelimiter start=/{/ end=/}/ contains=fennelError,@fennelComments,@fennelData,@fennelExpressions
 
 " Apparently unquoted but quoted list, array, and table {{{2
-syn region fennelListQ matchgroup=fennelDelimiter start=/#\@<!(/ end=/)/ contained contains=fennelError,@fennelComments,@fennelDataQ
-syn region fennelArrayQ matchgroup=fennelDelimiter start=/#\@<!\[/ end=/]/ contained contains=fennelError,@fennelComments,@fennelDataQ
-syn region fennelTableQ matchgroup=fennelDelimiter start=/#\@<!{/ end=/}/ contained contains=fennelError,@fennelComments,@fennelDataQ
+syn region fennelListQ matchgroup=fennelDelimiter start=/(/ end=/)/ contained contains=fennelError,@fennelComments,@fennelDataQ
+syn region fennelArrayQ matchgroup=fennelDelimiter start=/\[/ end=/]/ contained contains=fennelError,@fennelComments,@fennelDataQ
+syn region fennelTableQ matchgroup=fennelDelimiter start=/{/ end=/}/ contained contains=fennelError,@fennelComments,@fennelDataQ
 
 " Apparently unquoted but quasiquoted list, array, and table {{{2
-syn region fennelListQQ matchgroup=fennelDelimiter start=/#\@<!(/ end=/)/ contained contains=fennelError,@fennelComments,@fennelDataQQ,fennelUnquote
-syn region fennelArrayQQ matchgroup=fennelDelimiter start=/#\@<!\[/ end=/]/ contained contains=fennelError,@fennelComments,@fennelDataQQ,fennelUnquote
-syn region fennelTableQQ matchgroup=fennelDelimiter start=/#\@<!{/ end=/}/ contained contains=fennelError,@fennelComments,@fennelDataQQ,fennelUnquote
+syn region fennelListQQ matchgroup=fennelDelimiter start=/(/ end=/)/ contained contains=fennelError,@fennelComments,@fennelDataQQ,fennelUnquote
+syn region fennelArrayQQ matchgroup=fennelDelimiter start=/\[/ end=/]/ contained contains=fennelError,@fennelComments,@fennelDataQQ,fennelUnquote
+syn region fennelTableQQ matchgroup=fennelDelimiter start=/{/ end=/}/ contained contains=fennelError,@fennelComments,@fennelDataQQ,fennelUnquote
 
 " Quoted simple data {{{2
 syn match fennelQuote /'\ze[^[:space:]\n();'`,\\#\[\]{}]/ nextgroup=@fennelSimpleData
@@ -116,10 +117,10 @@ syn match fennelQuasiQuote /`\ze,/ nextgroup=fennelUnquote
 syn match fennelUnquote /,\ze[^[:space:]\n]/ contained nextgroup=@fennelData,@fennelExpressions
 
 " Expressions {{{1
-syn cluster fennelExpressions contains=fennelSpecialForm,fennelLuaKeyword
+syn cluster fennelExpressions contains=fennelSpecialForm,fennelAuxSyntax,fennelLuaKeyword
 
 " Special forms {{{2
-syn keyword fennelSpecialForm #
+syn match fennelSpecialForm /#/
 syn keyword fennelSpecialForm %
 syn keyword fennelSpecialForm *
 syn keyword fennelSpecialForm +
@@ -175,6 +176,9 @@ syn keyword fennelSpecialForm when
 syn keyword fennelSpecialForm while
 syn keyword fennelSpecialForm ~=
 syn keyword fennelSpecialForm λ
+
+" Auxiliary syntaxes {{{2
+syn match fennelAuxSyntax /\$\d\?/
 
 " Lua keywords {{{2
 syntax keyword fennelLuaKeyword
@@ -344,6 +348,7 @@ hi def link fennelQuote fennelSpecialForm
 hi def link fennelQuasiQuote fennelSpecialForm
 hi def link fennelUnquote fennelSpecialForm
 hi def link fennelSpecialForm Special
+hi def link fennelAuxSyntax Special
 hi def link fennelLuaKeyword Function
 
 " }}}
