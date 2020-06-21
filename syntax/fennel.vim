@@ -24,6 +24,7 @@ syntax match fennelCommentTodo contained /\(FIXME\|XXX\|TODO\):\?/
 
 " Unquoted and quasiquoted data
 syn cluster fennelData contains=@fennelSimpleData,@fennelCompoundData
+syn cluster fennelDataQ contains=@fennelSimpleData,@fennelCompoundDataQ
 syn cluster fennelDataQQ contains=@fennelSimpleData,@fennelCompoundDataQQ
 
 " Simple data {{{1
@@ -51,8 +52,9 @@ syntax region fennelString matchgroup=fennelDelimiter start=/"/ skip=/\\\\\|\\"/
 syntax match fennelStringEscape '\v\\%([abfnrtv'"\\]|x[[0-9a-fA-F]]\{2}|25[0-5]|2[0-4][0-9]|[0-1][0-9][0-9])' contained
 
 " Compound data {{{1
-syn cluster fennelCompoundData contains=fennelList,fennelArray,fennelTable,fennelQuasiQuote
-syn cluster fennelCompoundDataQQ contains=fennelListQQ,fennelArrayQQ,fennelTableQQ,fennelQuasiQuote
+syn cluster fennelCompoundData contains=fennelList,fennelArray,fennelTable,fennelQuote,fennelQuasiQuote
+syn cluster fennelCompoundDataQ contains=fennelListQ,fennelArrayQ,fennelTableQ,fennelQuote,fennelQuasiQuote
+syn cluster fennelCompoundDataQQ contains=fennelListQQ,fennelArrayQQ,fennelTableQQ,fennelQuote,fennelQuasiQuote
 
 " TODO: hash function
 
@@ -61,15 +63,36 @@ syn region fennelList matchgroup=fennelDelimiter start=/#\@<!(/ end=/)/ contains
 syn region fennelArray matchgroup=fennelDelimiter start=/#\@<!\[/ end=/]/ contains=fennelError,@fennelComments,@fennelData,@fennelExpressions
 syn region fennelTable matchgroup=fennelDelimiter start=/#\@<!{/ end=/}/ contains=fennelError,@fennelComments,@fennelData,@fennelExpressions
 
+" Apparently unquoted but quoted list, array, and table {{{2
+syn region fennelListQ matchgroup=fennelDelimiter start=/#\@<!(/ end=/)/ contained contains=fennelError,@fennelComments,@fennelDataQ
+syn region fennelArrayQ matchgroup=fennelDelimiter start=/#\@<!\[/ end=/]/ contained contains=fennelError,@fennelComments,@fennelDataQ
+syn region fennelTableQ matchgroup=fennelDelimiter start=/#\@<!{/ end=/}/ contained contains=fennelError,@fennelComments,@fennelDataQ
+
 " Apparently unquoted but quasiquoted list, array, and table {{{2
 syn region fennelListQQ matchgroup=fennelDelimiter start=/#\@<!(/ end=/)/ contained contains=fennelError,@fennelComments,@fennelDataQQ,fennelUnquote
 syn region fennelArrayQQ matchgroup=fennelDelimiter start=/#\@<!\[/ end=/]/ contained contains=fennelError,@fennelComments,@fennelDataQQ,fennelUnquote
 syn region fennelTableQQ matchgroup=fennelDelimiter start=/#\@<!{/ end=/}/ contained contains=fennelError,@fennelComments,@fennelDataQQ,fennelUnquote
 
-" Quasiquoted simple data {{{2
-syn match fennelQuasiQuote /`\ze[^[:space:]\n();'`,\\#\[\]{}]/ nextgroup=@fennelSimpleData
+" Quoted simple data {{{2
+syn match fennelQuote /'\ze[^[:space:]\n();'`,\\#\[\]{}]/ nextgroup=fennelError,@fennelSimpleData
 
-" Quasiquoted compound data {{{2
+" Quoted list, array, and table {{{2
+syn match fennelQuote /'\ze(/ nextgroup=fennelQuoteList
+syn region fennelQuoteList matchgroup=fennelDelimiter start=/(/ end=/)/ contained contains=fennelError,@fennelComments,@fennelDataQ
+syn match fennelQuote /'\ze\[/ nextgroup=fennelQuoteArray
+syn region fennelQuoteArray matchgroup=fennelDelimiter start=/\[/ end=/]/ contained contains=fennelError,@fennelComments,@fennelDataQ
+syn match fennelQuote /'\ze{/ nextgroup=fennelQuoteTable
+syn region fennelQuoteTable matchgroup=fennelDelimiter start=/{/ end=/}/ contained contains=fennelError,@fennelComments,@fennelDataQ
+
+" Quoted (un)quotes {{{2
+syn match fennelQuote /'\ze'/ nextgroup=fennelQuote
+syn match fennelQuote /'\ze`/ nextgroup=fennelQuasiQuote
+syn match fennelQuote /'\ze,/ nextgroup=fennelUnquote
+
+" Quasiquoted simple data {{{2
+syn match fennelQuasiQuote /`\ze[^[:space:]\n();'`,\\#\[\]{}]/ nextgroup=fennelError,@fennelSimpleData
+
+" Quasiquoted list, array, and table {{{2
 syn match fennelQuasiQuote /`\ze(/ nextgroup=fennelQuasiQuoteList
 syn region fennelQuasiQuoteList matchgroup=fennelDelimiter start=/(/ end=/)/ contained contains=fennelError,@fennelComments,@fennelDataQQ,fennelUnquote
 syn match fennelQuasiQuote /`\ze\[/ nextgroup=fennelQuasiQuoteArray
@@ -78,11 +101,13 @@ syn match fennelQuasiQuote /`\ze{/ nextgroup=fennelQuasiQuoteTable
 syn region fennelQuasiQuoteTable matchgroup=fennelDelimiter start=/{/ end=/}/ contained contains=fennelError,@fennelComments,@fennelDataQQ,fennelUnquote
 
 " Quasiquoted (un)quotes {{{2
+syn match fennelQuasiQuote /`\ze'/ nextgroup=fennelQuote
 syn match fennelQuasiQuote /`\ze`/ nextgroup=fennelQuasiQuote
 syn match fennelQuasiQuote /`\ze,/ nextgroup=fennelUnquote
 
 " Unquote {{{2
-syn match fennelUnquote /,/ contained nextgroup=@fennelData,@fennelExpressions
+" Unlike Scheme, Fennel's unquote rejects spaces after ','.
+syn match fennelUnquote /,\ze[^[:space:]\n]/ contained nextgroup=fennelError,@fennelData,@fennelExpressions
 
 " Expressions {{{1
 syn cluster fennelExpressions contains=fennelSpecialForm,fennelLuaKeyword
@@ -309,6 +334,7 @@ hi def link fennelBoolean Boolean
 hi def link fennelNumber Number
 hi def link fennelString String
 hi def link fennelStringEscape Character
+hi def link fennelQuote fennelSpecialForm
 hi def link fennelQuasiQuote fennelSpecialForm
 hi def link fennelUnquote fennelSpecialForm
 hi def link fennelSpecialForm Special
