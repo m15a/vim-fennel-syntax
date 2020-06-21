@@ -36,8 +36,8 @@ syn keyword fennelConstant nil
 " Symbol and keyword {{{2
 let s:symcharnodig = '\!\$%\&\#\*\+\-./:<=>?A-Z^_a-z|\x80-\U10FFFF'
 let s:symchar = '0-9' . s:symcharnodig
-execute 'syn match fennelSymbol "\v<%([' . s:symcharnodig . '])%([' . s:symchar . '])*>"'
-execute 'syn match fennelKeyword "\v<:%([' . s:symchar . '])*>"'
+execute 'syn match fennelSymbol /\v[' . s:symcharnodig . '][' . s:symchar . ']*/'
+execute 'syn match fennelKeyword /\v:[' . s:symchar . ']*>/'
 unlet s:symchar s:symcharnodig
 
 " Boolean {{{2
