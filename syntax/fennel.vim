@@ -46,6 +46,7 @@ syn keyword fennelBoolean true false
 " Number {{{2
 syn match fennelNumber "\v\c<[-+]?%(\d+|\.\d+|\d+\.\d*)%(e[-+]?\d+)?>"
 syn match fennelNumber "\v\c<[-+]?0x%(\x+|\.\x+|\x+\.\x*)%(p[-+]?\d+)?>"
+" NOTE: Fennel seems to accept fractional and postfix 'p' in hex number even if Lua version < 5.2.
 
 " String {{{2
 syntax region fennelString matchgroup=fennelDelimiter start=/"/ skip=/\\\\\|\\"/ end=/"/ contains=fennelStringEscape,@Spell
