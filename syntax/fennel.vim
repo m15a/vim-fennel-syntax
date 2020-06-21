@@ -29,7 +29,7 @@ syn cluster fennelDataQQ contains=@fennelSimpleData,@fennelCompoundDataQQ
 " Simple data {{{1
 syn cluster fennelSimpleData contains=fennelConstant,fennelSymbol,fennelKeyword,fennelBoolean,fennelNumber,fennelString
 
-" Fennel constant (nil) {{{2
+" Constant (nil) {{{2
 syn keyword fennelConstant nil
 
 " Symbol and keyword {{{2
@@ -42,7 +42,7 @@ unlet s:symchar s:symcharnodig
 " Boolean {{{2
 syn keyword fennelBoolean true false
 
-" Numbers {{{2
+" Number {{{2
 syn match fennelNumber "\v\c<[-+]?%(\d+|\.\d+|\d+\.\d*)%(e[-+]?\d+)?>"
 syn match fennelNumber "\v\c<[-+]?0x%(\x+|\.\x+|\x+\.\x*)%(p[-+]?\d+)?>"
 
