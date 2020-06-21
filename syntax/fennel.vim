@@ -179,6 +179,7 @@ syn keyword fennelSpecialForm λ
 
 " Auxiliary syntaxes {{{2
 syn match fennelAuxSyntax /\$\d\?/
+syn keyword fennelAuxSyntax ...
 
 " Lua keywords {{{2
 syntax keyword fennelLuaKeyword
