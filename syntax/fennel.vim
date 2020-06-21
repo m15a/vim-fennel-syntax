@@ -50,7 +50,12 @@ syn match fennelNumber "\v\c<[-+]?0x%(\x+|\.\x+|\x+\.\x*)%(p[-+]?\d+)?>"
 
 " String {{{2
 syntax region fennelString matchgroup=fennelDelimiter start=/"/ skip=/\\\\\|\\"/ end=/"/ contains=fennelStringEscape,@Spell
-syntax match fennelStringEscape '\v\\%([abfnrtv'"\\]|x[[0-9a-fA-F]]\{2}|25[0-5]|2[0-4][0-9]|[0-1][0-9][0-9])' contained
+syntax match fennelStringEscape /\\[abfnrtv\\"']/ contained
+syntax match fennelStringEscape /\\\%(\%(\%([01]\)\?[0-9]\)\?[0-9]\|2[0-4][0-9]\|25[0-5]\)/ contained
+
+" Lua 5.2-
+syntax match fennelStringEscape /\\z/ contained
+syntax match fennelStringEscape '\\x[[:xdigit:]]\{2}' contained
 
 " Compound data {{{1
 syn cluster fennelCompoundData contains=fennelList,fennelArray,fennelTable,fennelQuote,fennelQuasiQuote
