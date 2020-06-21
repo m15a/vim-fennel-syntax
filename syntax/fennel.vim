@@ -1,6 +1,6 @@
 " Vim syntax file
 " Language: Fennel
-" Last Change: 2020-06-21
+" Last Change: 2020-06-22
 " Original Maintainer: Calvin Rose
 " Maintainer: Mitsuhiro Nakamura <m.nacamura@gmail.com>
 " URL: https://github.com/mnacamura/vim-fennel-syntax
@@ -18,7 +18,7 @@ syn match fennelError /[^[:space:]\n]/
 
 " Comments {{{1
 syn region fennelComment start=/;/ end=/$/ contains=fennelCommentTodo,@Spell
-syntax match fennelCommentTodo contained /\(FIXME\|XXX\|TODO\):\?/
+syn match fennelCommentTodo contained /\(FIXME\|XXX\|TODO\):\?/
 
 " }}}
 
@@ -49,13 +49,13 @@ syn match fennelNumber "\v\c<[-+]?0x%(\x+|\.\x+|\x+\.\x*)%(p[-+]?\d+)?>"
 " NOTE: Fennel seems to accept fractional and postfix 'p' in hex number even if Lua version < 5.2.
 
 " String {{{2
-syntax region fennelString matchgroup=fennelDelimiter start=/"/ skip=/\\\\\|\\"/ end=/"/ contains=fennelStringEscape,@Spell
-syntax match fennelStringEscape /\\[abfnrtv\\"']/ contained
-syntax match fennelStringEscape /\\\%(\%(\%([01]\)\?[0-9]\)\?[0-9]\|2[0-4][0-9]\|25[0-5]\)/ contained
+syn region fennelString matchgroup=fennelDelimiter start=/"/ skip=/\\\\\|\\"/ end=/"/ contains=fennelStringEscape,@Spell
+syn match fennelStringEscape /\\[abfnrtv\\"']/ contained
+syn match fennelStringEscape /\\\%(\%(\%([01]\)\?[0-9]\)\?[0-9]\|2[0-4][0-9]\|25[0-5]\)/ contained
 
 " Lua 5.2-
-syntax match fennelStringEscape /\\z/ contained
-syntax match fennelStringEscape '\\x[[:xdigit:]]\{2}' contained
+syn match fennelStringEscape /\\z/ contained
+syn match fennelStringEscape '\\x[[:xdigit:]]\{2}' contained
 
 " Compound data {{{1
 syn cluster fennelCompoundData contains=fennelList,fennelArray,fennelTable,fennelQuote,fennelQuasiQuote
@@ -132,51 +132,51 @@ syn match fennelAuxSyntax /\$\d\?/
 syn keyword fennelAuxSyntax ...
 
 " Lua keywords {{{2
-syntax keyword fennelLuaKeyword _G _VERSION
-syntax keyword fennelLuaKeyword assert collectgarbage dofile error getmetatable ipairs load loadfile
-syntax keyword fennelLuaKeyword next pairs pcall print rawequal rawget rawlen rawset require select
-syntax keyword fennelLuaKeyword setmetatable tonumber tostring type xpcall unpack
-syntax keyword fennelLuaKeyword coroutine
-syntax keyword fennelLuaKeyword coroutine.create coroutine.isyieldable coroutine.resume
-syntax keyword fennelLuaKeyword coroutine.running coroutine.status coroutine.wrap coroutine.yield
-syntax keyword fennelLuaKeyword debug
-syntax keyword fennelLuaKeyword debug.debug debug.gethook debug.getinfo debug.getlocal
-syntax keyword fennelLuaKeyword debug.getmetatable debug.getregistry debug.getupvalue
-syntax keyword fennelLuaKeyword debug.getuservalue debug.sethook debug.setlocal debug.setmetatable
-syntax keyword fennelLuaKeyword debug.setupvalue debug.setuservalue debug.traceback debug.upvalueid
-syntax keyword fennelLuaKeyword debug.upvaluejoin
-syntax keyword fennelLuaKeyword io
-syntax keyword fennelLuaKeyword io.close io.flush io.input io.lines io.open io.output io.popen
-syntax keyword fennelLuaKeyword io.read io.stderr io.stdin io.stdout io.tmpfile io.type io.write
-syntax keyword fennelLuaKeyword file
-syntax keyword fennelLuaKeyword file:close file:flush file:lines file:read file:seek file:setvbuf
-syntax keyword fennelLuaKeyword file:write
-syntax keyword fennelLuaKeyword math
-syntax keyword fennelLuaKeyword math.abs math.acos math.asin math.atan math.ceil math.cos math.deg
-syntax keyword fennelLuaKeyword math.exp math.floor math.fmod math.huge math.log math.max
-syntax keyword fennelLuaKeyword math.maxinteger math.min math.mininteger math.modf math.pi math.rad
-syntax keyword fennelLuaKeyword math.random math.randomseed math.sin math.sqrt math.tan
-syntax keyword fennelLuaKeyword math.tointeger math.type math.ult
-syntax keyword fennelLuaKeyword os
-syntax keyword fennelLuaKeyword os.clock os.date os.difftime os.execute os.exit os.getenv os.remove
-syntax keyword fennelLuaKeyword os.rename os.setlocale os.time os.tmpname
-syntax keyword fennelLuaKeyword package
-syntax keyword fennelLuaKeyword package.config package.cpath package.loaded package.loadlib
-syntax keyword fennelLuaKeyword package.path package.preload package.searchers package.searchpath
-syntax keyword fennelLuaKeyword string
-syntax keyword fennelLuaKeyword string.byte string.char string.dump string.find string.format
-syntax keyword fennelLuaKeyword string.gmatch string.gsub string.len string.lower string.match
-syntax keyword fennelLuaKeyword string.pack string.packsize string.rep string.reverse string.sub
-syntax keyword fennelLuaKeyword string.unpack string.upper
-syntax keyword fennelLuaKeyword table
-syntax keyword fennelLuaKeyword table.concat table.insert table.move table.pack table.remove
-syntax keyword fennelLuaKeyword table.sort table.unpack
-syntax keyword fennelLuaKeyword utf8
-syntax keyword fennelLuaKeyword utf8.char utf8.charpattern utf8.codepoint utf8.codes utf8.len
-syntax keyword fennelLuaKeyword utf8.offset
+syn keyword fennelLuaKeyword _G _VERSION
+syn keyword fennelLuaKeyword assert collectgarbage dofile error getmetatable ipairs load loadfile
+syn keyword fennelLuaKeyword next pairs pcall print rawequal rawget rawlen rawset require select
+syn keyword fennelLuaKeyword setmetatable tonumber tostring type xpcall unpack
+syn keyword fennelLuaKeyword coroutine
+syn keyword fennelLuaKeyword coroutine.create coroutine.isyieldable coroutine.resume
+syn keyword fennelLuaKeyword coroutine.running coroutine.status coroutine.wrap coroutine.yield
+syn keyword fennelLuaKeyword debug
+syn keyword fennelLuaKeyword debug.debug debug.gethook debug.getinfo debug.getlocal
+syn keyword fennelLuaKeyword debug.getmetatable debug.getregistry debug.getupvalue
+syn keyword fennelLuaKeyword debug.getuservalue debug.sethook debug.setlocal debug.setmetatable
+syn keyword fennelLuaKeyword debug.setupvalue debug.setuservalue debug.traceback debug.upvalueid
+syn keyword fennelLuaKeyword debug.upvaluejoin
+syn keyword fennelLuaKeyword io
+syn keyword fennelLuaKeyword io.close io.flush io.input io.lines io.open io.output io.popen
+syn keyword fennelLuaKeyword io.read io.stderr io.stdin io.stdout io.tmpfile io.type io.write
+syn keyword fennelLuaKeyword file
+syn keyword fennelLuaKeyword file:close file:flush file:lines file:read file:seek file:setvbuf
+syn keyword fennelLuaKeyword file:write
+syn keyword fennelLuaKeyword math
+syn keyword fennelLuaKeyword math.abs math.acos math.asin math.atan math.ceil math.cos math.deg
+syn keyword fennelLuaKeyword math.exp math.floor math.fmod math.huge math.log math.max
+syn keyword fennelLuaKeyword math.maxinteger math.min math.mininteger math.modf math.pi math.rad
+syn keyword fennelLuaKeyword math.random math.randomseed math.sin math.sqrt math.tan
+syn keyword fennelLuaKeyword math.tointeger math.type math.ult
+syn keyword fennelLuaKeyword os
+syn keyword fennelLuaKeyword os.clock os.date os.difftime os.execute os.exit os.getenv os.remove
+syn keyword fennelLuaKeyword os.rename os.setlocale os.time os.tmpname
+syn keyword fennelLuaKeyword package
+syn keyword fennelLuaKeyword package.config package.cpath package.loaded package.loadlib
+syn keyword fennelLuaKeyword package.path package.preload package.searchers package.searchpath
+syn keyword fennelLuaKeyword string
+syn keyword fennelLuaKeyword string.byte string.char string.dump string.find string.format
+syn keyword fennelLuaKeyword string.gmatch string.gsub string.len string.lower string.match
+syn keyword fennelLuaKeyword string.pack string.packsize string.rep string.reverse string.sub
+syn keyword fennelLuaKeyword string.unpack string.upper
+syn keyword fennelLuaKeyword table
+syn keyword fennelLuaKeyword table.concat table.insert table.move table.pack table.remove
+syn keyword fennelLuaKeyword table.sort table.unpack
+syn keyword fennelLuaKeyword utf8
+syn keyword fennelLuaKeyword utf8.char utf8.charpattern utf8.codepoint utf8.codes utf8.len
+syn keyword fennelLuaKeyword utf8.offset
 
 " Highlighting {{{1
-syntax sync fromstart
+syn sync fromstart
 
 hi def link fennelError Error
 hi def link fennelDelimiter Delimiter
