@@ -135,7 +135,7 @@ syn keyword fennelAuxSyntax ...
 syntax keyword fennelLuaKeyword _G _VERSION
 syntax keyword fennelLuaKeyword assert collectgarbage dofile error getmetatable ipairs load loadfile
 syntax keyword fennelLuaKeyword next pairs pcall print rawequal rawget rawlen rawset require select
-syntax keyword fennelLuaKeyword setmetatable tonumber tostring type xpcall
+syntax keyword fennelLuaKeyword setmetatable tonumber tostring type xpcall unpack
 syntax keyword fennelLuaKeyword coroutine
 syntax keyword fennelLuaKeyword coroutine.create coroutine.isyieldable coroutine.resume
 syntax keyword fennelLuaKeyword coroutine.running coroutine.status coroutine.wrap coroutine.yield
@@ -148,6 +148,9 @@ syntax keyword fennelLuaKeyword debug.upvaluejoin
 syntax keyword fennelLuaKeyword io
 syntax keyword fennelLuaKeyword io.close io.flush io.input io.lines io.open io.output io.popen
 syntax keyword fennelLuaKeyword io.read io.stderr io.stdin io.stdout io.tmpfile io.type io.write
+syntax keyword fennelLuaKeyword file
+syntax keyword fennelLuaKeyword file:close file:flush file:lines file:read file:seek file:setvbuf
+syntax keyword fennelLuaKeyword file:write
 syntax keyword fennelLuaKeyword math
 syntax keyword fennelLuaKeyword math.abs math.acos math.asin math.atan math.ceil math.cos math.deg
 syntax keyword fennelLuaKeyword math.exp math.floor math.fmod math.huge math.log math.max
