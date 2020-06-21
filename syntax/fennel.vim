@@ -132,154 +132,45 @@ syn match fennelAuxSyntax /\$\d\?/
 syn keyword fennelAuxSyntax ...
 
 " Lua keywords {{{2
-syntax keyword fennelLuaKeyword
-      \ _G
-      \ _VERSION
-      \ assert
-      \ collectgarbage
-      \ dofile
-      \ error
-      \ getmetatable
-      \ ipairs
-      \ load
-      \ loadfile
-      \ next
-      \ pairs
-      \ pcall
-      \ print
-      \ rawequal
-      \ rawget
-      \ rawlen
-      \ rawset
-      \ require
-      \ select
-      \ setmetatable
-      \ tonumber
-      \ tostring
-      \ type
-      \ xpcall
-      \ coroutine
-      \ coroutine.create
-      \ coroutine.isyieldable
-      \ coroutine.resume
-      \ coroutine.running
-      \ coroutine.status
-      \ coroutine.wrap
-      \ coroutine.yield
-      \ debug
-      \ debug.debug
-      \ debug.gethook
-      \ debug.getinfo
-      \ debug.getlocal
-      \ debug.getmetatable
-      \ debug.getregistry
-      \ debug.getupvalue
-      \ debug.getuservalue
-      \ debug.sethook
-      \ debug.setlocal
-      \ debug.setmetatable
-      \ debug.setupvalue
-      \ debug.setuservalue
-      \ debug.traceback
-      \ debug.upvalueid
-      \ debug.upvaluejoin
-      \ io
-      \ io.close
-      \ io.flush
-      \ io.input
-      \ io.lines
-      \ io.open
-      \ io.output
-      \ io.popen
-      \ io.read
-      \ io.stderr
-      \ io.stdin
-      \ io.stdout
-      \ io.tmpfile
-      \ io.type
-      \ io.write
-      \ math
-      \ math.abs
-      \ math.acos
-      \ math.asin
-      \ math.atan
-      \ math.ceil
-      \ math.cos
-      \ math.deg
-      \ math.exp
-      \ math.floor
-      \ math.fmod
-      \ math.huge
-      \ math.log
-      \ math.max
-      \ math.maxinteger
-      \ math.min
-      \ math.mininteger
-      \ math.modf
-      \ math.pi
-      \ math.rad
-      \ math.random
-      \ math.randomseed
-      \ math.sin
-      \ math.sqrt
-      \ math.tan
-      \ math.tointeger
-      \ math.type
-      \ math.ult
-      \ os
-      \ os.clock
-      \ os.date
-      \ os.difftime
-      \ os.execute
-      \ os.exit
-      \ os.getenv
-      \ os.remove
-      \ os.rename
-      \ os.setlocale
-      \ os.time
-      \ os.tmpname
-      \ package
-      \ package.config
-      \ package.cpath
-      \ package.loaded
-      \ package.loadlib
-      \ package.path
-      \ package.preload
-      \ package.searchers
-      \ package.searchpath
-      \ string
-      \ string.byte
-      \ string.char
-      \ string.dump
-      \ string.find
-      \ string.format
-      \ string.gmatch
-      \ string.gsub
-      \ string.len
-      \ string.lower
-      \ string.match
-      \ string.pack
-      \ string.packsize
-      \ string.rep
-      \ string.reverse
-      \ string.sub
-      \ string.unpack
-      \ string.upper
-      \ table
-      \ table.concat
-      \ table.insert
-      \ table.move
-      \ table.pack
-      \ table.remove
-      \ table.sort
-      \ table.unpack
-      \ utf8
-      \ utf8.char
-      \ utf8.charpattern
-      \ utf8.codepoint
-      \ utf8.codes
-      \ utf8.len
-      \ utf8.offset
+syntax keyword fennelLuaKeyword _G _VERSION
+syntax keyword fennelLuaKeyword assert collectgarbage dofile error getmetatable ipairs load loadfile
+syntax keyword fennelLuaKeyword next pairs pcall print rawequal rawget rawlen rawset require select
+syntax keyword fennelLuaKeyword setmetatable tonumber tostring type xpcall
+syntax keyword fennelLuaKeyword coroutine
+syntax keyword fennelLuaKeyword coroutine.create coroutine.isyieldable coroutine.resume
+syntax keyword fennelLuaKeyword coroutine.running coroutine.status coroutine.wrap coroutine.yield
+syntax keyword fennelLuaKeyword debug
+syntax keyword fennelLuaKeyword debug.debug debug.gethook debug.getinfo debug.getlocal
+syntax keyword fennelLuaKeyword debug.getmetatable debug.getregistry debug.getupvalue
+syntax keyword fennelLuaKeyword debug.getuservalue debug.sethook debug.setlocal debug.setmetatable
+syntax keyword fennelLuaKeyword debug.setupvalue debug.setuservalue debug.traceback debug.upvalueid
+syntax keyword fennelLuaKeyword debug.upvaluejoin
+syntax keyword fennelLuaKeyword io
+syntax keyword fennelLuaKeyword io.close io.flush io.input io.lines io.open io.output io.popen
+syntax keyword fennelLuaKeyword io.read io.stderr io.stdin io.stdout io.tmpfile io.type io.write
+syntax keyword fennelLuaKeyword math
+syntax keyword fennelLuaKeyword math.abs math.acos math.asin math.atan math.ceil math.cos math.deg
+syntax keyword fennelLuaKeyword math.exp math.floor math.fmod math.huge math.log math.max
+syntax keyword fennelLuaKeyword math.maxinteger math.min math.mininteger math.modf math.pi math.rad
+syntax keyword fennelLuaKeyword math.random math.randomseed math.sin math.sqrt math.tan
+syntax keyword fennelLuaKeyword math.tointeger math.type math.ult
+syntax keyword fennelLuaKeyword os
+syntax keyword fennelLuaKeyword os.clock os.date os.difftime os.execute os.exit os.getenv os.remove
+syntax keyword fennelLuaKeyword os.rename os.setlocale os.time os.tmpname
+syntax keyword fennelLuaKeyword package
+syntax keyword fennelLuaKeyword package.config package.cpath package.loaded package.loadlib
+syntax keyword fennelLuaKeyword package.path package.preload package.searchers package.searchpath
+syntax keyword fennelLuaKeyword string
+syntax keyword fennelLuaKeyword string.byte string.char string.dump string.find string.format
+syntax keyword fennelLuaKeyword string.gmatch string.gsub string.len string.lower string.match
+syntax keyword fennelLuaKeyword string.pack string.packsize string.rep string.reverse string.sub
+syntax keyword fennelLuaKeyword string.unpack string.upper
+syntax keyword fennelLuaKeyword table
+syntax keyword fennelLuaKeyword table.concat table.insert table.move table.pack table.remove
+syntax keyword fennelLuaKeyword table.sort table.unpack
+syntax keyword fennelLuaKeyword utf8
+syntax keyword fennelLuaKeyword utf8.char utf8.charpattern utf8.codepoint utf8.codes utf8.len
+syntax keyword fennelLuaKeyword utf8.offset
 
 " Highlighting {{{1
 syntax sync fromstart
