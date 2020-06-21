@@ -74,7 +74,7 @@ syn region fennelArrayQQ matchgroup=fennelDelimiter start=/#\@<!\[/ end=/]/ cont
 syn region fennelTableQQ matchgroup=fennelDelimiter start=/#\@<!{/ end=/}/ contained contains=fennelError,@fennelComments,@fennelDataQQ,fennelUnquote
 
 " Quoted simple data {{{2
-syn match fennelQuote /'\ze[^[:space:]\n();'`,\\#\[\]{}]/ nextgroup=fennelError,@fennelSimpleData
+syn match fennelQuote /'\ze[^[:space:]\n();'`,\\#\[\]{}]/ nextgroup=@fennelSimpleData
 
 " Quoted list, array, and table {{{2
 syn match fennelQuote /'\ze(/ nextgroup=fennelQuoteList
@@ -90,7 +90,7 @@ syn match fennelQuote /'\ze`/ nextgroup=fennelQuasiQuote
 syn match fennelQuote /'\ze,/ nextgroup=fennelUnquote
 
 " Quasiquoted simple data {{{2
-syn match fennelQuasiQuote /`\ze[^[:space:]\n();'`,\\#\[\]{}]/ nextgroup=fennelError,@fennelSimpleData
+syn match fennelQuasiQuote /`\ze[^[:space:]\n();'`,\\#\[\]{}]/ nextgroup=@fennelSimpleData
 
 " Quasiquoted list, array, and table {{{2
 syn match fennelQuasiQuote /`\ze(/ nextgroup=fennelQuasiQuoteList
@@ -107,7 +107,7 @@ syn match fennelQuasiQuote /`\ze,/ nextgroup=fennelUnquote
 
 " Unquote {{{2
 " Unlike Scheme, Fennel's unquote rejects spaces after ','.
-syn match fennelUnquote /,\ze[^[:space:]\n]/ contained nextgroup=fennelError,@fennelData,@fennelExpressions
+syn match fennelUnquote /,\ze[^[:space:]\n]/ contained nextgroup=@fennelData,@fennelExpressions
 
 " Expressions {{{1
 syn cluster fennelExpressions contains=fennelSpecialForm,fennelLuaKeyword
