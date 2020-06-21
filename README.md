@@ -1,17 +1,17 @@
-# fennel.vim
+# vim-fennel-syntax
 
-Vim highlighting for [Fennel](https://fennel-lang.org), heavily modified from vim-clojure-static.
+Vim syntax highlighting for [Fennel][1].
+This repo is a personal fork from the original [fennel.vim][2].
 
-# Install with Vundle
+## Installation
 
-```
-Plugin 'bakpakin/fennel.vim'
-```
+Follow usual vim plugin installation procedure.
 
-# Install with vim-plug
+## License
 
-```
-Plug 'bakpakin/fennel.vim'
-```
+[MIT](LICENSE)
 
-Installation should work with any pathogen compatible set up.
+[1]: https://fennel-lang.org/
+[2]: https://github.com/bakpakin/fennel.vim/
+
+<!-- vim: set tw=78 spell: -->
