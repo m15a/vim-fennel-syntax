@@ -121,61 +121,11 @@ syn cluster fennelExpressions contains=fennelSpecialForm,fennelAuxSyntax,fennelL
 
 " Special forms {{{2
 syn match fennelSpecialForm /#/
-syn keyword fennelSpecialForm %
-syn keyword fennelSpecialForm *
-syn keyword fennelSpecialForm +
-syn keyword fennelSpecialForm -
-syn keyword fennelSpecialForm ->
-syn keyword fennelSpecialForm ->>
-syn keyword fennelSpecialForm -?>
-syn keyword fennelSpecialForm -?>>
-syn keyword fennelSpecialForm .
-syn keyword fennelSpecialForm ..
-syn keyword fennelSpecialForm /
-syn keyword fennelSpecialForm //
-syn keyword fennelSpecialForm :
-syn keyword fennelSpecialForm <
-syn keyword fennelSpecialForm <=
-syn keyword fennelSpecialForm =
-syn keyword fennelSpecialForm >
-syn keyword fennelSpecialForm >=
-syn keyword fennelSpecialForm ^
-syn keyword fennelSpecialForm and
-syn keyword fennelSpecialForm comment
-syn keyword fennelSpecialForm do
-syn keyword fennelSpecialForm doc
-syn keyword fennelSpecialForm doto
-syn keyword fennelSpecialForm each
-syn keyword fennelSpecialForm eval-compiler
-syn keyword fennelSpecialForm fn
-syn keyword fennelSpecialForm for
-syn keyword fennelSpecialForm global
-syn keyword fennelSpecialForm hashfn
-syn keyword fennelSpecialForm if
-syn keyword fennelSpecialForm include
-syn keyword fennelSpecialForm lambda
-syn keyword fennelSpecialForm length
-syn keyword fennelSpecialForm let
-syn keyword fennelSpecialForm local
-syn keyword fennelSpecialForm lua
-syn keyword fennelSpecialForm macro
-syn keyword fennelSpecialForm macros
-syn keyword fennelSpecialForm match
-syn keyword fennelSpecialForm not
-syn keyword fennelSpecialForm not=
-syn keyword fennelSpecialForm or
-syn keyword fennelSpecialForm partial
-syn keyword fennelSpecialForm quote
-syn keyword fennelSpecialForm require-macros
-syn keyword fennelSpecialForm set
-syn keyword fennelSpecialForm set-forcibly!
-syn keyword fennelSpecialForm tset
-syn keyword fennelSpecialForm values
-syn keyword fennelSpecialForm var
-syn keyword fennelSpecialForm when
-syn keyword fennelSpecialForm while
-syn keyword fennelSpecialForm ~=
-syn keyword fennelSpecialForm λ
+syn keyword fennelSpecialForm % * + - -> ->> -?> -?>> . .. / // : < <= = > >= ^
+syn keyword fennelSpecialForm and comment do doc doto each eval-compiler fn for global hashfn if
+syn keyword fennelSpecialForm include lambda length let local lua macro macros match not not= or
+syn keyword fennelSpecialForm partial quote require-macros set set-forcibly! tset values var when
+syn keyword fennelSpecialForm while ~= λ
 
 " Auxiliary syntaxes {{{2
 syn match fennelAuxSyntax /\$\d\?/
