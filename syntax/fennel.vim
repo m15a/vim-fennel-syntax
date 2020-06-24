@@ -1,6 +1,6 @@
 " Vim syntax file
 " Language: Fennel
-" Last Change: 2020-06-22
+" Last Change: 2020-06-24
 " Original Maintainer: Calvin Rose
 " Maintainer: Mitsuhiro Nakamura <m.nacamura@gmail.com>
 " URL: https://github.com/mnacamura/vim-fennel-syntax
@@ -149,9 +149,6 @@ syn keyword fennelLuaKeyword debug.upvaluejoin
 syn keyword fennelLuaKeyword io
 syn keyword fennelLuaKeyword io.close io.flush io.input io.lines io.open io.output io.popen
 syn keyword fennelLuaKeyword io.read io.stderr io.stdin io.stdout io.tmpfile io.type io.write
-syn keyword fennelLuaKeyword file
-syn keyword fennelLuaKeyword file:close file:flush file:lines file:read file:seek file:setvbuf
-syn keyword fennelLuaKeyword file:write
 syn keyword fennelLuaKeyword math
 syn keyword fennelLuaKeyword math.abs math.acos math.asin math.atan math.ceil math.cos math.deg
 syn keyword fennelLuaKeyword math.exp math.floor math.fmod math.huge math.log math.max
