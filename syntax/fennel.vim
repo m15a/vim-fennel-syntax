@@ -13,6 +13,12 @@ endif
 let s:cpo_save = &cpo
 set cpo&vim
 
+" Options {{{1
+
+let s:use_lume = fennel#get('use_lume', 1)
+
+" }}}
+
 " Any uncaught syntax is highlighted as error.
 syn match fennelError /[^[:space:]\n]/
 
@@ -172,6 +178,22 @@ syn keyword fennelLuaKeyword table.sort table.unpack
 syn keyword fennelLuaKeyword utf8
 syn keyword fennelLuaKeyword utf8.char utf8.charpattern utf8.codepoint utf8.codes utf8.len
 syn keyword fennelLuaKeyword utf8.offset
+
+" Lume keywords {{{2
+if s:use_lume
+  syn keyword fennelLuaKeyword lume
+  syn keyword fennelLuaKeyword lume.clamp lume.round lume.sign lume.lerp lume.smooth lume.pingpong
+  syn keyword fennelLuaKeyword lume.distance lume.angle lume.vector lume.random lume.randomchoice
+  syn keyword fennelLuaKeyword lume.weightedchoice lume.isarray lume.push lume.remove lume.clear
+  syn keyword fennelLuaKeyword lume.extend lume.shuffle lume.sort lume.array lume.each lume.map
+  syn keyword fennelLuaKeyword lume.all lume.any lume.reduce lume.unique lume.filter lume.reject
+  syn keyword fennelLuaKeyword lume.merge lume.concat lume.find lume.match lume.count lume.slice
+  syn keyword fennelLuaKeyword lume.first lume.last lume.invert lume.keys lume.clone lume.fn
+  syn keyword fennelLuaKeyword lume.once lume.memoize lume.combine lume.call lume.time lume.lambda
+  syn keyword fennelLuaKeyword lume.serialize lume.deserialize lume.split lume.trim lume.wordwrap
+  syn keyword fennelLuaKeyword lume.format lume.trace lume.dostring lume.uuid lume.hotswap
+  syn keyword fennelLuaKeyword lume.ripairs lume.color lume.chain
+endif
 
 " Highlighting {{{1
 syn sync fromstart
