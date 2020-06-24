@@ -1,6 +1,6 @@
 " Vim syntax file
 " Language: Fennel
-" Last Change: 2020-06-24
+" Last Change: 2020-06-25
 " Original Maintainer: Calvin Rose
 " Maintainer: Mitsuhiro Nakamura <m.nacamura@gmail.com>
 " URL: https://github.com/mnacamura/vim-fennel-syntax
@@ -51,8 +51,8 @@ unlet s:symchar s:symcharnodig
 syn keyword fennelBoolean true false
 
 " Number {{{2
-syn match fennelNumber "\v\c<[-+]?%(\d+|\.\d+|\d+\.\d*)%(e[-+]?\d+)?>"
-syn match fennelNumber "\v\c<[-+]?0x%(\x+|\.\x+|\x+\.\x*)%(p[-+]?\d+)?>"
+exec 'syn match fennelNumber /' . fennel#number#dec() . '/'
+exec 'syn match fennelNumber /' . fennel#number#hex() . '/'
 " NOTE: Fennel seems to accept fractional and postfix 'p' in hex number even if Lua version < 5.2.
 
 " String {{{2
