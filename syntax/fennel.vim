@@ -211,7 +211,7 @@ hi def link fennelString String
 hi def link fennelStringEscape Character
 hi def link fennelQuote fennelSpecialForm
 hi def link fennelQuasiQuote fennelSpecialForm
-hi def link fennelUnquote fennelSpecialForm
+hi def link fennelUnquote fennelAuxSyntax
 hi def link fennelSpecialForm Special
 hi def link fennelAuxSyntax Special
 hi def link fennelLuaKeyword Function
