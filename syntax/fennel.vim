@@ -30,19 +30,20 @@ syn match fennelCommentTodo contained /\(FIXME\|XXX\|TODO\):\?/
 " }}}
 
 " Unquoted and quasiquoted data
-syn cluster fennelData contains=@fennelSimpleData,@fennelCompoundData
-syn cluster fennelDataQ contains=@fennelSimpleData,@fennelCompoundDataQ
-syn cluster fennelDataQQ contains=@fennelSimpleData,@fennelCompoundDataQQ
+syn cluster fennelData contains=fennelIdentifier,@fennelSimpleData,@fennelCompoundData
+syn cluster fennelDataQ contains=fennelSymbol,@fennelSimpleData,@fennelCompoundDataQ
+syn cluster fennelDataQQ contains=fennelSymbol,@fennelSimpleData,@fennelCompoundDataQQ
 
 " Simple data {{{1
-syn cluster fennelSimpleData contains=fennelConstant,fennelSymbol,fennelKeyword,fennelBoolean,fennelNumber,fennelString
+syn cluster fennelSimpleData contains=fennelConstant,fennelKeyword,fennelBoolean,fennelNumber,fennelString
 
 " Constant (nil) {{{2
 syn keyword fennelConstant nil
 
-" Symbol and keyword {{{2
+" Identifier, symbol, and keyword {{{2
 let s:symcharnodig = '\!\$%\&\#\*\+\-./:<=>?A-Z^_a-z|\x80-\U10FFFF'
 let s:symchar = '0-9' . s:symcharnodig
+execute 'syn match fennelIdentifier /\v[' . s:symcharnodig . '][' . s:symchar . ']*/'
 execute 'syn match fennelSymbol /\v[' . s:symcharnodig . '][' . s:symchar . ']*/'
 execute 'syn match fennelKeyword /\v:[' . s:symchar . ']*>/'
 unlet s:symchar s:symcharnodig
@@ -205,8 +206,9 @@ hi def link fennelDelimiter Delimiter
 hi def link fennelComment Comment
 hi def link fennelCommentTodo TODO
 hi def link fennelConstant Constant
+hi def link fennelIdentifier Normal
 hi def link fennelSymbol Identifier
-hi def link fennelKeyword String
+hi def link fennelKeyword Identifier
 hi def link fennelBoolean Boolean
 hi def link fennelNumber Number
 hi def link fennelString String
