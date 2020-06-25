@@ -3,6 +3,8 @@
 Vim syntax highlighting for [Fennel][1].
 This repo is a personal fork from the original [fennel.vim][2].
 
+![Screenshot](./example.png)
+
 ## Installation
 
 Follow usual vim plugin installation procedure.
