@@ -140,7 +140,7 @@ syn keyword fennelSpecialForm while ~= λ
 
 " Auxiliary syntaxes {{{2
 syn match fennelAuxSyntax /\$\d\?/
-syn keyword fennelAuxSyntax ... _
+syn keyword fennelAuxSyntax ... _ &
 
 " Lua keywords {{{2
 syn keyword fennelLuaKeyword _G _VERSION
