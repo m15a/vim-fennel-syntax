@@ -56,15 +56,15 @@ exec 'syn match fennelNumber /' . fennel#number#hex() . '/'
 " NOTE: Fennel seems to accept fractional and postfix 'p' in hex number even if Lua version < 5.2.
 
 " String {{{2
-syn region fennelString matchgroup=fennelDelimiter start=/"/ skip=/\\\\\|\\"/ end=/"/ contains=@fennelEscapedChars,@Spell
-syn cluster fennelEscapedChars contains=fennelEscapedLiteral,fennelEscapedMnemonic,fennelEscapedMnemonicZ,fennelEscapedCharCode
-syn match fennelEscapedLiteral /\\[\\"']/ contained
-syn match fennelEscapedMnemonic /\\[abfnrtv]/ contained
-syn match fennelEscapedCharCode /\\\%(\%(\%([01]\)\?[0-9]\)\?[0-9]\|2[0-4][0-9]\|25[0-5]\)/ contained
+syn region fennelString matchgroup=fennelDelimiter start=/"/ skip=/\\\\\|\\"/ end=/"/ contains=@fennelEscapeChars,@Spell
+syn cluster fennelEscapeChars contains=fennelEscapeLiteral,fennelEscapeMnemonic,fennelEscapeMnemonicZ,fennelEscapeCharCode
+syn match fennelEscapeLiteral /\\[\\"']/ contained
+syn match fennelEscapeMnemonic /\\[abfnrtv]/ contained
+syn match fennelEscapeCharCode /\\\%(\%(\%([01]\)\?[0-9]\)\?[0-9]\|2[0-4][0-9]\|25[0-5]\)/ contained
 
 " Lua 5.2-
-syn match fennelEscapedMnemonicZ /\\z/ contained
-syn match fennelEscapedCharCode '\\x[[:xdigit:]]\{2}' contained
+syn match fennelEscapeMnemonicZ /\\z/ contained
+syn match fennelEscapeCharCode '\\x[[:xdigit:]]\{2}' contained
 
 " Compound data {{{1
 syn cluster fennelCompoundData contains=fennelList,fennelArray,fennelTable,fennelQuote,fennelQuasiQuote
@@ -210,10 +210,10 @@ hi def link fennelKeyword String
 hi def link fennelBoolean Boolean
 hi def link fennelNumber Number
 hi def link fennelString String
-hi def link fennelEscapedLiteral Character
-hi def link fennelEscapedMnemonic Character
-hi def link fennelEscapedMnemonicZ fennelComment
-hi def link fennelEscapedCharCode Character
+hi def link fennelEscapeLiteral Character
+hi def link fennelEscapeMnemonic Character
+hi def link fennelEscapeMnemonicZ fennelComment
+hi def link fennelEscapeCharCode Character
 hi def link fennelQuote fennelSpecialForm
 hi def link fennelQuasiQuote fennelSpecialForm
 hi def link fennelUnquote fennelAuxSyntax
