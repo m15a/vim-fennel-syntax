@@ -23,9 +23,10 @@ let s:use_lume = fennel#get('use_lume', 1)
 syn match fennelError /[^[:space:]\n]/
 
 " Comments {{{1
-syn cluster fennelComments contains=fennelComment
+syn cluster fennelComments contains=fennelComment,fennelShebang
 syn region fennelComment start=/;/ end=/$/ contains=fennelCommentTodo,@Spell
 syn match fennelCommentTodo contained /\(FIXME\|XXX\|TODO\):\?/
+syn match fennelShebang /\%^#![\/ ].*$/
 
 " }}}
 
@@ -41,7 +42,7 @@ syn cluster fennelSimpleData contains=fennelConstant,fennelKeyword,fennelBoolean
 syn keyword fennelConstant nil
 
 " Identifier, symbol, and keyword {{{2
-let s:symcharnodig = '\!\$%\&\#\*\+\-./:<=>?A-Z^_a-z|\x80-\U10FFFF'
+let s:symcharnodig = '\!\$%\&\*\+\-./:<=>?A-Z^_a-z|\x80-\U10FFFF'
 let s:symchar = '0-9' . s:symcharnodig
 execute 'syn match fennelIdentifier /\v[' . s:symcharnodig . '][' . s:symchar . ']*/'
 execute 'syn match fennelSymbol /\v[' . s:symcharnodig . '][' . s:symchar . ']*/'
@@ -130,7 +131,7 @@ syn match fennelUnquote /,\ze[^[:space:]\n]/ contained nextgroup=@fennelData,@fe
 syn cluster fennelExpressions contains=fennelSpecialForm,fennelAuxSyntax,fennelLuaKeyword
 
 " Special forms {{{2
-syn match fennelSpecialForm /#/
+syn match fennelSpecialForm /#\ze[^!]/
 syn keyword fennelSpecialForm % * + - -> ->> -?> -?>> . .. / // : < <= = > >= ^
 syn keyword fennelSpecialForm and comment do doc doto each eval-compiler fn for global hashfn if
 syn keyword fennelSpecialForm include lambda length let local lua macro macros match not not= or
@@ -205,6 +206,7 @@ hi def link fennelError Error
 hi def link fennelDelimiter Delimiter
 hi def link fennelComment Comment
 hi def link fennelCommentTodo TODO
+hi def link fennelShebang Comment
 hi def link fennelConstant Constant
 hi def link fennelIdentifier Normal
 hi def link fennelSymbol Identifier
