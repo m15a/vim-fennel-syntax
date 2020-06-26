@@ -139,7 +139,7 @@ syn keyword fennelSpecialForm partial quote require-macros set set-forcibly! tse
 syn keyword fennelSpecialForm while ~= λ
 
 " Auxiliary syntaxes {{{2
-syn match fennelAuxSyntax /\$\d\?/
+syn match fennelAuxSyntax /\$\([1-9]\|\.\.\.\)\?/
 syn keyword fennelAuxSyntax ... _ &
 syn match fennelAuxSyntax /\<?/
 
