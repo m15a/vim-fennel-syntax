@@ -1,6 +1,6 @@
 " Vim syntax file
 " Language: Fennel
-" Last Change: 2020-06-25
+" Last Change: 2020-06-26
 " Original Maintainer: Calvin Rose
 " Maintainer: Mitsuhiro Nakamura <m.nacamura@gmail.com>
 " URL: https://github.com/mnacamura/vim-fennel-syntax
@@ -141,6 +141,7 @@ syn keyword fennelSpecialForm while ~= λ
 " Auxiliary syntaxes {{{2
 syn match fennelAuxSyntax /\$\d\?/
 syn keyword fennelAuxSyntax ... _ &
+syn match fennelAuxSyntax /\<?/
 
 " Lua keywords {{{2
 syn keyword fennelLuaKeyword _G _VERSION
@@ -208,7 +209,7 @@ hi def link fennelComment Comment
 hi def link fennelCommentTodo TODO
 hi def link fennelShebang Comment
 hi def link fennelConstant Constant
-hi def link fennelIdentifier Normal
+ hi def link fennelIdentifier Normal
 hi def link fennelSymbol Identifier
 hi def link fennelKeyword Identifier
 hi def link fennelBoolean Boolean
