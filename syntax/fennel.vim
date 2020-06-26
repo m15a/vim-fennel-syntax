@@ -209,7 +209,7 @@ hi def link fennelComment Comment
 hi def link fennelCommentTodo TODO
 hi def link fennelShebang Comment
 hi def link fennelConstant Constant
- hi def link fennelIdentifier Normal
+hi def link fennelIdentifier Normal
 hi def link fennelSymbol Identifier
 hi def link fennelKeyword Identifier
 hi def link fennelBoolean Boolean
