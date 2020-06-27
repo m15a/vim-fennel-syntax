@@ -37,15 +37,15 @@ setl iskeyword=@,33,35-38,42-43,45-58,60-63,94-95,124
 
 " There will be false positives, but this is better than missing the whole set
 " of user-defined def* definitions.
-setlocal define=\\v[(/]def(ault)@!\\S*
+setl define=\\v[(/]def(ault)@!\\S*
 
-setlocal comments=n:;
-setlocal commentstring=;\ %s
+setl comments=n:;
+setl commentstring=;\ %s
 
 setl lisp
 setl lispwords=fn,lambda,let,match,when,each,for,while,doto,macro
 
-if &omnifunc == ""
+if &omnifunc == ''
   setl omnifunc=syntaxcomplete#Complete
 endif
 
