@@ -42,12 +42,15 @@ syn cluster fennelSimpleData contains=fennelConstant,fennelKeyword,fennelBoolean
 syn keyword fennelConstant nil
 
 " Identifier, symbol, and keyword {{{2
-let s:symcharnodig = '\!\$%\&\*\+\-./:<=>?A-Z^_a-z|\x80-\U10FFFF'
-let s:symchar = '0-9' . s:symcharnodig
-execute 'syn match fennelIdentifier /\v[' . s:symcharnodig . '][' . s:symchar . ']*/'
-execute 'syn match fennelSymbol /\v[' . s:symcharnodig . '][' . s:symchar . ']*/ contained'
-execute 'syn match fennelKeyword /\v:[' . s:symchar . ']*>/'
-unlet s:symchar s:symcharnodig
+"
+" <identifier> -> <initial> <subsequent> *
+" where <initial> -> [^#:0-9[:space:]\n"'(),;@\[\]\\`{}~]
+"       <subsequent> ->   [^[:space:]\n"'(),;@\[\]\\`{}~]
+syn match fennelIdentifier /[^#:0-9[:space:]\n"'(),;@\[\]\\`{}~][^[:space:]\n"'(),;@\[\]\\`{}~]*/
+syn match fennelSymbol /[^#:0-9[:space:]\n"'(),;@\[\]\\`{}~][^[:space:]\n"'(),;@\[\]\\`{}~]*/ contained
+" <keyword> -> : <subsequent> +
+" Keyword such as ::: is accepted by Fennel! 
+syn match fennelKeyword /:[^[:space:]\n"'(),;@\[\]\\`{}~]\+/
 
 " Boolean {{{2
 syn keyword fennelBoolean true false
