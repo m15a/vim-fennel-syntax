@@ -144,7 +144,8 @@ syn keyword fennelSpecialForm while ~= λ
 " Auxiliary syntaxes {{{2
 syn match fennelAuxSyntax /\$\([1-9]\|\.\.\.\)\?/
 syn keyword fennelAuxSyntax ... _ &
-syn match fennelAuxSyntax /\<?/
+" Pattern prefix which can be nil, used in `match` 
+syn match fennelAuxSyntax /\<?\ze[^[:space:]\n"'(),;@\[\]\\`{}~]/ contained containedin=fennelIdentifier
 
 " Lua keywords {{{2
 syn keyword fennelLuaKeyword _G _VERSION
