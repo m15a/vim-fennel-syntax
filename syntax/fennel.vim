@@ -134,7 +134,7 @@ syn match fennelUnquote /,\ze[^[:space:]\n]/ contained nextgroup=@fennelData,@fe
 syn cluster fennelExpressions contains=fennelSpecialForm,fennelAuxSyntax,fennelLuaKeyword
 
 " Special forms {{{2
-syn match fennelSpecialForm /#\ze[^!]/
+syn match fennelSpecialForm /\%^\@<!#\ze[^[:space:]\n);@\]\\}~]/
 syn keyword fennelSpecialForm % * + - -> ->> -?> -?>> . .. / // : < <= = > >= ^
 syn keyword fennelSpecialForm and comment do doc doto each eval-compiler fn for global hashfn if
 syn keyword fennelSpecialForm include lambda length let local lua macro macros match not not= or
