@@ -13,7 +13,7 @@ endif
 let s:cpo_save = &cpo
 set cpo&vim
 
-setl iskeyword=@,33,35-38,42-43,45-58,60-63,94-95,124     
+setl iskeyword=@,33,35-38,42-43,45-58,60-63,94-95,124
 " 32: SPACE
 " 34: "
 " 39: '
