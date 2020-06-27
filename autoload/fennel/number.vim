@@ -1,5 +1,5 @@
 " Helper functions for fennel-syntax plugin
-" Last Change: 2020-06-25
+" Last Change: 2020-06-27
 " Author: Mitsuhiro Nakamura <m.nacamura@gmail.com>
 " URL: https://github.com/mnacamura/vim-fennel-syntax
 " License: MIT
@@ -44,5 +44,5 @@ endfun
 
 " Finalize building regexp of number
 fun! s:bless(blessed) abort
-  return '\c\<' . a:blessed . '\>'
+  return '\c' . a:blessed . '\>'
 endfun
