@@ -49,7 +49,7 @@ if &omnifunc == ""
   setl omnifunc=syntaxcomplete#Complete
 endif
 
-let b:undo_ftplugin = 'setl isk< def< com< cms< lisp< lw<'
+let b:undo_ftplugin = 'setl isk< def< com< cms< lisp< lw< ofu<'
 
 let b:did_ftplugin = 1
 
