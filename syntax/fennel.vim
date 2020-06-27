@@ -146,6 +146,8 @@ syn match fennelAuxSyntax /\$\([1-9]\|\.\.\.\)\?/
 syn keyword fennelAuxSyntax ... _ &
 " Pattern prefix which can be nil, used in `match` 
 syn match fennelAuxSyntax /\<?\ze[^[:space:]\n"'(),;@\[\]\\`{}~]/ contained containedin=fennelIdentifier
+" Special suffix for gensym in macro
+syn match fennelAuxSyntax /[^[:space:]\n"'(),;@\[\]\\`{}~]\zs#\>/ contained containedin=fennelIdentifier
 
 " Lua keywords {{{2
 syn keyword fennelLuaKeyword _G _VERSION
