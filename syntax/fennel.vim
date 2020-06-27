@@ -45,7 +45,7 @@ syn keyword fennelConstant nil
 let s:symcharnodig = '\!\$%\&\*\+\-./:<=>?A-Z^_a-z|\x80-\U10FFFF'
 let s:symchar = '0-9' . s:symcharnodig
 execute 'syn match fennelIdentifier /\v[' . s:symcharnodig . '][' . s:symchar . ']*/'
-execute 'syn match fennelSymbol /\v[' . s:symcharnodig . '][' . s:symchar . ']*/'
+execute 'syn match fennelSymbol /\v[' . s:symcharnodig . '][' . s:symchar . ']*/ contained'
 execute 'syn match fennelKeyword /\v:[' . s:symchar . ']*>/'
 unlet s:symchar s:symcharnodig
 
@@ -92,7 +92,7 @@ syn region fennelArrayQQ matchgroup=fennelDelimiter start=/\[/ end=/]/ contained
 syn region fennelTableQQ matchgroup=fennelDelimiter start=/{/ end=/}/ contained contains=fennelError,@fennelComments,@fennelDataQQ,fennelUnquote
 
 " Quoted simple data {{{2
-syn match fennelQuote /'\ze[^[:space:]\n();'`,\\#\[\]{}]/ nextgroup=@fennelSimpleData
+syn match fennelQuote /'\ze[^[:space:]\n();'`,\\#\[\]{}]/ nextgroup=fennelSymbol,@fennelSimpleData
 
 " Quoted list, array, and table {{{2
 syn match fennelQuote /'\ze(/ nextgroup=fennelQuoteList
@@ -108,7 +108,7 @@ syn match fennelQuote /'\ze`/ nextgroup=fennelQuasiQuote
 syn match fennelQuote /'\ze,/ nextgroup=fennelUnquote
 
 " Quasiquoted simple data {{{2
-syn match fennelQuasiQuote /`\ze[^[:space:]\n();'`,\\#\[\]{}]/ nextgroup=@fennelSimpleData
+syn match fennelQuasiQuote /`\ze[^[:space:]\n();'`,\\#\[\]{}]/ nextgroup=fennelSymbol,@fennelSimpleData
 
 " Quasiquoted list, array, and table {{{2
 syn match fennelQuasiQuote /`\ze(/ nextgroup=fennelQuasiQuoteList
