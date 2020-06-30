@@ -144,8 +144,8 @@ syn keyword fennelSpecialForm while ~= λ
 " Auxiliary syntaxes {{{2
 syn match fennelAuxSyntax /\$\([1-9]\|\.\.\.\)\?/
 syn keyword fennelAuxSyntax ... _ &
-" Pattern prefix which can be nil, used in `match` 
-syn match fennelAuxSyntax /\<?\ze[^[:space:]\n"'(),;@\[\]\\`{}~]/ contained containedin=fennelIdentifier
+" Pattern prefix `?foo` or guard syntax `(matched ? (pred matched)` used in `match` 
+syn match fennelAuxSyntax /\<?\ze\([^[:space:]\n"'(),;@\[\]\\`{}~]\|\>\)/ contained containedin=fennelIdentifier
 " Special suffix for gensym in macro
 syn match fennelAuxSyntax /[^[:space:]\n"'(),;@\[\]\\`{}~]\zs#\>/ contained containedin=fennelIdentifier
 
