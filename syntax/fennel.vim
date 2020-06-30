@@ -25,7 +25,7 @@ syn match fennelError /[^[:space:]\n]/
 " Comments {{{1
 syn cluster fennelComments contains=fennelComment,fennelShebang
 syn region fennelComment start=/;/ end=/$/ contains=fennelCommentTodo,@Spell
-syn match fennelCommentTodo contained /\(FIXME\|XXX\|TODO\):\?/
+syn match fennelCommentTodo contained /\(FIXME\|XXX\|TODO\|NOTE\|TBD\):\?/
 syn match fennelShebang /\%^#![\/ ].*$/
 
 " }}}
