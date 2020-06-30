@@ -1,6 +1,6 @@
 " Vim syntax file
 " Language: Fennel
-" Last Change: 2020-06-27
+" Last Change: 2020-07-01
 " Original Maintainer: Calvin Rose
 " Maintainer: Mitsuhiro Nakamura <m.nacamura@gmail.com>
 " URL: https://github.com/mnacamura/vim-fennel-syntax
@@ -15,7 +15,7 @@ set cpo&vim
 
 " Options {{{1
 
-let s:use_lume = fennel#get('use_lume', 1)
+let s:use_lume = fennel#Get('use_lume', 1)
 
 " }}}
 
@@ -56,8 +56,8 @@ syn match fennelKeyword /:[^[:space:]\n"'(),;@\[\]\\`{}~]\+/
 syn keyword fennelBoolean true false
 
 " Number {{{2
-exec 'syn match fennelNumber /' . fennel#number#dec() . '/'
-exec 'syn match fennelNumber /' . fennel#number#hex() . '/'
+exec 'syn match fennelNumber /' . fennel#number#Dec() . '/'
+exec 'syn match fennelNumber /' . fennel#number#Hex() . '/'
 " NOTE: Fennel seems to accept fractional and postfix 'p' in hex number even if Lua version < 5.2.
 
 " String {{{2

@@ -1,20 +1,20 @@
 " Helper functions for fennel-syntax plugin
-" Last Change: 2020-06-27
+" Last Change: 2020-07-01
 " Author: Mitsuhiro Nakamura <m.nacamura@gmail.com>
 " URL: https://github.com/mnacamura/vim-fennel-syntax
 " License: MIT
 
 " Build regexp of decimal number
-fun! fennel#number#dec() abort
-  let l:body = s:or(s:digits1, '\.' . s:digits1, s:digits1 . '\.' . s:digits0)
-  return s:bless(s:sign . l:body . s:suffix('e'))
+fun! fennel#number#Dec() abort
+  let l:body = s:Or(s:digits1, '\.' . s:digits1, s:digits1 . '\.' . s:digits0)
+  return s:Bless(s:sign . l:body . s:Suffix('e'))
 endfun
 
 " Build regexp of hex number
-fun! fennel#number#hex() abort
+fun! fennel#number#Hex() abort
   let l:prefix = '_*0_*x'
-  let l:body = s:or(s:xdigits1, '\.' . s:xdigits1, s:xdigits1 . '\.' . s:xdigits0)
-  return s:bless(s:sign . l:prefix . l:body . s:suffix('p'))
+  let l:body = s:Or(s:xdigits1, '\.' . s:xdigits1, s:xdigits1 . '\.' . s:xdigits0)
+  return s:Bless(s:sign . l:prefix . l:body . s:Suffix('p'))
 endfun
 
 let s:sign = '_*[-+]\?'
@@ -28,7 +28,7 @@ let s:digits1 = s:digits0 . '[[:digit:]]' . s:digits0
 let s:xdigits1 = s:xdigits0 . '[[:xdigit:]]' . s:xdigits0
 
 " Enclose items in '%( ... | ... )'
-fun! s:or(...) abort
+fun! s:Or(...) abort
   let l:out = '\%('
   for l:i in range(a:0 - 1)
     let l:out .= a:000[l:i] . '\|'
@@ -38,11 +38,11 @@ fun! s:or(...) abort
 endfun
 
 " Build regexp of precision suffix
-fun! s:suffix(prefix) abort
+fun! s:Suffix(prefix) abort
   return '\%(' . a:prefix . s:sign . s:digits1 . '\)\?'
 endfun
 
 " Finalize building regexp of number
-fun! s:bless(blessed) abort
+fun! s:Bless(blessed) abort
   return '\c' . a:blessed . '\>'
 endfun
