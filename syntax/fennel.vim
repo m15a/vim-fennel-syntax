@@ -1,6 +1,6 @@
 " Vim syntax file
 " Language: Fennel
-" Last Change: 2020-07-01
+" Last Change: 2020-07-07
 " Original Maintainer: Calvin Rose
 " Maintainer: Mitsuhiro Nakamura <m.nacamura@gmail.com>
 " URL: https://github.com/mnacamura/vim-fennel-syntax
@@ -221,7 +221,7 @@ hi def link fennelKeyword Identifier
 hi def link fennelBoolean Boolean
 hi def link fennelNumber Number
 hi def link fennelString String
-hi def link fennelStringDelimiter Delimiter
+hi def link fennelStringDelimiter fennelDelimiter
 hi def link fennelEscapeLiteral Character
 hi def link fennelEscapeMnemonic Character
 hi def link fennelEscapeMnemonicZ fennelComment
