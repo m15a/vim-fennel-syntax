@@ -61,7 +61,7 @@ exec 'syn match fennelNumber /' . fennel#number#Hex() . '/'
 " NOTE: Fennel seems to accept fractional and postfix 'p' in hex number even if Lua version < 5.2.
 
 " String {{{2
-syn region fennelString matchgroup=fennelDelimiter start=/"/ skip=/\\\\\|\\"/ end=/"/ contains=@fennelEscapeChars,@Spell
+syn region fennelString matchgroup=fennelStringDelimiter start=/"/ skip=/\\\\\|\\"/ end=/"/ contains=@fennelEscapeChars,@Spell
 syn cluster fennelEscapeChars contains=fennelEscapeLiteral,fennelEscapeMnemonic,fennelEscapeMnemonicZ,fennelEscapeCharCode
 syn match fennelEscapeLiteral /\\[\\"']/ contained
 syn match fennelEscapeMnemonic /\\[abfnrtv]/ contained
@@ -221,6 +221,7 @@ hi def link fennelKeyword Identifier
 hi def link fennelBoolean Boolean
 hi def link fennelNumber Number
 hi def link fennelString String
+hi def link fennelStringDelimiter Delimiter
 hi def link fennelEscapeLiteral Character
 hi def link fennelEscapeMnemonic Character
 hi def link fennelEscapeMnemonicZ fennelComment
