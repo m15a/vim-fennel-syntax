@@ -1,8 +1,13 @@
 " Helper functions for fennel-syntax plugin
-" Last Change: 2020-07-01
+" Last Change: 2021-06-09
 " Author: Mitsuhiro Nakamura <m.nacamura@gmail.com>
 " URL: https://github.com/mnacamura/vim-fennel-syntax
 " License: MIT
+
+if exists('g:autoloaded_fennel_number')
+  finish
+endif
+let g:autoloaded_fennel_number = 1
 
 " Build regexp of decimal number
 fun! fennel#number#Dec() abort
