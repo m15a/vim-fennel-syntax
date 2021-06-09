@@ -44,6 +44,7 @@ setl commentstring=;\ %s
 
 setl lisp
 setl lispwords=fn,lambda,let,match,when,each,for,while,doto,macro
+setl lispwords+=λ
 setl lispwords+=with-open,collect,icollect
 
 if &omnifunc == ''
