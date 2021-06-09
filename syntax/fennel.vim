@@ -1,6 +1,6 @@
 " Vim syntax file
 " Language: Fennel
-" Last Change: 2020-07-07
+" Last Change: 2021-06-10
 " Original Maintainer: Calvin Rose
 " Maintainer: Mitsuhiro Nakamura <m.nacamura@gmail.com>
 " URL: https://github.com/mnacamura/vim-fennel-syntax
@@ -140,6 +140,12 @@ syn keyword fennelSpecialForm and comment do doc doto each eval-compiler fn for 
 syn keyword fennelSpecialForm include lambda length let local lua macro macros match not not= or
 syn keyword fennelSpecialForm partial quote require-macros set set-forcibly! tset values var when
 syn keyword fennelSpecialForm while ~= λ
+" 0.4.0
+syn keyword fennelSpecialForm import-macros rshift lshift bor band bnot and bxor pick-values pick-args
+" 0.4.2
+syn keyword fennelSpecialForm with-open
+" 0.8.0
+syn keyword fennelSpecialForm collect icollect
 
 " Auxiliary syntaxes {{{2
 syn match fennelAuxSyntax /\$\([1-9]\|\.\.\.\)\?/

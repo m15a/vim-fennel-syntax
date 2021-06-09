@@ -1,6 +1,6 @@
 " Vim filetype plugin file
 " Language: Fennel
-" Last Change: 2020-06-27
+" Last Change: 2021-06-10
 " Original Maintainer: Calvin Rose
 " Maintainer: Mitsuhiro Nakamura <m.nacamura@gmail.com>
 " URL: https://github.com/mnacamura/vim-fennel-syntax
@@ -44,6 +44,7 @@ setl commentstring=;\ %s
 
 setl lisp
 setl lispwords=fn,lambda,let,match,when,each,for,while,doto,macro
+setl lispwords+=with-open,collect,icollect
 
 if &omnifunc == ''
   setl omnifunc=syntaxcomplete#Complete
