@@ -1,6 +1,6 @@
 " Vim syntax file
 " Language: Fennel
-" Last Change: 2021-06-10
+" Last Change: 2021-06-11
 " Original Maintainer: Calvin Rose
 " Maintainer: Mitsuhiro Nakamura <m.nacamura@gmail.com>
 " URL: https://github.com/mnacamura/vim-fennel-syntax
@@ -46,7 +46,9 @@ syn keyword fennelConstant nil
 " <identifier> -> <initial> <subsequent> *
 " where <initial> -> [^#:0-9[:space:]\n"'(),;@\[\]\\`{}~]
 "       <subsequent> ->   [^[:space:]\n"'(),;@\[\]\\`{}~]
-syn match fennelIdentifier /[^#:0-9[:space:]\n"'(),;@\[\]\\`{}~][^[:space:]\n"'(),;@\[\]\\`{}~]*/
+syn match fennelIdentifier /[^#:0-9[:space:]\n"'(),;@\[\]\\`{}~][^[:space:]\n"'(),;@\[\]\\`{}~]*/ contains=fennelLuaTableItemAccessor,fennelLuaMethodCall
+syn match fennelLuaTableItemAccessor /\./ contained
+syn match fennelLuaMethodCall /:/ contained
 syn match fennelSymbol /[^#:0-9[:space:]\n"'(),;@\[\]\\`{}~][^[:space:]\n"'(),;@\[\]\\`{}~]*/ contained
 " <keyword> -> : <subsequent> +
 " Keyword such as ::: is accepted by Fennel! 
@@ -222,6 +224,8 @@ hi def link fennelCommentTodo TODO
 hi def link fennelShebang Comment
 hi def link fennelConstant Constant
 " hi def link fennelIdentifier Normal
+hi def link fennelLuaTableItemAccessor Delimiter
+hi def link fennelLuaMethodCall Delimiter
 hi def link fennelSymbol Identifier
 hi def link fennelKeyword Identifier
 hi def link fennelBoolean Boolean
