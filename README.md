@@ -3,7 +3,11 @@
 Vim syntax highlighting for [Fennel][1].
 This repo is a personal fork from the original [fennel.vim][2].
 
-![Screenshot](./example.png)
+## Comparison among Fennel highlight plugins:
+
+![aniseed](./aniseed.png)
+![tree-sitter-fennel](./treesitter.png)
+![vim-fennel-syntax](./example.png)
 
 ## Installation
 
