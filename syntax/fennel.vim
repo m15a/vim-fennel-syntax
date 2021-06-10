@@ -1,6 +1,6 @@
 " Vim syntax file
 " Language: Fennel
-" Last Change: 2021-06-10
+" Last Change: 2021-06-11
 " Original Maintainer: Calvin Rose
 " Maintainer: Mitsuhiro Nakamura <m.nacamura@gmail.com>
 " URL: https://github.com/mnacamura/vim-fennel-syntax
@@ -150,6 +150,7 @@ syn keyword fennelSpecialForm collect icollect
 " Auxiliary syntaxes {{{2
 syn match fennelAuxSyntax /\$\([1-9]\|\.\.\.\)\?/
 syn keyword fennelAuxSyntax ... _ &
+syn keyword fennelAuxSyntax &as
 " Pattern prefix `?foo` or guard syntax `(matched ? (pred matched)` used in `match` 
 syn match fennelAuxSyntax /\<?\ze\([^[:space:]\n"'(),;@\[\]\\`{}~]\|\>\)/ contained containedin=fennelIdentifier
 " Special suffix for gensym in macro
