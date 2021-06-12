@@ -142,6 +142,10 @@ syn keyword fennelSpecialForm and comment do doc doto each eval-compiler fn for 
 syn keyword fennelSpecialForm include lambda length let local lua macro macros match not not= or
 syn keyword fennelSpecialForm partial quote require-macros set set-forcibly! tset values var when
 syn keyword fennelSpecialForm while ~= λ
+" Compiler environment
+" TODO: Would be better to highlight these items only inside compiler environment
+syn keyword fennelSpecialForm list sym list? sym? table? sequence? gensym varg? multi-sym? view assert-compile
+syn keyword fennelSpecialForm in-scope? macroexpand
 " 0.4.0
 syn keyword fennelSpecialForm import-macros rshift lshift bor band bnot and bxor pick-values pick-args
 " 0.4.2
