@@ -157,6 +157,8 @@ syn keyword fennelAuxSyntax &as
 syn match fennelAuxSyntax /\<?\ze\([^[:space:]\n"'(),;@\[\]\\`{}~]\|\>\)/ contained containedin=fennelIdentifier
 " Special suffix for gensym in macro
 syn match fennelAuxSyntax /[^[:space:]\n"'(),;@\[\]\\`{}~]\zs#\>/ contained containedin=fennelIdentifier
+" TODO: Would be better to highlight `where` and `or` only inside `match` macro
+syn keyword fennelAuxSyntax where
 
 " Lua keywords {{{2
 syn keyword fennelLuaKeyword _G _VERSION
