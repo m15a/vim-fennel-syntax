@@ -1,7 +1,7 @@
 # vim-fennel-syntax
 
 Vim syntax highlighting for [Fennel][1].
-This repo is a personal fork from the original [fennel.vim][2].
+This is a personal fork from the original [fennel.vim][2].
 
 ## Comparison among Fennel highlight plugins:
 
