@@ -46,9 +46,9 @@ syn keyword fennelConstant nil
 " <identifier> -> <initial> <subsequent> *
 " where <initial> -> [^#:0-9[:space:]\n"'(),;@\[\]\\`{}~]
 "       <subsequent> ->   [^[:space:]\n"'(),;@\[\]\\`{}~]
-syn match fennelIdentifier /[^#:0-9[:space:]\n"'(),;@\[\]\\`{}~][^[:space:]\n"'(),;@\[\]\\`{}~]*/ contains=fennelLuaTableItemAccessor,fennelLuaMethodCall
-syn match fennelLuaTableItemAccessor /\./ contained
-syn match fennelLuaMethodCall /:/ contained
+syn match fennelIdentifier /[^#:0-9[:space:]\n"'(),;@\[\]\\`{}~][^[:space:]\n"'(),;@\[\]\\`{}~]*/
+syn match fennelLuaTableItemAccessor /\./ contained containedin=fennelIdentifier
+syn match fennelLuaMethodCall /:/ contained containedin=fennelIdentifier
 syn match fennelSymbol /[^#:0-9[:space:]\n"'(),;@\[\]\\`{}~][^[:space:]\n"'(),;@\[\]\\`{}~]*/ contained
 " <keyword> -> : <subsequent> +
 " Keyword such as ::: is accepted by Fennel! 
