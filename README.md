@@ -5,9 +5,9 @@ This is a personal fork from the original [fennel.vim][2].
 
 ## Comparison among Fennel highlight plugins:
 
-![aniseed](./aniseed.png)
-![tree-sitter-fennel](./treesitter.png)
-![vim-fennel-syntax](./example.png)
+![aniseed](./data/aniseed.png)
+![tree-sitter-fennel](./data/treesitter.png)
+![vim-fennel-syntax](./data/example.png)
 
 ## Installation
 
