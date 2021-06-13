@@ -13,10 +13,31 @@ let
   };
 
   pkgs = import nixpkgs {};
+
+  lua = pkgs.luajit.override {
+    packageOverrides = self: super: {
+      fennel = self.buildLuarocksPackage rec {
+        pname = "fennel";
+        version = "0.9.2";
+        knownRockspec = "${src}/rockspecs/fennel-scm-2.rockspec";
+        src = pkgs.fetchFromGitHub {
+          owner = "bakpakin";
+          repo = "Fennel";
+          rev = version;
+          sha256 = "1kpm3lzxzwkhxm4ghpbx8iw0ni7gb73y68lsc3ll2rcx0fwv9303";
+        };
+        disabled = (self.luaOlder "5.1");
+        propagatedBuildInputs = [ lua ];
+      };
+    };
+  };
 in
 
 pkgs.mkShell {
   buildInputs = with pkgs; [
     vim-vint
-  ];
+  ] ++ (with lua.pkgs; [
+    fennel
+    readline
+  ]);
 }
