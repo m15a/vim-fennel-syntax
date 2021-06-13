@@ -37,6 +37,14 @@ Enable highlighting for functions provided by [Lume][4].
 let g:fennel_use_lume = 1  " default: 1
 ```
 
+## Change log
+
+### [0.1][v0.1] (2021-06-13)
+
+* Support Fennel 0.9.2
+* Support Lua string literals up to version 5.4
+* Support Lua numeric literals up to version 5.4
+
 ## License
 
 [MIT](LICENSE)
@@ -45,5 +53,6 @@ let g:fennel_use_lume = 1  " default: 1
 [2]: https://github.com/bakpakin/fennel.vim/
 [3]: https://github.com/savq/paq-nvim/
 [4]: https://github.com/rxi/lume/
+[v0.1]: https://github.com/mnacamura/vim-fennel-syntax/tree/v0.1
 
 <!-- vim: set tw=78 spell: -->
