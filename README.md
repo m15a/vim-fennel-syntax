@@ -26,13 +26,12 @@ require'paq-nvim' {
 
 ## Options
 
-For all options below, if both global and buffer local ones are found, the
-buffer local one takes precedence.  In the example codes, only global options
-`g:...` are shown but `b:...` also works.
+For all options, if both global and buffer local ones are defined, the
+buffer local one takes precedence.
 
-### fennel_use_lume
+### `fennel_use_lume`
 
-This option enables highlighting for functions provided by [Lume][3].
+Enable highlighting for functions provided by [Lume][3].
 
 ```vim
 let g:fennel_use_lume = 1  " default: 1
