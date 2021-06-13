@@ -16,7 +16,13 @@ This is a personal fork from the original [fennel.vim][2].
 
 ## Installation
 
-Follow usual vim plugin installation procedure.
+Use your favorite package manager. For example in [Paq][4]:
+
+```lua
+require'paq-nvim' {
+  'mnacamura/vim-fennel-syntax',
+}
+```
 
 ## Options
 
@@ -39,5 +45,6 @@ let g:fennel_use_lume = 1  " default: 1
 [1]: https://fennel-lang.org/
 [2]: https://github.com/bakpakin/fennel.vim/
 [3]: https://github.com/rxi/lume/
+[4]: https://github.com/savq/paq-nvim/
 
 <!-- vim: set tw=78 spell: -->
