@@ -1,5 +1,5 @@
 " Helper functions for fennel-syntax plugin
-" Last Change: 2021-06-09
+" Last Change: 2021-06-13
 " Author: Mitsuhiro Nakamura <m.nacamura@gmail.com>
 " URL: https://github.com/mnacamura/vim-fennel-syntax
 " License: MIT
@@ -51,3 +51,5 @@ endfun
 fun! s:Bless(blessed) abort
   return '\c' . a:blessed . '\>'
 endfun
+
+" vim: et sw=2 sts=-1 tw=100 fdm=marker
