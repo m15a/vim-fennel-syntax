@@ -16,7 +16,7 @@ This is a personal fork from the original [fennel.vim][2].
 
 ## Installation
 
-Use your favorite package manager. For example in [Paq][4]:
+Use your favorite package manager. For example using [Paq][3]:
 
 ```lua
 require'paq-nvim' {
@@ -31,7 +31,7 @@ buffer local one takes precedence.
 
 ### `fennel_use_lume`
 
-Enable highlighting for functions provided by [Lume][3].
+Enable highlighting for functions provided by [Lume][4].
 
 ```vim
 let g:fennel_use_lume = 1  " default: 1
@@ -43,7 +43,7 @@ let g:fennel_use_lume = 1  " default: 1
 
 [1]: https://fennel-lang.org/
 [2]: https://github.com/bakpakin/fennel.vim/
-[3]: https://github.com/rxi/lume/
-[4]: https://github.com/savq/paq-nvim/
+[3]: https://github.com/savq/paq-nvim/
+[4]: https://github.com/rxi/lume/
 
 <!-- vim: set tw=78 spell: -->
