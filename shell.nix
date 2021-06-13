@@ -35,6 +35,6 @@ pkgs.mkShell {
     vim-vint
   ] ++ (with lua.pkgs; [
     fennel
-    readline
+    # readline
   ]);
 }
