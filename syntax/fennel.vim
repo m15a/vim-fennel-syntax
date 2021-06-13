@@ -73,6 +73,9 @@ syn match fennelEscapeCharCode /\\\%(\%(\%([01]\)\?[0-9]\)\?[0-9]\|2[0-4][0-9]\|
 syn match fennelEscapeMnemonicZ /\\z/ contained
 syn match fennelEscapeCharCode '\\x[[:xdigit:]]\{2}' contained
 
+" Lua 5.3-
+syn match fennelEscapeCharCode '\\u{[[:xdigit:]]\+}' contained
+
 " Compound data {{{1
 syn cluster fennelCompoundData contains=fennelList,fennelArray,fennelTable,fennelQuote,fennelQuasiQuote
 syn cluster fennelCompoundDataQ contains=fennelListQ,fennelArrayQ,fennelTableQ,fennelQuote,fennelQuasiQuote
