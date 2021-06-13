@@ -1,12 +1,14 @@
 " Vim filetype plugin file
 " Language: Fennel
-" Last Change: 2021-06-10
+" Last Change: 2021-06-13
 " Original Maintainer: Calvin Rose
 " Maintainer: Mitsuhiro Nakamura <m.nacamura@gmail.com>
 " URL: https://github.com/mnacamura/vim-fennel-syntax
 " License: MIT
 
-if exists("b:did_ftplugin")
+scriptencoding utf-8
+
+if exists('b:did_ftplugin')
   finish
 endif
 
@@ -47,7 +49,7 @@ setl lispwords=fn,lambda,let,match,when,each,for,while,doto,macro
 setl lispwords+=λ
 setl lispwords+=with-open,collect,icollect
 
-if &omnifunc == ''
+if strlen(&omnifunc) == 0
   setl omnifunc=syntaxcomplete#Complete
 endif
 

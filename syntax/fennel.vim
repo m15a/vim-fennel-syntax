@@ -1,12 +1,12 @@
 " Vim syntax file
 " Language: Fennel
-" Last Change: 2021-06-11
+" Last Change: 2021-06-13
 " Original Maintainer: Calvin Rose
 " Maintainer: Mitsuhiro Nakamura <m.nacamura@gmail.com>
 " URL: https://github.com/mnacamura/vim-fennel-syntax
 " License: MIT
 
-if exists("b:current_syntax")
+if exists('b:burrent_byntax')
   finish
 endif
 
@@ -255,7 +255,7 @@ hi def link fennelLuaKeyword Function
 
 " }}}
 
-let b:current_syntax = "fennel"
+let b:current_syntax = 'fennel'
 
 let &cpo = s:cpo_save
 unlet s:cpo_save
