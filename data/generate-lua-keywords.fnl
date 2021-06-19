@@ -59,6 +59,23 @@
 (fn utils.map [seq f]
   (icollect [_ x (ipairs seq)] (f x)))
 
+(fn utils.wrap [seq tw sep]
+  "Concatinate strings in the given sequential table with max length tw."
+  (let [wrapped {}
+        sep (or sep " ")]
+    (var buf "")
+    (each [_ s (ipairs seq)]
+      (if (> (+ (string.len buf)
+                (string.len sep)
+                (string.len s))
+             tw)
+          (do (table.insert wrapped buf)
+              (set buf s))
+          (set buf (.. buf (if (= buf "") "" sep) s))))
+    (when (not= buf "")
+      (table.insert wrapped buf))
+    wrapped))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Library
 
@@ -120,8 +137,12 @@
                             0)]
         (when conditional?
           (out:write (.. "if match(s:lua_version, '" (version-regex versions) "') > -1\n")))
-        (each [_ keyword (ipairs (utils.sorted keywords))]
-          (out:write (.. (if conditional? "  " "") "syn keyword fennelLuaKeyword " keyword "\n")))
+        (each [_ chunk (ipairs (utils.wrap (utils.sorted keywords)
+                                           (if conditional? 68 70)))]
+          (out:write (.. (if conditional? "  " "")
+                         "syn keyword fennelLuaKeyword "
+                         chunk
+                         "\n")))
         (when conditional?
           (out:write "endif\n"))))))
 
