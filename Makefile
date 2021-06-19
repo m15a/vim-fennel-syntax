@@ -6,7 +6,5 @@ lint:
 clean:
 	@rm -rf .cache
 
-lua-keywords: .cache/lua_keywords.vim
-
-.cache/lua_keywords.vim:
-	@./data/generate-lua-keywords.fnl
+lua-keywords:
+	@./tools/build-lua-keywords.fnl
