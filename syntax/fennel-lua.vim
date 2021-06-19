@@ -10,7 +10,7 @@ if !exists('b:did_fennel_syntax')
   finish
 endif
 
-let s:lua_version = fennel#Get('lua_version', fennel#GetLuaVersion())
+let s:lua_version = fennel#GetOption('lua_version', fennel#GetLuaVersion())
 
 syn keyword fennelLuaKeyword _G _VERSION assert collectgarbage coroutine.create coroutine.resume
 syn keyword fennelLuaKeyword coroutine.running coroutine.status coroutine.wrap coroutine.yield

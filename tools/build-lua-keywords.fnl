@@ -164,7 +164,7 @@
   \z      finish
 \z      endif
 
-\z      let s:lua_version = fennel#Get('lua_version', fennel#GetLuaVersion())
+\z      let s:lua_version = fennel#GetOption('lua_version', fennel#GetLuaVersion())
 
 \z      "))
     (write-keywords out [5.1 5.2 5.3 5.4])
