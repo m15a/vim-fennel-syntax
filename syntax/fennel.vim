@@ -1,6 +1,6 @@
 " Vim syntax file
 " Language: Fennel
-" Last Change: 2021-06-13
+" Last Change: 2021-06-19
 " Original Maintainer: Calvin Rose
 " Maintainer: Mitsuhiro Nakamura <m.nacamura@gmail.com>
 " URL: https://github.com/mnacamura/vim-fennel-syntax
@@ -15,6 +15,7 @@ set cpo&vim
 
 " Options {{{1
 
+let s:lua_version = fennel#Get('lua_version', '5.1')
 let s:use_lume = fennel#Get('use_lume', 1)
 
 " }}}
@@ -168,45 +169,195 @@ syn match fennelAuxSyntax /[^[:space:]\n"'(),;@\[\]\\`{}~]\zs#\>/ contained cont
 syn keyword fennelAuxSyntax where
 
 " Lua keywords {{{2
-syn keyword fennelLuaKeyword _G _VERSION
-syn keyword fennelLuaKeyword assert collectgarbage dofile error getmetatable ipairs load loadfile
-syn keyword fennelLuaKeyword next pairs pcall print rawequal rawget rawlen rawset require select
-syn keyword fennelLuaKeyword setmetatable tonumber tostring type xpcall unpack
-syn keyword fennelLuaKeyword coroutine
-syn keyword fennelLuaKeyword coroutine.create coroutine.isyieldable coroutine.resume
-syn keyword fennelLuaKeyword coroutine.running coroutine.status coroutine.wrap coroutine.yield
-syn keyword fennelLuaKeyword debug
-syn keyword fennelLuaKeyword debug.debug debug.gethook debug.getinfo debug.getlocal
-syn keyword fennelLuaKeyword debug.getmetatable debug.getregistry debug.getupvalue
-syn keyword fennelLuaKeyword debug.getuservalue debug.sethook debug.setlocal debug.setmetatable
-syn keyword fennelLuaKeyword debug.setupvalue debug.setuservalue debug.traceback debug.upvalueid
-syn keyword fennelLuaKeyword debug.upvaluejoin
-syn keyword fennelLuaKeyword io
-syn keyword fennelLuaKeyword io.close io.flush io.input io.lines io.open io.output io.popen
-syn keyword fennelLuaKeyword io.read io.stderr io.stdin io.stdout io.tmpfile io.type io.write
-syn keyword fennelLuaKeyword math
-syn keyword fennelLuaKeyword math.abs math.acos math.asin math.atan math.ceil math.cos math.deg
-syn keyword fennelLuaKeyword math.exp math.floor math.fmod math.huge math.log math.max
-syn keyword fennelLuaKeyword math.maxinteger math.min math.mininteger math.modf math.pi math.rad
-syn keyword fennelLuaKeyword math.random math.randomseed math.sin math.sqrt math.tan
-syn keyword fennelLuaKeyword math.tointeger math.type math.ult
-syn keyword fennelLuaKeyword os
-syn keyword fennelLuaKeyword os.clock os.date os.difftime os.execute os.exit os.getenv os.remove
-syn keyword fennelLuaKeyword os.rename os.setlocale os.time os.tmpname
-syn keyword fennelLuaKeyword package
-syn keyword fennelLuaKeyword package.config package.cpath package.loaded package.loadlib
-syn keyword fennelLuaKeyword package.path package.preload package.searchers package.searchpath
-syn keyword fennelLuaKeyword string
-syn keyword fennelLuaKeyword string.byte string.char string.dump string.find string.format
-syn keyword fennelLuaKeyword string.gmatch string.gsub string.len string.lower string.match
-syn keyword fennelLuaKeyword string.pack string.packsize string.rep string.reverse string.sub
-syn keyword fennelLuaKeyword string.unpack string.upper
-syn keyword fennelLuaKeyword table
-syn keyword fennelLuaKeyword table.concat table.insert table.move table.pack table.remove
-syn keyword fennelLuaKeyword table.sort table.unpack
-syn keyword fennelLuaKeyword utf8
-syn keyword fennelLuaKeyword utf8.char utf8.charpattern utf8.codepoint utf8.codes utf8.len
-syn keyword fennelLuaKeyword utf8.offset
+syn keyword fennelLuaKeyword _G
+syn keyword fennelLuaKeyword _VERSION
+syn keyword fennelLuaKeyword assert
+syn keyword fennelLuaKeyword collectgarbage
+syn keyword fennelLuaKeyword coroutine.create
+syn keyword fennelLuaKeyword coroutine.resume
+syn keyword fennelLuaKeyword coroutine.running
+syn keyword fennelLuaKeyword coroutine.status
+syn keyword fennelLuaKeyword coroutine.wrap
+syn keyword fennelLuaKeyword coroutine.yield
+syn keyword fennelLuaKeyword debug.debug
+syn keyword fennelLuaKeyword debug.gethook
+syn keyword fennelLuaKeyword debug.getinfo
+syn keyword fennelLuaKeyword debug.getlocal
+syn keyword fennelLuaKeyword debug.getmetatable
+syn keyword fennelLuaKeyword debug.getregistry
+syn keyword fennelLuaKeyword debug.getupvalue
+syn keyword fennelLuaKeyword debug.sethook
+syn keyword fennelLuaKeyword debug.setlocal
+syn keyword fennelLuaKeyword debug.setmetatable
+syn keyword fennelLuaKeyword debug.setupvalue
+syn keyword fennelLuaKeyword debug.traceback
+syn keyword fennelLuaKeyword dofile
+syn keyword fennelLuaKeyword error
+syn keyword fennelLuaKeyword file:close
+syn keyword fennelLuaKeyword file:flush
+syn keyword fennelLuaKeyword file:lines
+syn keyword fennelLuaKeyword file:read
+syn keyword fennelLuaKeyword file:seek
+syn keyword fennelLuaKeyword file:setvbuf
+syn keyword fennelLuaKeyword file:write
+syn keyword fennelLuaKeyword getmetatable
+syn keyword fennelLuaKeyword io.close
+syn keyword fennelLuaKeyword io.flush
+syn keyword fennelLuaKeyword io.input
+syn keyword fennelLuaKeyword io.lines
+syn keyword fennelLuaKeyword io.open
+syn keyword fennelLuaKeyword io.output
+syn keyword fennelLuaKeyword io.popen
+syn keyword fennelLuaKeyword io.read
+syn keyword fennelLuaKeyword io.stderr
+syn keyword fennelLuaKeyword io.stdin
+syn keyword fennelLuaKeyword io.stdout
+syn keyword fennelLuaKeyword io.tmpfile
+syn keyword fennelLuaKeyword io.type
+syn keyword fennelLuaKeyword io.write
+syn keyword fennelLuaKeyword ipairs
+syn keyword fennelLuaKeyword load
+syn keyword fennelLuaKeyword loadfile
+syn keyword fennelLuaKeyword math.abs
+syn keyword fennelLuaKeyword math.acos
+syn keyword fennelLuaKeyword math.asin
+syn keyword fennelLuaKeyword math.atan
+syn keyword fennelLuaKeyword math.ceil
+syn keyword fennelLuaKeyword math.cos
+syn keyword fennelLuaKeyword math.deg
+syn keyword fennelLuaKeyword math.exp
+syn keyword fennelLuaKeyword math.floor
+syn keyword fennelLuaKeyword math.fmod
+syn keyword fennelLuaKeyword math.huge
+syn keyword fennelLuaKeyword math.log
+syn keyword fennelLuaKeyword math.max
+syn keyword fennelLuaKeyword math.min
+syn keyword fennelLuaKeyword math.modf
+syn keyword fennelLuaKeyword math.pi
+syn keyword fennelLuaKeyword math.rad
+syn keyword fennelLuaKeyword math.random
+syn keyword fennelLuaKeyword math.randomseed
+syn keyword fennelLuaKeyword math.sin
+syn keyword fennelLuaKeyword math.sqrt
+syn keyword fennelLuaKeyword math.tan
+syn keyword fennelLuaKeyword next
+syn keyword fennelLuaKeyword os.clock
+syn keyword fennelLuaKeyword os.date
+syn keyword fennelLuaKeyword os.difftime
+syn keyword fennelLuaKeyword os.execute
+syn keyword fennelLuaKeyword os.exit
+syn keyword fennelLuaKeyword os.getenv
+syn keyword fennelLuaKeyword os.remove
+syn keyword fennelLuaKeyword os.rename
+syn keyword fennelLuaKeyword os.setlocale
+syn keyword fennelLuaKeyword os.time
+syn keyword fennelLuaKeyword os.tmpname
+syn keyword fennelLuaKeyword package.cpath
+syn keyword fennelLuaKeyword package.loaded
+syn keyword fennelLuaKeyword package.loadlib
+syn keyword fennelLuaKeyword package.path
+syn keyword fennelLuaKeyword package.preload
+syn keyword fennelLuaKeyword pairs
+syn keyword fennelLuaKeyword pcall
+syn keyword fennelLuaKeyword print
+syn keyword fennelLuaKeyword rawequal
+syn keyword fennelLuaKeyword rawget
+syn keyword fennelLuaKeyword rawset
+syn keyword fennelLuaKeyword require
+syn keyword fennelLuaKeyword select
+syn keyword fennelLuaKeyword setmetatable
+syn keyword fennelLuaKeyword string.byte
+syn keyword fennelLuaKeyword string.char
+syn keyword fennelLuaKeyword string.dump
+syn keyword fennelLuaKeyword string.find
+syn keyword fennelLuaKeyword string.format
+syn keyword fennelLuaKeyword string.gmatch
+syn keyword fennelLuaKeyword string.gsub
+syn keyword fennelLuaKeyword string.len
+syn keyword fennelLuaKeyword string.lower
+syn keyword fennelLuaKeyword string.match
+syn keyword fennelLuaKeyword string.rep
+syn keyword fennelLuaKeyword string.reverse
+syn keyword fennelLuaKeyword string.sub
+syn keyword fennelLuaKeyword string.upper
+syn keyword fennelLuaKeyword table.concat
+syn keyword fennelLuaKeyword table.insert
+syn keyword fennelLuaKeyword table.remove
+syn keyword fennelLuaKeyword table.sort
+syn keyword fennelLuaKeyword tonumber
+syn keyword fennelLuaKeyword tostring
+syn keyword fennelLuaKeyword type
+syn keyword fennelLuaKeyword xpcall
+if match(s:lua_version, '^5\.[234]$') > -1
+  syn keyword fennelLuaKeyword debug.getuservalue
+  syn keyword fennelLuaKeyword debug.setuservalue
+  syn keyword fennelLuaKeyword debug.upvalueid
+  syn keyword fennelLuaKeyword debug.upvaluejoin
+  syn keyword fennelLuaKeyword package.config
+  syn keyword fennelLuaKeyword package.searchers
+  syn keyword fennelLuaKeyword package.searchpath
+  syn keyword fennelLuaKeyword rawlen
+  syn keyword fennelLuaKeyword table.pack
+  syn keyword fennelLuaKeyword table.unpack
+endif
+if match(s:lua_version, '^5\.[12]$') > -1
+  syn keyword fennelLuaKeyword math.atan2
+  syn keyword fennelLuaKeyword math.cosh
+  syn keyword fennelLuaKeyword math.frexp
+  syn keyword fennelLuaKeyword math.ldexp
+  syn keyword fennelLuaKeyword math.pow
+  syn keyword fennelLuaKeyword math.sinh
+  syn keyword fennelLuaKeyword math.tanh
+endif
+if match(s:lua_version, '^5\.[34]$') > -1
+  syn keyword fennelLuaKeyword coroutine.isyieldable
+  syn keyword fennelLuaKeyword math.maxinteger
+  syn keyword fennelLuaKeyword math.mininteger
+  syn keyword fennelLuaKeyword math.tointeger
+  syn keyword fennelLuaKeyword math.type
+  syn keyword fennelLuaKeyword math.ult
+  syn keyword fennelLuaKeyword string.pack
+  syn keyword fennelLuaKeyword string.packsize
+  syn keyword fennelLuaKeyword string.unpack
+  syn keyword fennelLuaKeyword table.move
+  syn keyword fennelLuaKeyword utf8.char
+  syn keyword fennelLuaKeyword utf8.charpattern
+  syn keyword fennelLuaKeyword utf8.codepoint
+  syn keyword fennelLuaKeyword utf8.codes
+  syn keyword fennelLuaKeyword utf8.len
+  syn keyword fennelLuaKeyword utf8.offset
+endif
+if match(s:lua_version, '^5\.1$') > -1
+  syn keyword fennelLuaKeyword debug.getfenv
+  syn keyword fennelLuaKeyword debug.setfenv
+  syn keyword fennelLuaKeyword getfenv
+  syn keyword fennelLuaKeyword loadstring
+  syn keyword fennelLuaKeyword math.log10
+  syn keyword fennelLuaKeyword module
+  syn keyword fennelLuaKeyword package.loaders
+  syn keyword fennelLuaKeyword package.seeall
+  syn keyword fennelLuaKeyword setfenv
+  syn keyword fennelLuaKeyword table.maxn
+  syn keyword fennelLuaKeyword unpack
+endif
+if match(s:lua_version, '^5\.2$') > -1
+  syn keyword fennelLuaKeyword bit32.arshift
+  syn keyword fennelLuaKeyword bit32.band
+  syn keyword fennelLuaKeyword bit32.bnot
+  syn keyword fennelLuaKeyword bit32.bor
+  syn keyword fennelLuaKeyword bit32.btest
+  syn keyword fennelLuaKeyword bit32.bxor
+  syn keyword fennelLuaKeyword bit32.extract
+  syn keyword fennelLuaKeyword bit32.lrotate
+  syn keyword fennelLuaKeyword bit32.lshift
+  syn keyword fennelLuaKeyword bit32.replace
+  syn keyword fennelLuaKeyword bit32.rrotate
+  syn keyword fennelLuaKeyword bit32.rshift
+endif
+if match(s:lua_version, '^5\.4$') > -1
+  syn keyword fennelLuaKeyword coroutine.close
+  syn keyword fennelLuaKeyword warn
+endif
 
 " Lume keywords {{{2
 if s:use_lume
