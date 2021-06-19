@@ -168,45 +168,10 @@ syn match fennelAuxSyntax /[^[:space:]\n"'(),;@\[\]\\`{}~]\zs#\>/ contained cont
 syn keyword fennelAuxSyntax where
 
 " Lua keywords {{{2
-syn keyword fennelLuaKeyword _G _VERSION
-syn keyword fennelLuaKeyword assert collectgarbage dofile error getmetatable ipairs load loadfile
-syn keyword fennelLuaKeyword next pairs pcall print rawequal rawget rawlen rawset require select
-syn keyword fennelLuaKeyword setmetatable tonumber tostring type xpcall unpack
-syn keyword fennelLuaKeyword coroutine
-syn keyword fennelLuaKeyword coroutine.create coroutine.isyieldable coroutine.resume
-syn keyword fennelLuaKeyword coroutine.running coroutine.status coroutine.wrap coroutine.yield
-syn keyword fennelLuaKeyword debug
-syn keyword fennelLuaKeyword debug.debug debug.gethook debug.getinfo debug.getlocal
-syn keyword fennelLuaKeyword debug.getmetatable debug.getregistry debug.getupvalue
-syn keyword fennelLuaKeyword debug.getuservalue debug.sethook debug.setlocal debug.setmetatable
-syn keyword fennelLuaKeyword debug.setupvalue debug.setuservalue debug.traceback debug.upvalueid
-syn keyword fennelLuaKeyword debug.upvaluejoin
-syn keyword fennelLuaKeyword io
-syn keyword fennelLuaKeyword io.close io.flush io.input io.lines io.open io.output io.popen
-syn keyword fennelLuaKeyword io.read io.stderr io.stdin io.stdout io.tmpfile io.type io.write
-syn keyword fennelLuaKeyword math
-syn keyword fennelLuaKeyword math.abs math.acos math.asin math.atan math.ceil math.cos math.deg
-syn keyword fennelLuaKeyword math.exp math.floor math.fmod math.huge math.log math.max
-syn keyword fennelLuaKeyword math.maxinteger math.min math.mininteger math.modf math.pi math.rad
-syn keyword fennelLuaKeyword math.random math.randomseed math.sin math.sqrt math.tan
-syn keyword fennelLuaKeyword math.tointeger math.type math.ult
-syn keyword fennelLuaKeyword os
-syn keyword fennelLuaKeyword os.clock os.date os.difftime os.execute os.exit os.getenv os.remove
-syn keyword fennelLuaKeyword os.rename os.setlocale os.time os.tmpname
-syn keyword fennelLuaKeyword package
-syn keyword fennelLuaKeyword package.config package.cpath package.loaded package.loadlib
-syn keyword fennelLuaKeyword package.path package.preload package.searchers package.searchpath
-syn keyword fennelLuaKeyword string
-syn keyword fennelLuaKeyword string.byte string.char string.dump string.find string.format
-syn keyword fennelLuaKeyword string.gmatch string.gsub string.len string.lower string.match
-syn keyword fennelLuaKeyword string.pack string.packsize string.rep string.reverse string.sub
-syn keyword fennelLuaKeyword string.unpack string.upper
-syn keyword fennelLuaKeyword table
-syn keyword fennelLuaKeyword table.concat table.insert table.move table.pack table.remove
-syn keyword fennelLuaKeyword table.sort table.unpack
-syn keyword fennelLuaKeyword utf8
-syn keyword fennelLuaKeyword utf8.char utf8.charpattern utf8.codepoint utf8.codes utf8.len
-syn keyword fennelLuaKeyword utf8.offset
+
+let b:did_fennel_syntax = 1
+runtime! syntax/fennel-lua.vim
+unlet b:did_fennel_syntax
 
 " Lume keywords {{{2
 if s:use_lume

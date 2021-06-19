@@ -26,6 +26,16 @@ let
         disabled = (self.luaOlder "5.1");
         propagatedBuildInputs = [ lua ];
       };
+      gumbo = self.buildLuarocksPackage rec {
+        pname = "gumbo";
+        version = "0.5-1";
+        src = pkgs.fetchurl {
+          url    = "mirror://luarocks/${pname}-${version}.src.rock";
+          sha256 = "0p36d63bjckn36yv9jly08igqjkx7xicq4q479f69njiaxlhag6f";
+        };
+        disabled = (self.luaOlder "5.1");
+        propagatedBuildInputs = [ lua ];
+      };
     };
   };
 in
@@ -36,5 +46,7 @@ pkgs.mkShell {
   ] ++ (with lua.pkgs; [
     fennel
     # readline
+    luasocket
+    gumbo
   ]);
 }

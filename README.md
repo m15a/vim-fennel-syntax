@@ -29,6 +29,17 @@ require'paq-nvim' {
 For all options, if both global and buffer local ones are defined, the
 buffer local one takes precedence.
 
+### `fennel_lua_version`
+
+Highlight keywords for the given Lua version.
+Supports `5.1`, `5.2`, `5.3`, and `5.4`.
+If not set, it will be inferred and set automatically by invoking `lua -v`
+command.
+
+```
+let g:fennel_lua_version = '5.4'  " default: inferred from environment
+```
+
 ### `fennel_use_lume`
 
 Highlight keywords provided by [Lume][4].
@@ -38,6 +49,10 @@ let g:fennel_use_lume = 1  " default: 1
 ```
 
 ## Change log
+
+### Unreleased
+
+* Add option `{g,b}:fennel_lua_version`
 
 ### [0.1][v0.1] (2021-06-13)
 
