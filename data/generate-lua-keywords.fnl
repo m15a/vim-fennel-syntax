@@ -2,7 +2,6 @@
 
 (local http (require :socket.http))
 (local gumbo (require :gumbo))
-(local string (require :string))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Utilities
@@ -73,10 +72,11 @@
         (if (utils.exists? cache)
             (gumbo.parse (utils.slurp cache))
             (match (http.request (.. "https://www.lua.org/manual/" version "/"))
-              (body 200) (do (with-open [out (io.open cache :w)]
+              (body 200) (do (io.stderr:write (.. "Fetched Lua " version " manual\n"))
+                             (with-open [out (io.open cache :w)]
                                (out:write body))
                              (gumbo.parse body))
-              _          (do (io.stderr:write (.. "Failed to get Lua " version " manual\n"))
+              _          (do (io.stderr:write (.. "Failed to fetch Lua " version " manual\n"))
                              nil))))))
 
 (fn extract-keywords [lua-manual]
@@ -91,123 +91,60 @@
         (table.insert keywords item.innerHTML)))
     keywords))
 
-(local *keywords* (collect [_ v (ipairs [5.1 5.2 5.3 5.4])]
+(local *versions* [5.1 5.2 5.3 5.4])
+
+(local *keywords* (collect [_ v (ipairs *versions*)]
                     (values v (extract-keywords (fetch-lua-manual v)))))
 
 (fn keywords-for [...]
+  "Select Lua keywords exclusively available for the given Lua versions."
   (let [versions [...]
-        others (sets.difference [5.1 5.2 5.3 5.4] versions)]
+        others (sets.difference *versions* versions)]
     (sets.difference (sets.intersection (unpack (utils.map versions #(. *keywords* $))))
                      (unpack (utils.map others #(. *keywords* $))))))
+
+(fn version-regex [versions]
+  "Create Lua version regex for the given versions."
+  (let [ss (table.concat (utils.map versions #(string.sub $ 3 3)))]
+    (match (length versions)
+      0 (do (io.stderr:write "Missing versions for creating regex.")
+            nil)
+      1 (.. "^5\\." ss "$")
+      n (.. "^5\\.[" ss "]$"))))
+
+(fn write-keywords [out versions]
+  "Write keywords for the given Lua versions to the given output port."
+  (let [keywords (keywords-for (unpack versions))]
+    (when (> (length keywords) 0)
+      (let [conditional? (> (length (sets.difference *versions* versions))
+                            0)]
+        (when conditional?
+          (out:write (.. "if match(s:lua_version, '" (version-regex versions) "') > -1\n")))
+        (each [_ keyword (ipairs (utils.sorted keywords))]
+          (out:write (.. (if conditional? "  " "") "syn keyword fennelLuaKeyword " keyword "\n")))
+        (when conditional?
+          (out:write "endif\n"))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Main
 
 (fn main []
-  (let [cache ".cache/lua_keywords.vim"]
-    (os.execute "mkdir -p .cache")
-    (with-open [out (io.open cache :w)]
-
-      (let [keywords (keywords-for 5.1 5.2 5.3 5.4)]
-        (each [_ keyword (ipairs (utils.sorted keywords))]
-          (out:write (.. "syn keyword fennelLuaKeyword " keyword "\n"))))
-
-      (let [keywords (keywords-for 5.1 5.2 5.3)]
-        (when (> (length keywords) 0)
-          (out:write "if match(s:lua_version, '^5\\.[123]$') > -1\n")
-          (each [_ keyword (ipairs (utils.sorted keywords))]
-            (out:write (.. "  syn keyword fennelLuaKeyword " keyword "\n")))
-          (out:write "endif\n")))
-
-      (let [keywords (keywords-for 5.1 5.2 5.4)]
-        (when (> (length keywords) 0)
-          (out:write "if match(s:lua_version, '^5\\.[124]$') > -1\n")
-          (each [_ keyword (ipairs (utils.sorted keywords))]
-            (out:write (.. "  syn keyword fennelLuaKeyword " keyword "\n")))
-          (out:write "endif\n")))
-
-      (let [keywords (keywords-for 5.1 5.3 5.4)]
-        (when (> (length keywords) 0)
-          (out:write "if match(s:lua_version, '^5\\.[134]$') > -1\n")
-          (each [_ keyword (ipairs (utils.sorted keywords))]
-            (out:write (.. "  syn keyword fennelLuaKeyword " keyword "\n")))
-          (out:write "endif\n")))
-
-      (let [keywords (keywords-for 5.2 5.3 5.4)]
-        (when (> (length keywords) 0)
-          (out:write "if match(s:lua_version, '^5\\.[234]$') > -1\n")
-          (each [_ keyword (ipairs (utils.sorted keywords))]
-            (out:write (.. "  syn keyword fennelLuaKeyword " keyword "\n")))
-          (out:write "endif\n")))
-
-      (let [keywords (keywords-for 5.1 5.2)]
-        (when (> (length keywords) 0)
-          (out:write "if match(s:lua_version, '^5\\.[12]$') > -1\n")
-          (each [_ keyword (ipairs (utils.sorted keywords))]
-            (out:write (.. "  syn keyword fennelLuaKeyword " keyword "\n")))
-          (out:write "endif\n")))
-
-      (let [keywords (keywords-for 5.1 5.3)]
-        (when (> (length keywords) 0)
-          (out:write "if match(s:lua_version, '^5\\.[13]$') > -1\n")
-          (each [_ keyword (ipairs (utils.sorted keywords))]
-            (out:write (.. "  syn keyword fennelLuaKeyword " keyword "\n")))
-          (out:write "endif\n")))
-
-      (let [keywords (keywords-for 5.1 5.4)]
-        (when (> (length keywords) 0)
-          (out:write "if match(s:lua_version, '^5\\.[14]$') > -1\n")
-          (each [_ keyword (ipairs (utils.sorted keywords))]
-            (out:write (.. "  syn keyword fennelLuaKeyword " keyword "\n")))
-          (out:write "endif\n")))
-
-      (let [keywords (keywords-for 5.2 5.3)]
-        (when (> (length keywords) 0)
-          (out:write "if match(s:lua_version, '^5\\.[23]$') > -1\n")
-          (each [_ keyword (ipairs (utils.sorted keywords))]
-            (out:write (.. "  syn keyword fennelLuaKeyword " keyword "\n")))
-          (out:write "endif\n")))
-
-      (let [keywords (keywords-for 5.2 5.4)]
-        (when (> (length keywords) 0)
-          (out:write "if match(s:lua_version, '^5\\.[24]$') > -1\n")
-          (each [_ keyword (ipairs (utils.sorted keywords))]
-            (out:write (.. "  syn keyword fennelLuaKeyword " keyword "\n")))
-          (out:write "endif\n")))
-
-      (let [keywords (keywords-for 5.3 5.4)]
-        (when (> (length keywords) 0)
-          (out:write "if match(s:lua_version, '^5\\.[34]$') > -1\n")
-          (each [_ keyword (ipairs (utils.sorted keywords))]
-            (out:write (.. "  syn keyword fennelLuaKeyword " keyword "\n")))
-          (out:write "endif\n")))
-
-      (let [keywords (keywords-for 5.1)]
-        (when (> (length keywords) 0)
-          (out:write "if match(s:lua_version, '^5\\.1$') > -1\n")
-          (each [_ keyword (ipairs (utils.sorted keywords))]
-            (out:write (.. "  syn keyword fennelLuaKeyword " keyword "\n")))
-          (out:write "endif\n")))
-
-      (let [keywords (keywords-for 5.2)]
-        (when (> (length keywords) 0)
-          (out:write "if match(s:lua_version, '^5\\.2$') > -1\n")
-          (each [_ keyword (ipairs (utils.sorted keywords))]
-            (out:write (.. "  syn keyword fennelLuaKeyword " keyword "\n")))
-          (out:write "endif\n")))
-
-      (let [keywords (keywords-for 5.3)]
-        (when (> (length keywords) 0)
-          (out:write "if match(s:lua_version, '^5\\.3$') > -1\n")
-          (each [_ keyword (ipairs (utils.sorted keywords))]
-            (out:write (.. "  syn keyword fennelLuaKeyword " keyword "\n")))
-          (out:write "endif\n")))
-
-      (let [keywords (keywords-for 5.4)]
-        (when (> (length keywords) 0)
-          (out:write "if match(s:lua_version, '^5\\.4$') > -1\n")
-          (each [_ keyword (ipairs (utils.sorted keywords))]
-            (out:write (.. "  syn keyword fennelLuaKeyword " keyword "\n")))
-          (out:write "endif\n"))))))
+  (os.execute "mkdir -p .cache")
+  (with-open [out (io.open ".cache/lua_keywords.vim" :w)]
+    (write-keywords out [5.1 5.2 5.3 5.4])
+    (write-keywords out [5.1 5.2 5.3])
+    (write-keywords out [5.1 5.2 5.4])
+    (write-keywords out [5.1 5.3 5.4])
+    (write-keywords out [5.2 5.3 5.4])
+    (write-keywords out [5.1 5.2])
+    (write-keywords out [5.1 5.3])
+    (write-keywords out [5.1 5.4])
+    (write-keywords out [5.2 5.3])
+    (write-keywords out [5.2 5.4])
+    (write-keywords out [5.3 5.4])
+    (write-keywords out [5.1])
+    (write-keywords out [5.2])
+    (write-keywords out [5.3])
+    (write-keywords out [5.4])))
 
 (main)
