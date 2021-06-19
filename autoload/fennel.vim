@@ -1,5 +1,5 @@
 " Helper functions for fennel-syntax plugin
-" Last Change: 2021-06-19
+" Last Change: 2021-06-20
 " Author: Mitsuhiro Nakamura <m.nacamura@gmail.com>
 " URL: https://github.com/mnacamura/vim-fennel-syntax
 " License: MIT
@@ -20,21 +20,19 @@ fun! fennel#GetLuaVersion() abort
   if !executable('lua')
     return '5.1'
   endif
-  let l:version = system('lua -v')
-  if match(l:version, 'LuaJIT') > -1
-    return '5.1'
-  elseif match(l:version, 'Lua 5.1') > -1
-    return '5.1'
-  elseif match(l:version, 'Lua 5.2') > -1
-    return '5.2'
-  elseif match(l:version, 'Lua 5.3') > -1
-    return '5.3'
-  elseif match(l:version, 'Lua 5.4') > -1
-    return '5.4'
-  else
-    echoerr 'Unknown Lua version, fall back to 5.1'
+
+  let l:version_string = system('lua -v')
+  if match(l:version_string, '^LuaJIT') > -1
     return '5.1'
   endif
+
+  let l:version_number = matchstr(l:version_string, '^Lua \zs5\.[1-4]')
+  if l:version_number !=# ''
+    return l:version_number
+  endif
+
+  echoerr 'Unknown Lua version, fall back to 5.1'
+  return '5.1'
 endfun
 
 " vim: et sw=2 sts=-1 tw=100 fdm=marker
