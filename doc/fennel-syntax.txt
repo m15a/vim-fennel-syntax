@@ -1,4 +1,4 @@
-*fennel-syntax.txt*        *vim-fennel-syntax*         Last Change: 2021-06-13
+*fennel-syntax.txt*        *vim-fennel-syntax*         Last Change: 2021-06-19
 
                                             *fennel-syntax* *ft-fennel-syntax*
 
@@ -14,8 +14,8 @@ OPTIONS                                                *fennel-syntax-options*
 For all options, if both global and buffer local ones are defined, the buffer
 local one takes precedence.
 
-*g:fennel_use_lume*        Enable highlighting for bindings provided by Lume.
-*b:fennel_use_lume* 
+*g:fennel_use_lume*        Highlight keywords provided by Lume.
+*b:fennel_use_lume*
 >
     let g:fennel_use_lume = 1  " default: 1
 <

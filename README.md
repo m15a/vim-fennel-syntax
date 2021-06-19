@@ -31,7 +31,7 @@ buffer local one takes precedence.
 
 ### `fennel_use_lume`
 
-Enable highlighting for functions provided by [Lume][4].
+Highlight keywords provided by [Lume][4].
 
 ```vim
 let g:fennel_use_lume = 1  " default: 1
