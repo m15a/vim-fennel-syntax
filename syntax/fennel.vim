@@ -15,7 +15,7 @@ set cpo&vim
 
 " Options {{{1
 
-let s:use_lume = fennel#Get('use_lume', 1)
+let s:use_lume = fennel#GetOption('use_lume', 1)
 
 " }}}
 

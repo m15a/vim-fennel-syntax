@@ -10,7 +10,7 @@ endif
 let g:autoloaded_fennel = 1
 
 " Get value from a buffer-local or global variable with fall back
-fun! fennel#Get(varname, default) abort
+fun! fennel#GetOption(varname, default) abort
   let l:prefixed_varname = 'fennel_' . a:varname
   return get(b:, l:prefixed_varname, get(g:, l:prefixed_varname, a:default))
 endfun
