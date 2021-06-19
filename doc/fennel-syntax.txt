@@ -16,8 +16,10 @@ local one takes precedence.
 
 *g:fennel_lua_version*     Highlight keywords for the given Lua version.
 *b:fennel_lua_version*     Supports `5.1`, `5.2`, `5.3`, and `5.4`.
+                         If not set, it will be inferred and set
+                         automatically by invoking `lua -v` command.
 >
-    let g:fennel_lua_version = '5.4'  " default: '5.1'
+    let g:fennel_lua_version = '5.4'  " default: inferred from environment
 
 *g:fennel_use_lume*        Highlight keywords provided by Lume.
 *b:fennel_use_lume*

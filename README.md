@@ -33,9 +33,11 @@ buffer local one takes precedence.
 
 Highlight keywords for the given Lua version.
 Supports `5.1`, `5.2`, `5.3`, and `5.4`.
+If not set, it will be inferred and set automatically by invoking `lua -v`
+command.
 
 ```
-let g:fennel_lua_version = '5.4'  " default: '5.1'
+let g:fennel_lua_version = '5.4'  " default: inferred from environment
 ```
 
 ### `fennel_use_lume`
