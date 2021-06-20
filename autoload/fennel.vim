@@ -17,8 +17,10 @@ endfun
 
 " Get Lua version from environment.
 fun! fennel#GetLuaVersion() abort
+  let l:fallback_version = '5.1'
+
   if !executable('lua')
-    return '5.1'
+    return l:fallback_version
   endif
 
   let l:version_string = system('lua -v')
@@ -26,13 +28,13 @@ fun! fennel#GetLuaVersion() abort
     return '5.1'
   endif
 
-  let l:version_number = matchstr(l:version_string, '^Lua \zs5\.[1-4]')
-  if l:version_number !=# ''
-    return l:version_number
+  let l:version = matchstr(l:version_string, '^Lua \zs5\.[1-4]')
+  if l:version !=# ''
+    return l:version
   endif
 
-  echoerr 'Unknown Lua version, fall back to 5.1'
-  return '5.1'
+  echoerr 'Unknown Lua version, fall back to ' . l:fallback_version
+  return l:fallback_version
 endfun
 
 " vim: et sw=2 sts=-1 tw=100 fdm=marker
