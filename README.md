@@ -45,7 +45,7 @@ not found in path, it defaults to `5.1`.
 
 ### `fennel_use_luajit`
 
-Highlight literals and keywords extended in LuaJIT.
+Highlight literals and keywords extended in [LuaJIT][5].
 If not set, it will be inferred and set automatically by invoking `lua -v`
 command.
 
@@ -85,6 +85,7 @@ let g:fennel_use_lume = 1  " default: 1
 [2]: https://github.com/bakpakin/fennel.vim/
 [3]: https://github.com/savq/paq-nvim/
 [4]: https://github.com/rxi/lume/
+[5]: https://luajit.org/extensions.html
 [v0.1]: https://github.com/mnacamura/vim-fennel-syntax/tree/v0.1
 
 <!-- vim: set tw=78 spell: -->
