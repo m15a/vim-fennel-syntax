@@ -31,7 +31,7 @@ buffer local one takes precedence.
 
 ### `fennel_lua_version`
 
-Highlight keywords for the given Lua version.
+Highlight literals and keywords for the given Lua version.
 Supports `5.1`, `5.2`, `5.3`, and `5.4`.
 If not set, it will be inferred and set automatically by invoking `lua -v`
 command.
@@ -42,6 +42,19 @@ let g:fennel_lua_version = '5.4'  " default: inferred from environment
 
 If `g:fennel_lua_version` and `b:fennel_lua_version` are not set and `lua` is
 not found in path, it defaults to `5.1`.
+
+### `fennel_use_luajit`
+
+Highlight literals and keywords for LuaJIT.
+If not set, it will be inferred and set automatically by invoking `lua -v`
+command.
+
+```vim
+let g:fennel_use_luajit = 0  " default: inferred from environment
+```
+
+If `g:fennel_use_luajit` and `b:fennel_use_luajit` are not set and
+`lua` (LuaJIT) is not found in path, it defaults to `0`.
 
 ### `fennel_use_lume`
 
@@ -56,6 +69,7 @@ let g:fennel_use_lume = 1  " default: 1
 ### Unreleased
 
 * Add option `{g,b}:fennel_lua_version`
+* Add option `{g,b}:fennel_use_luajit`
 
 ### [0.1][v0.1] (2021-06-13)
 
