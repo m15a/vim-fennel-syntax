@@ -40,6 +40,9 @@ command.
 let g:fennel_lua_version = '5.4'  " default: inferred from environment
 ```
 
+If `g:fennel_lua_version` and `b:fennel_lua_version` are not set and `lua` is
+not found in path, it defaults to `5.1`.
+
 ### `fennel_use_lume`
 
 Highlight keywords provided by [Lume][4].

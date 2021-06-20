@@ -1,4 +1,4 @@
-*fennel-syntax.txt*        *vim-fennel-syntax*         Last Change: 2021-06-19
+*fennel-syntax.txt*        *vim-fennel-syntax*         Last Change: 2021-06-20
 
                                             *fennel-syntax* *ft-fennel-syntax*
 
@@ -20,6 +20,10 @@ local one takes precedence.
                          automatically by invoking `lua -v` command.
 >
     let g:fennel_lua_version = '5.4'  " default: inferred from environment
+<
+                         If `g:fennel_lua_version` and `b:fennel_lua_version` 
+                         are not set and `lua` is not found in path, it
+                         defaults to `5.1`.
 
 *g:fennel_use_lume*        Highlight keywords provided by Lume.
 *b:fennel_use_lume*
