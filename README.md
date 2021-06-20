@@ -66,7 +66,7 @@ let g:fennel_use_lume = 1  " default: 1
 
 ## Change log
 
-### Unreleased
+### [0.2][v0.2] (2021-06-20)
 
 * Add option `{g,b}:fennel_lua_version`
 * Add option `{g,b}:fennel_use_luajit`
@@ -90,5 +90,6 @@ let g:fennel_use_lume = 1  " default: 1
 [4]: https://github.com/rxi/lume/
 [5]: https://luajit.org/extensions.html
 [v0.1]: https://github.com/mnacamura/vim-fennel-syntax/tree/v0.1
+[v0.2]: https://github.com/mnacamura/vim-fennel-syntax/tree/v0.2
 
 <!-- vim: set tw=78 spell: -->

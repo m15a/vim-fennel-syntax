@@ -44,7 +44,7 @@ local one takes precedence.
 ==============================================================================
 CHANGELOG                                            *fennel-syntax-changelog*
 
-Unreleased             * Add option `{g,b}:fennel_lua_version`
+0.2      2021-06-20    * Add option `{g,b}:fennel_lua_version`
                        * Add option `{g,b}:fennel_use_luajit`
                        * Fix string literal `\ddd`
                        * Add missing string literal `\<CR>`
