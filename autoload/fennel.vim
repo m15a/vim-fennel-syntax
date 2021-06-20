@@ -37,4 +37,17 @@ fun! fennel#GetLuaVersion() abort
   return l:fallback_version
 endfun
 
+" Check if LuaJIT is in path.
+fun! fennel#CheckLuajit() abort
+  if !executable('lua')
+    return 0
+  endif
+
+  if match(system('lua -v'), '^LuaJIT') > -1
+    return 1
+  endif
+
+  return 0
+endfun
+
 " vim: et sw=2 sts=-1 tw=100 fdm=marker
