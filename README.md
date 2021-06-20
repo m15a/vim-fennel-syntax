@@ -36,7 +36,7 @@ Supports `5.1`, `5.2`, `5.3`, and `5.4`.
 If not set, it will be inferred and set automatically by invoking `lua -v`
 command.
 
-```
+```vim
 let g:fennel_lua_version = '5.4'  " default: inferred from environment
 ```
 
