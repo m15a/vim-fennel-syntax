@@ -15,6 +15,8 @@ set cpo&vim
 
 " Options {{{1
 
+let s:lua_version = fennel#GetOption('lua_version', fennel#GetLuaVersion())
+let s:use_luajit = fennel#GetOption('use_luajit', fennel#CheckLuajit())
 let s:use_lume = fennel#GetOption('use_lume', 1)
 
 " }}}
@@ -58,9 +60,12 @@ syn match fennelKeyword /:[^[:space:]\n"'(),;@\[\]\\`{}~]\+/
 syn keyword fennelBoolean true false
 
 " Number {{{2
-exec 'syn match fennelNumber /' . fennel#number#Dec() . '/'
-exec 'syn match fennelNumber /' . fennel#number#Hex() . '/'
-" NOTE: Fennel seems to accept fractional and postfix 'p' in hex number even if Lua version < 5.2.
+exe 'syn match fennelNumber /' . fennel#number#Dec() . '/'
+if s:use_luajit || s:lua_version !=# '5.1'
+  exe 'syn match fennelNumber /' . fennel#number#Hex() . '/'
+else
+  exe 'syn match fennelNumber /' . fennel#number#HexInt() . '/'
+endif
 
 " String {{{2
 syn region fennelString matchgroup=fennelStringDelimiter start=/"/ skip=/\\\\\|\\"/ end=/"/ contains=@fennelEscapeChars,@Spell

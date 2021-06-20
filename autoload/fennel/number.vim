@@ -15,6 +15,13 @@ fun! fennel#number#Dec() abort
   return s:Bless(s:sign . l:body . s:Suffix('e'))
 endfun
 
+" Build regexp of hex integer (Lua 5.1).
+fun! fennel#number#HexInt() abort
+  let l:prefix = '_*0_*x'
+  let l:body = s:xdigits1
+  return s:Bless(s:sign . l:prefix . l:body)
+endfun
+
 " Build regexp of hex number.
 fun! fennel#number#Hex() abort
   let l:prefix = '_*0_*x'
