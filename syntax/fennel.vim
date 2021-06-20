@@ -72,7 +72,7 @@ syn region fennelString matchgroup=fennelStringDelimiter start=/"/ skip=/\\\\\|\
 syn cluster fennelEscapeChars contains=fennelEscapeLiteral,fennelEscapeMnemonic,fennelEscapeMnemonicZ,fennelEscapeCharCode
 syn match fennelEscapeLiteral /\\[\\"'\n]/ contained
 syn match fennelEscapeMnemonic /\\[abfnrtv]/ contained
-syn match fennelEscapeCharCode /\\\%(\%(\%([01]\)\?[0-9]\)\?[0-9]\|2[0-4][0-9]\|25[0-5]\)/ contained
+syn match fennelEscapeCharCode /\\\%(25[0-5]\|2[0-4][0-9]\|\%(\%([01]\)\?[0-9]\)\?[0-9]\)/ contained
 
 " Lua 5.2-
 syn match fennelEscapeMnemonicZ /\\z/ contained
