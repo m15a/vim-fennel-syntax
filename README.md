@@ -70,6 +70,8 @@ let g:fennel_use_lume = 1  " default: 1
 
 * Add option `{g,b}:fennel_lua_version`
 * Add option `{g,b}:fennel_use_luajit`
+* Fix string literal `\ddd`
+* Add missing string literal `\<CR>`
 
 ### [0.1][v0.1] (2021-06-13)
 
