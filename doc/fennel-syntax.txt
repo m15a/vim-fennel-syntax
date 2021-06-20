@@ -25,7 +25,7 @@ local one takes precedence.
                          are not set and `lua` is not found in path, it
                          defaults to `5.1`.
 
-*g:fennel_use_luajit*      Highlight literals and keywords for LuaJIT.
+*g:fennel_use_luajit*      Highlight literals and keywords extended in LuaJIT.
 *b:fennel_use_luajit*      If not set, it will be inferred and set
                          automatically by invoking `lua -v` command.
 >

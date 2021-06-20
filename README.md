@@ -45,7 +45,7 @@ not found in path, it defaults to `5.1`.
 
 ### `fennel_use_luajit`
 
-Highlight literals and keywords for LuaJIT.
+Highlight literals and keywords extended in LuaJIT.
 If not set, it will be inferred and set automatically by invoking `lua -v`
 command.
 
