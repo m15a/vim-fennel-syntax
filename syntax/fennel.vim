@@ -1,6 +1,6 @@
 " Vim syntax file
 " Language: Fennel
-" Last Change: 2021-06-19
+" Last Change: 2021-06-20
 " Original Maintainer: Calvin Rose
 " Maintainer: Mitsuhiro Nakamura <m.nacamura@gmail.com>
 " URL: https://github.com/mnacamura/vim-fennel-syntax
@@ -171,6 +171,7 @@ syn keyword fennelAuxSyntax where
 
 let b:did_fennel_syntax = 1
 runtime! syntax/fennel-lua.vim
+runtime! syntax/fennel-luajit.vim
 unlet b:did_fennel_syntax
 
 " Lume keywords {{{2
