@@ -19,5 +19,11 @@ syn keyword fennelLuaKeyword ffi.cdef ffi.load ffi.new ctype ffi.typeof ffi.cast
 syn match fennelLuaKeyword /\<ffi\.C/
 syn keyword fennelLuaKeyword ffi.gc ffi.sizeof ffi.alignof ffi.offsetof ffi.istype ffi.errno
 syn keyword fennelLuaKeyword ffi.string ffi.copy ffi.fill ffi.abi ffi.os ffi.arch
+syn keyword fennelLuaKeyword jit.on jit.off jit.flush jit.status jit.version jit.version_num
+syn keyword fennelLuaKeyword jit.os jit.arch
+syn keyword fennelLuaKeyword jit.opt.start
+" https://luajit.org/ext_jit.html:
+" The functionality provided by this module is still in flux and therefore undocumented.
+syn match fennelLuaKeyword /\<jit\.util/
 
 " vim: et sw=2 sts=-1 tw=100 fdm=marker
