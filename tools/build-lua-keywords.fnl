@@ -104,6 +104,7 @@
                  (string.find (. item :attributes :href :value) "#pdf-")
                  (not (string.find item.innerHTML "^LUAL?_"))
                  (not (string.find item.innerHTML "^__"))
+                 (not (string.find item.innerHTML "^%w+:"))
                  (not (string.find item.innerHTML "^luaopen_")))
         (table.insert keywords item.innerHTML)))
     keywords))

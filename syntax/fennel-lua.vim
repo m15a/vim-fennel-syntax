@@ -1,6 +1,6 @@
 " Vim syntax file
 " Language: Fennel
-" Last Change: 2021-06-19
+" Last Change: 2021-06-20
 " Maintainer: Mitsuhiro Nakamura <m.nacamura@gmail.com>
 " URL: https://github.com/mnacamura/vim-fennel-syntax
 " License: MIT
@@ -17,22 +17,20 @@ syn keyword fennelLuaKeyword coroutine.running coroutine.status coroutine.wrap c
 syn keyword fennelLuaKeyword debug.debug debug.gethook debug.getinfo debug.getlocal
 syn keyword fennelLuaKeyword debug.getmetatable debug.getregistry debug.getupvalue debug.sethook
 syn keyword fennelLuaKeyword debug.setlocal debug.setmetatable debug.setupvalue debug.traceback
-syn keyword fennelLuaKeyword dofile error file:close file:flush file:lines file:read file:seek
-syn keyword fennelLuaKeyword file:setvbuf file:write getmetatable io.close io.flush io.input
-syn keyword fennelLuaKeyword io.lines io.open io.output io.popen io.read io.stderr io.stdin
-syn keyword fennelLuaKeyword io.stdout io.tmpfile io.type io.write ipairs load loadfile math.abs
-syn keyword fennelLuaKeyword math.acos math.asin math.atan math.ceil math.cos math.deg math.exp
-syn keyword fennelLuaKeyword math.floor math.fmod math.huge math.log math.max math.min math.modf
-syn keyword fennelLuaKeyword math.pi math.rad math.random math.randomseed math.sin math.sqrt
-syn keyword fennelLuaKeyword math.tan next os.clock os.date os.difftime os.execute os.exit
-syn keyword fennelLuaKeyword os.getenv os.remove os.rename os.setlocale os.time os.tmpname
-syn keyword fennelLuaKeyword package.cpath package.loaded package.loadlib package.path
-syn keyword fennelLuaKeyword package.preload pairs pcall print rawequal rawget rawset require
-syn keyword fennelLuaKeyword select setmetatable string.byte string.char string.dump string.find
-syn keyword fennelLuaKeyword string.format string.gmatch string.gsub string.len string.lower
-syn keyword fennelLuaKeyword string.match string.rep string.reverse string.sub string.upper
-syn keyword fennelLuaKeyword table.concat table.insert table.remove table.sort tonumber tostring
-syn keyword fennelLuaKeyword type xpcall
+syn keyword fennelLuaKeyword dofile error getmetatable io.close io.flush io.input io.lines io.open
+syn keyword fennelLuaKeyword io.output io.popen io.read io.stderr io.stdin io.stdout io.tmpfile
+syn keyword fennelLuaKeyword io.type io.write ipairs load loadfile math.abs math.acos math.asin
+syn keyword fennelLuaKeyword math.atan math.ceil math.cos math.deg math.exp math.floor math.fmod
+syn keyword fennelLuaKeyword math.huge math.log math.max math.min math.modf math.pi math.rad
+syn keyword fennelLuaKeyword math.random math.randomseed math.sin math.sqrt math.tan next os.clock
+syn keyword fennelLuaKeyword os.date os.difftime os.execute os.exit os.getenv os.remove os.rename
+syn keyword fennelLuaKeyword os.setlocale os.time os.tmpname package.cpath package.loaded
+syn keyword fennelLuaKeyword package.loadlib package.path package.preload pairs pcall print
+syn keyword fennelLuaKeyword rawequal rawget rawset require select setmetatable string.byte
+syn keyword fennelLuaKeyword string.char string.dump string.find string.format string.gmatch
+syn keyword fennelLuaKeyword string.gsub string.len string.lower string.match string.rep
+syn keyword fennelLuaKeyword string.reverse string.sub string.upper table.concat table.insert
+syn keyword fennelLuaKeyword table.remove table.sort tonumber tostring type xpcall
 if match(s:lua_version, '^5\.[234]$') > -1
   syn keyword fennelLuaKeyword debug.getuservalue debug.setuservalue debug.upvalueid
   syn keyword fennelLuaKeyword debug.upvaluejoin package.config package.searchers
