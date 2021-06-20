@@ -70,16 +70,16 @@ endif
 " String {{{2
 syn region fennelString matchgroup=fennelStringDelimiter start=/"/ skip=/\\\\\|\\"/ end=/"/ contains=@fennelEscapeChars,@Spell
 syn cluster fennelEscapeChars contains=fennelEscapeLiteral,fennelEscapeMnemonic,fennelEscapeMnemonicZ,fennelEscapeCharCode
-syn match fennelEscapeLiteral /\\[\\"']/ contained
+syn match fennelEscapeLiteral /\\[\\"'\n]/ contained
 syn match fennelEscapeMnemonic /\\[abfnrtv]/ contained
-syn match fennelEscapeCharCode /\\\%(\%(\%([01]\)\?[0-9]\)\?[0-9]\|2[0-4][0-9]\|25[0-5]\)/ contained
-
-" Lua 5.2-
-syn match fennelEscapeMnemonicZ /\\z/ contained
-syn match fennelEscapeCharCode '\\x[[:xdigit:]]\{2}' contained
-
-" Lua 5.3-
-syn match fennelEscapeCharCode '\\u{[[:xdigit:]]\+}' contained
+syn match fennelEscapeCharCode /\\\%(25[0-5]\|2[0-4][0-9]\|\%(\%([01]\)\?[0-9]\)\?[0-9]\)/ contained
+if s:use_luajit || s:lua_version >=# '5.2'
+  syn match fennelEscapeMnemonicZ /\\z/ contained
+  syn match fennelEscapeCharCode '\\x[[:xdigit:]]\{2}' contained
+endif
+if s:lua_version >=# '5.3'
+  syn match fennelEscapeCharCode '\\u{[[:xdigit:]]\+}' contained
+endif
 
 " Compound data {{{1
 syn cluster fennelCompoundData contains=fennelList,fennelArray,fennelTable,fennelQuote,fennelQuasiQuote
