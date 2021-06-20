@@ -9,13 +9,13 @@ if exists('g:autoloaded_fennel')
 endif
 let g:autoloaded_fennel = 1
 
-" Get value from a buffer-local or global variable with fall back
+" Get value from a buffer-local or global variable with fall back.
 fun! fennel#GetOption(varname, default) abort
   let l:prefixed_varname = 'fennel_' . a:varname
   return get(b:, l:prefixed_varname, get(g:, l:prefixed_varname, a:default))
 endfun
 
-" Get Lua version from environment
+" Get Lua version from environment.
 fun! fennel#GetLuaVersion() abort
   if !executable('lua')
     return '5.1'
