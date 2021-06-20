@@ -48,6 +48,8 @@ Unreleased             * Add option `{g,b}:fennel_lua_version`
                        * Add option `{g,b}:fennel_use_luajit`
                        * Fix string literal `\ddd`
                        * Add missing string literal `\<CR>`
+                       * Add correct highlight for string/numeric literals
+                         for each Lua version
 0.1      2021-06-13    * Support Fennel 0.9.2
                        * Support Lua string literals up to version 5.4
                        * Support Lua numeric literals up to version 5.4
