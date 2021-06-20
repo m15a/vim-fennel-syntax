@@ -25,5 +25,6 @@ syn keyword fennelLuaKeyword jit.opt.start
 " https://luajit.org/ext_jit.html:
 " The functionality provided by this module is still in flux and therefore undocumented.
 syn match fennelLuaKeyword /\<jit\.util/
+syn keyword fennelLuaKeyword package.searchpath debug.upvalueid debug.upvaluejoin
 
 " vim: et sw=2 sts=-1 tw=100 fdm=marker
