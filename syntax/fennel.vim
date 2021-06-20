@@ -61,7 +61,7 @@ syn keyword fennelBoolean true false
 
 " Number {{{2
 exe 'syn match fennelNumber /' . fennel#number#Dec() . '/'
-if s:use_luajit || s:lua_version !=# '5.1'
+if s:use_luajit || s:lua_version >=# '5.2'
   exe 'syn match fennelNumber /' . fennel#number#Hex() . '/'
 else
   exe 'syn match fennelNumber /' . fennel#number#HexInt() . '/'
