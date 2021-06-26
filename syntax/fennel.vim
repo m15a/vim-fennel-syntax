@@ -1,6 +1,6 @@
 " Vim syntax file
 " Language: Fennel
-" Last Change: 2021-06-20
+" Last Change: 2021-06-26
 " Original Maintainer: Calvin Rose
 " Maintainer: Mitsuhiro Nakamura <m.nacamura@gmail.com>
 " URL: https://github.com/mnacamura/vim-fennel-syntax
@@ -69,8 +69,8 @@ endif
 
 " String {{{2
 syn region fennelString matchgroup=fennelStringDelimiter start=/"/ skip=/\\\\\|\\"/ end=/"/ contains=@fennelEscapeChars,@Spell
-syn cluster fennelEscapeChars contains=fennelEscapeLiteral,fennelEscapeMnemonic,fennelEscapeMnemonicZ,fennelEscapeCharCode
-syn match fennelEscapeLiteral /\\[\\"'\n]/ contained
+syn cluster fennelEscapeChars contains=fennelEscapeChar,fennelEscapeMnemonic,fennelEscapeMnemonicZ,fennelEscapeCharCode
+syn match fennelEscapeChar /\\[\\"'\n]/ contained
 syn match fennelEscapeMnemonic /\\[abfnrtv]/ contained
 syn match fennelEscapeCharCode /\\\%(25[0-5]\|2[0-4][0-9]\|\%(\%([01]\)\?[0-9]\)\?[0-9]\)/ contained
 if s:use_luajit || s:lua_version >=# '5.2'
@@ -213,7 +213,7 @@ hi def link fennelBoolean Boolean
 hi def link fennelNumber Number
 hi def link fennelString String
 hi def link fennelStringDelimiter fennelDelimiter
-hi def link fennelEscapeLiteral Character
+hi def link fennelEscapeChar Character
 hi def link fennelEscapeMnemonic Character
 hi def link fennelEscapeMnemonicZ fennelComment
 hi def link fennelEscapeCharCode Character
