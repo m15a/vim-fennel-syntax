@@ -1,4 +1,4 @@
-.PHONY: lint clean lua-keywords
+.PHONY: lint clean build
 
 lint:
 	@vint **/*.vim
@@ -6,5 +6,5 @@ lint:
 clean:
 	@rm -rf .cache
 
-lua-keywords:
-	@./tools/build-lua-keywords.fnl
+build:
+	@./build.fnl
