@@ -7,4 +7,4 @@ clean:
 	@rm -rf .cache
 
 build:
-	@./build.fnl
+	@./build.fnl lua-keywords
