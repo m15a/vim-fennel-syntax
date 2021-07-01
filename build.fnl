@@ -4,7 +4,7 @@
 ;;; Utilities
 
 (macro accumulate [iter-tbl accum-expr ...]
-  "Accumulate values for the given iterator.
+  "Accumulate values of the given iterator.
 Example:
   (let [tbl {:a 1 :b 2 :c 3}]
     (accumulate [n 0 _ _ (pairs tbl)]
@@ -23,40 +23,57 @@ Example:
 
 (local utils {})
 
+(fn utils.cloned [tbl]
+  "Return a clone of the table."
+  (setmetatable (collect [k v (pairs tbl)]
+                  (values k v))
+                (getmetatable tbl)))
+
+(fn utils.modified [tbl key value]
+  "Returns a clone of the table, having key modified to the value."
+  (let [cloned (utils.cloned tbl)]
+    (tset cloned key value)
+    cloned))
+
 (set utils.set (let [class {}]
                  (tset class :__index class)
                  class))
 
 (fn utils.set.new [...]
+  "Create a new set filled with items in `...`."
   (let [self (collect [_ item (ipairs [...])]
                (values item true))]
     (setmetatable self utils.set)))
 
 (fn utils.set.cardinality [self]
-  "Returns the cardinality of self."
+  "Return the cardinality of the set."
   (accumulate [n 0 _ _ (pairs self)]
     (+ n 1)))
 
 (fn utils.set.intersection [self ...]
-  "Returns the intersection of self and the given set."
-  (let [intersection (utils.clone self)]
-    (each [_ one (ipairs [...])]
-      (each [item _ (pairs intersection)]
-        (when (= (. one item) nil)
-          (tset intersection item nil))))
-    intersection))
+  "Return the intersection of the sets."
+  (fn intersection_ [left right]
+    (accumulate [items left
+                 item _ (pairs left)]
+      (when (= (. right item) nil)
+        (utils.modified items item nil))))
+  (accumulate [items self
+               _ one (ipairs [...])]
+    (intersection_ items one)))
 
-(set utils.set.__mul utils.set.intersection)
+(tset utils.set :__mul utils.set.intersection)
 
 (fn utils.set.difference [self ...]
-  "Returns the difference between self and the given utils.set."
-  (let [diff (utils.clone self)]
-    (each [_ one (ipairs [...])]
-      (each [item _ (pairs one)]
-        (tset diff item nil)))
-    diff))
+  "Return the difference between the first set and the rest sets."
+  (fn difference_ [left right]
+    (accumulate [items left
+                 item _ (pairs right)]
+      (utils.modified items item nil)))
+  (accumulate [items self
+               _ one (ipairs [...])]
+    (difference_ items one)))
 
-(set utils.set.__sub utils.set.difference)
+(tset utils.set :__sub utils.set.difference)
 
 (fn utils.exists? [file]
   "Does the file exists?"
@@ -67,53 +84,48 @@ Example:
 (fn utils.slurp [file]
   "Read all contents of the file."
   (with-open [in (io.open file)]
-    (in:read :*a)))
-
-(fn utils.clone [tbl]
-  (setmetatable (collect [k v (pairs tbl)]
-                  (values k v))
-                (getmetatable tbl)))
+    (in:read :*all)))
 
 (fn utils.keys [tbl]
+  "Return all keys in the table."
   (icollect [k _ (pairs tbl)] k))
 
 (fn utils.sorted [tbl]
-  (let [cloned (utils.clone tbl)]
+  "Return a sorted clone of the sequencial table."
+  (let [cloned (utils.cloned tbl)]
     (table.sort cloned)
     cloned))
 
 (fn utils.imap [seq f]
+  "Map a function to the sequencial table."
   (icollect [_ x (ipairs seq)] (f x)))
 
 (fn utils.map [tbl f]
+  "Map a function to the non-sequencial table."
   (icollect [k v (pairs tbl)] (f k v)))
 
-(fn utils.update [tbl k v]
-  (do (tset tbl k v)
-      tbl))
-
-(fn utils.insert [seq ...]
-  (do (table.insert seq ...)
+(fn utils.insert [seq item]
+  "Insert an item to the sequencial table and return the table."
+  (do (table.insert seq item)
       seq))
 
-(fn utils.concat-wrap [seq width sep]
-  "Concatinate strings in the given sequential table, wrapped by max width."
+(fn utils.wrap-lines [seq width sep]
+  "Return a table of strings concatinated with the sep, each line wrapped by the given width."
   (let [sep (or sep " ")
-        out (accumulate [state {:wrapped {} :buf ""}
+        out (accumulate [state {:lines {} :buf ""}
                          _ s (ipairs seq)]
-              (if (> (+ (string.len state.buf)
-                        (string.len sep)
-                        (string.len s))
+              (if (> (+ (string.len state.buf) (string.len sep) (string.len s))
                      width)
-                  (do (table.insert state.wrapped state.buf)
-                      (utils.update state :buf s))
-                  (utils.update state :buf
-                                (.. state.buf
-                                    (if (= state.buf "") "" sep)
-                                    s))))]
+                  (-> state
+                      (utils.modified :lines (utils.insert state.lines state.buf))
+                      (utils.modified :buf s))
+                  (-> state
+                      (utils.modified :buf (.. state.buf
+                                               (if (= state.buf "") "" sep)
+                                               s)))))]
     (when (not= out.buf "")
-      (table.insert out.wrapped out.buf))
-    out.wrapped))
+      (table.insert out.lines out.buf))
+    out.lines))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Library
@@ -122,7 +134,7 @@ Example:
 (local gumbo (require :gumbo))
 
 (fn fetch-lua-manual [version]
-  "Fetch Lua manual html of given version from www.lua.org."
+  "Fetch Lua manual html of the given version from www.lua.org."
   (if (not (string.match version "^5%.[1-4]$"))
       (do (io.stderr:write (string.format "Invalid Lua version: %s\n" version))
           nil)
@@ -174,7 +186,7 @@ Example:
       n (.. "^5\\.[" ss "]$"))))
 
 (fn write-keywords [out versions]
-  "Write keywords for the given Lua versions to the given output port."
+  "Write keywords for the given Lua versions to the output port."
   (let [keywords (keywords-for (unpack versions))]
     (when (> (keywords:cardinality) 0)
       (let [conditional? (> (utils.set.cardinality (- (utils.set.new (unpack *versions*))
@@ -182,8 +194,8 @@ Example:
                             0)]
         (when conditional?
           (out:write (.. "if match(s:lua_version, '" (version-regex versions) "') > -1\n")))
-        (each [_ chunk (ipairs (utils.concat-wrap (utils.sorted (utils.keys keywords))
-                                                  (if conditional? 68 70)))]
+        (each [_ chunk (ipairs (utils.wrap-lines (utils.sorted (utils.keys keywords))
+                                                 (if conditional? 68 70)))]
           (out:write (.. (if conditional? "  " "")
                          "syn keyword fennelLuaKeyword "
                          chunk
