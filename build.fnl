@@ -127,22 +127,6 @@ Example:
     (table.sort cloned ...)
     cloned))
 
-(fn utils.imap [seq f]
-  "Map a function to the sequencial table."
-  (icollect [_ x (ipairs seq)]
-    (f x)))
-
-(fn utils.map [tbl f]
-  "Map a function to the non-sequencial table."
-  (icollect [k v (pairs tbl)]
-    (f k v)))
-
-(fn utils.ifilter [seq pred]
-  "Filter out items in the sequential table by the predicate."
-  (icollect [_ x (ipairs seq)]
-    (when (pred x)
-      x)))
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Library
 
@@ -190,8 +174,10 @@ Example:
         versions (utils.set.new ...)
         other-versions (- *versions* versions)]
     (utils.set.difference
-      (utils.set.intersection (unpack (utils.map versions #(. *keywords* $1))))
-      (unpack (utils.map other-versions #(. *keywords* $1))))))
+      (utils.set.intersection (unpack (icollect [v _ (pairs versions)]
+                                        (. *keywords* v))))
+      (unpack (icollect [v _ (pairs other-versions)]
+                (. *keywords* v))))))
 
 (fn version-regex [versions]
   "Create Lua version regex for the given versions."
@@ -224,8 +210,9 @@ Example:
   "Write keywords for the given Lua versions to the output port."
   (let [keywords (keywords-for (unpack versions))]
     (when (> (keywords:cardinality) 0)
-      (let [conditional? (> (utils.set.cardinality (- (utils.set.unpack *versions*)
-                                                      (utils.set.unpack versions)))
+      (let [conditional? (> (let [diff (- (utils.set.unpack *versions*)
+                                          (utils.set.unpack versions))]
+                              (diff:cardinality))
                             0)]
         (when conditional?
           (out:write (.. "if match(s:lua_version, '" (version-regex versions) "') > -1\n")))
@@ -255,7 +242,19 @@ Example:
 
 (fn build-lua-keywords []
   "Build syntax/fennel-lua.vim by scraping Lua reference manuals."
-  (let [target "syntax/fennel-lua.vim"]
+  (let [target "syntax/fennel-lua.vim"
+        combinations-of-versions
+        (-> (icollect [_ versions (ipairs (-> *versions*
+                                              (utils.set.unpack)
+                                              (utils.set.powerset)))]
+              (when (> (versions:cardinality) 0)
+                (-> versions
+                    (utils.set.pack)
+                    (utils.sort))))
+            (utils.sort (fn [l r] (match (values (length l) (length r))
+                                    (where (n m) (> n m)) true
+                                    (where (n m) (< n m)) false
+                                    _ (< (. l 1) (. r 1))))))]
     (with-open [out (io.open target :w)]
       (out:write (.. "\" Vim syntax file
 \z      \" Language: Fennel
@@ -272,17 +271,7 @@ Example:
 \z      let s:lua_version = fennel#GetOption('lua_version', fennel#GetLuaVersion())
 
 \z      "))
-      (each [_ versions (ipairs (-> (utils.set.new 5.1 5.2 5.3 5.4)
-                                    (utils.set.powerset)
-                                    (utils.imap utils.set.pack)
-                                    (utils.ifilter #(> (length $) 0))
-                                    (utils.imap utils.sort)
-                                    (utils.sort (fn [l r] (match (values (length l) (length r))
-                                                            (where (n m) (> n m)) true
-                                                            (where (n m) (< n m)) false
-                                                            _ (match (values (. l 1) (. r 1))
-                                                                (a b) (< a b)
-                                                                _ (error "Unreachable!")))))))]
+      (each [_ versions (ipairs combinations-of-versions)]
         (write-keywords out versions)))
     (io.stderr:write (string.format "Generated %s\n" target))))
 
