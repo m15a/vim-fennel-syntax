@@ -18,12 +18,15 @@ let
     packageOverrides = self: super: {
       fennel = self.buildLuarocksPackage rec {
         pname = "fennel";
-        version = "0.9.2-1";
-        src = pkgs.fetchurl {
-          url    = "mirror://luarocks/${pname}-${version}.src.rock";
-          sha256 = "1ki1cm33f2vlgyargs1p30ixppvvzl0fznnyhwvr6x70g91damd9";
+        version = "2e0ce2e21198a6aae1b2fc8d7e4b8a7d7d3ab11b";
+        src = pkgs.fetchFromGitHub {
+          owner = "bakpakin";
+          repo = "Fennel";
+          rev = version;
+          sha256 = "1724g9rkqh2l93jz9jjpjydn2c1lfws44qigpvlkyi14g0gf7dfq";
         };
-        disabled = (self.luaOlder "5.1");
+        knownRockspec = "${src}/rockspecs/fennel-scm-2.rockspec";
+        disabled = self.luaOlder "5.1";
         propagatedBuildInputs = [ lua ];
       };
       gumbo = self.buildLuarocksPackage rec {
@@ -33,7 +36,7 @@ let
           url    = "mirror://luarocks/${pname}-${version}.src.rock";
           sha256 = "0p36d63bjckn36yv9jly08igqjkx7xicq4q479f69njiaxlhag6f";
         };
-        disabled = (self.luaOlder "5.1");
+        disabled = self.luaOlder "5.1";
         propagatedBuildInputs = [ lua ];
       };
     };
