@@ -1,5 +1,5 @@
 " Helper functions for fennel-syntax plugin
-" Last Change: 2021-06-20
+" Last Change: 2021-07-07
 " Author: Mitsuhiro Nakamura <m.nacamura@gmail.com>
 " URL: https://github.com/mnacamura/vim-fennel-syntax
 " License: MIT
@@ -17,36 +17,57 @@ endfun
 
 " Get Lua version from environment.
 fun! fennel#GetLuaVersion() abort
+  let l:version = get(b:, 'fennel_cache_lua_version')
+  if l:version
+    return l:version
+  else
+    unlet l:version
+  endif
+
   let l:fallback_version = '5.1'
 
   if !executable('lua')
+    let b:fennel_cache_lua_version = l:fallback_version
     return l:fallback_version
   endif
 
   let l:version_string = system('lua -v')
   if match(l:version_string, '^LuaJIT') > -1
+    let b:fennel_cache_lua_version = '5.1'
     return '5.1'
   endif
 
   let l:version = matchstr(l:version_string, '^Lua \zs5\.[1-4]')
   if l:version !=# ''
+    let b:fennel_cache_lua_version = l:version
     return l:version
   endif
 
   echoerr 'Unknown Lua version, fall back to ' . l:fallback_version
+  let b:fennel_cache_lua_version = l:fallback_version
   return l:fallback_version
 endfun
 
 " Check if LuaJIT is in path.
 fun! fennel#CheckLuajit() abort
+  let l:is_luajit = get(b:, 'fennel_cache_lua_is_luajit', 'unknown')
+  if l:is_luajit !=# 'unknown'
+    return l:is_luajit
+  else
+    unlet l:is_luajit
+  endif
+
   if !executable('lua')
+    let b:fennel_cache_lua_is_luajit = 0
     return 0
   endif
 
   if match(system('lua -v'), '^LuaJIT') > -1
+    let b:fennel_cache_lua_is_luajit = 1
     return 1
   endif
 
+  let b:fennel_cache_lua_is_luajit = 0
   return 0
 endfun
 
