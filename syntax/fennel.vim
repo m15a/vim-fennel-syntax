@@ -1,6 +1,6 @@
 " Vim syntax file
 " Language: Fennel
-" Last Change: 2021-06-26
+" Last Change: 2021-07-07
 " Original Maintainer: Calvin Rose
 " Maintainer: Mitsuhiro Nakamura <m.nacamura@gmail.com>
 " URL: https://github.com/mnacamura/vim-fennel-syntax
@@ -160,6 +160,8 @@ syn keyword fennelSpecialForm import-macros rshift lshift bor band bnot and bxor
 syn keyword fennelSpecialForm with-open
 " 0.8.0
 syn keyword fennelSpecialForm collect icollect
+" 0.9.3 / ???
+syn keyword fennelSpecialForm accumulate
 
 " Auxiliary syntaxes {{{2
 syn match fennelAuxSyntax /\$\([1-9]\|\.\.\.\)\?/

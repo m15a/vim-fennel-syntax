@@ -3,23 +3,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Utilities
 
-(macro accum [iter-tbl accum-expr ...]
-  "Accumulate values produced by the iterator.
-Example:
-  (accum [n 0 _ _ (pairs {:a 1 :b 2 :c 3})]
-    (+ n 1)) ;=> 3"
-  (assert (and (sequence? iter-tbl) (>= (length iter-tbl) 4))
-          "expected initial value and iterator binding table")
-  (assert (not= nil accum-expr)
-          "expected accumulating expression")
-  (assert (= nil ...)
-          "expected exactly one body expression.")
-  (let [acc (table.remove iter-tbl 1)]
-    `(do (var ,acc ,(table.remove iter-tbl 1))
-         (each ,iter-tbl
-           (set ,acc ,accum-expr))
-         ,acc)))
-
 (local utils {})
 
 (fn utils.clone [tbl]
@@ -41,10 +24,10 @@ Example:
 
 (fn utils.join [...]
   "Join all the tables."
-  (accum [joined []
-          _ tbl (ipairs [...])]
-    (accum [joined joined
-            _ item (ipairs tbl)]
+  (accumulate [joined []
+               _ tbl (ipairs [...])]
+    (accumulate [joined joined
+                 _ item (ipairs tbl)]
       (utils.insert joined item))))
 
 (set utils.set (let [class {}]
@@ -67,41 +50,41 @@ Example:
 
 (fn utils.set.cardinality [self]
   "Return the cardinality of the set."
-  (accum [n 0 _ _ (pairs self)]
+  (accumulate [n 0 _ _ (pairs self)]
     (+ n 1)))
 
 (fn _intersection [left right]
-  (accum [items left
-          item _ (pairs left)]
+  (accumulate [items left
+               item _ (pairs left)]
     (if (= (. right item) nil)
         (utils.modify items item nil)
         items)))
 
 (fn utils.set.intersection [self ...]
   "Return the intersection of the sets."
-  (accum [left self
-          _ right (ipairs [...])]
+  (accumulate [left self
+               _ right (ipairs [...])]
     (_intersection left right)))
 
 (tset utils.set :__mul _intersection)
 
 (fn _difference [left right]
-  (accum [items left
-          item _ (pairs right)]
+  (accumulate [items left
+               item _ (pairs right)]
     (utils.modify items item nil)))
 
 (fn utils.set.difference [self ...]
   "Return the difference between the first set and the rest sets."
-  (accum [left self
-          _ right (ipairs [...])]
+  (accumulate [left self
+               _ right (ipairs [...])]
     (_difference left right)))
 
 (tset utils.set :__sub _difference)
 
 (fn utils.set.powerset [self]
   "Return the powerset of the set."
-  (accum [powerset [(utils.set.new)]
-          item _ (pairs self)]
+  (accumulate [powerset [(utils.set.new)]
+               item _ (pairs self)]
     (utils.join powerset
                 (icollect [_ one (ipairs powerset)]
                   (utils.modify one item true)))))
@@ -181,7 +164,7 @@ Example:
 
 (fn version-regex [versions]
   "Create Lua version regex for the given versions."
-  (let [minors (accum [acc "" _ v (ipairs versions)]
+  (let [minors (accumulate [acc "" _ v (ipairs versions)]
                  (.. acc (string.sub v 3 3)))]
     (match (length versions)
       0 (error "Missing versions for creating regex.")
@@ -191,8 +174,8 @@ Example:
 (fn wrapped-lines [seq width sep]
   "Return a table of strings concatinated with the sep, each line wrapped by the given width."
   (let [sep (or sep " ")
-        {: lines : buf} (accum [state {:lines {} :buf ""}
-                                _ s (ipairs seq)]
+        {: lines : buf} (accumulate [state {:lines {} :buf ""}
+                                     _ s (ipairs seq)]
                           (if (> (+ (string.len state.buf) (string.len sep) (string.len s))
                                  width)
                               (-> state

@@ -18,12 +18,12 @@ let
     packageOverrides = self: super: {
       fennel = self.buildLuarocksPackage rec {
         pname = "fennel";
-        version = "2e0ce2e21198a6aae1b2fc8d7e4b8a7d7d3ab11b";
+        version = "1625c3122199d930858e91de9f601ccc202c5cc0";
         src = pkgs.fetchFromGitHub {
           owner = "bakpakin";
           repo = "Fennel";
           rev = version;
-          sha256 = "1724g9rkqh2l93jz9jjpjydn2c1lfws44qigpvlkyi14g0gf7dfq";
+          sha256 = "08r06vj88kp30q48ln26fksy09f4hl3kdkbnvbgl2w1wzz6vryi6";
         };
         knownRockspec = "${src}/rockspecs/fennel-scm-2.rockspec";
         disabled = self.luaOlder "5.1";

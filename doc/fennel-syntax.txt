@@ -1,4 +1,4 @@
-*fennel-syntax.txt*        *vim-fennel-syntax*         Last Change: 2021-06-26
+*fennel-syntax.txt*        *vim-fennel-syntax*         Last Change: 2021-07-07
 
                                             *fennel-syntax* *ft-fennel-syntax*
 
@@ -44,6 +44,7 @@ local one takes precedence.
 ==============================================================================
 CHANGELOG                                            *fennel-syntax-changelog*
 
+Unreleased             * Support `accumulate` macro
 0.2      2021-06-20    * Add option `{g,b}:fennel_lua_version`
                        * Add option `{g,b}:fennel_use_luajit`
                        * Fix `\ddd` in string literal

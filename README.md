@@ -57,6 +57,10 @@ let g:fennel_use_lume = 1  " default: 1
 
 ## Change log
 
+### Unreleased
+
+* Support `accumulate` macro
+
 ### [0.2][v0.2] (2021-06-20)
 
 * Add option `{g,b}:fennel_lua_version`
