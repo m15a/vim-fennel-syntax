@@ -15,6 +15,16 @@ fun! fennel#GetOption(varname, default) abort
   return get(b:, l:prefixed_varname, get(g:, l:prefixed_varname, a:default))
 endfun
 
+" Get Lua version string.
+fun! fennel#GetLuaVersionString() abort
+  let l:version_string = get(b:, 'fennel_cache_lua_version_string')
+  if !l:version_string
+    let l:version_string = system('lua -v')
+    let b:fennel_cache_lua_version_string = l:version_string
+  endif
+  return l:version_string
+endfun
+
 " Get Lua version from environment.
 fun! fennel#GetLuaVersion() abort
   let l:version = get(b:, 'fennel_cache_lua_version')
@@ -31,7 +41,7 @@ fun! fennel#GetLuaVersion() abort
     return l:fallback_version
   endif
 
-  let l:version_string = system('lua -v')
+  let l:version_string = fennel#GetLuaVersionString()
   if match(l:version_string, '^LuaJIT') > -1
     let b:fennel_cache_lua_version = '5.1'
     return '5.1'
@@ -62,7 +72,8 @@ fun! fennel#LuaIsLuajit() abort
     return 0
   endif
 
-  if match(system('lua -v'), '^LuaJIT') > -1
+  let l:version_string = fennel#GetLuaVersionString()
+  if match(l:version_string, '^LuaJIT') > -1
     let b:fennel_cache_lua_is_luajit = 1
     return 1
   endif
