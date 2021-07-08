@@ -1,5 +1,5 @@
 " Helper functions for fennel-syntax plugin
-" Last Change: 2021-07-07
+" Last Change: 2021-07-08
 " Author: Mitsuhiro Nakamura <m.nacamura@gmail.com>
 " URL: https://github.com/mnacamura/vim-fennel-syntax
 " License: MIT
@@ -49,7 +49,7 @@ fun! fennel#GetLuaVersion() abort
 endfun
 
 " Check if LuaJIT is in path.
-fun! fennel#CheckLuajit() abort
+fun! fennel#LuaIsLuajit() abort
   let l:is_luajit = get(b:, 'fennel_cache_lua_is_luajit', 'unknown')
   if l:is_luajit !=# 'unknown'
     return l:is_luajit

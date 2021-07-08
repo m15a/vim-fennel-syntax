@@ -1,6 +1,6 @@
 " Vim syntax file
 " Language: Fennel
-" Last Change: 2021-06-20
+" Last Change: 2021-07-08
 " Maintainer: Mitsuhiro Nakamura <m.nacamura@gmail.com>
 " URL: https://github.com/mnacamura/vim-fennel-syntax
 " License: MIT
@@ -9,7 +9,7 @@ if !exists('b:did_fennel_syntax')
   finish
 endif
 
-if !fennel#GetOption('use_luajit', fennel#CheckLuajit())
+if !fennel#GetOption('use_luajit', fennel#LuaIsLuajit())
   finish
 endif
 

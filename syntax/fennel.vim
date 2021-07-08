@@ -1,6 +1,6 @@
 " Vim syntax file
 " Language: Fennel
-" Last Change: 2021-07-07
+" Last Change: 2021-07-08
 " Original Maintainer: Calvin Rose
 " Maintainer: Mitsuhiro Nakamura <m.nacamura@gmail.com>
 " URL: https://github.com/mnacamura/vim-fennel-syntax
@@ -16,7 +16,7 @@ set cpo&vim
 " Options {{{1
 
 let s:lua_version = fennel#GetOption('lua_version', fennel#GetLuaVersion())
-let s:use_luajit = fennel#GetOption('use_luajit', fennel#CheckLuajit())
+let s:use_luajit = fennel#GetOption('use_luajit', fennel#LuaIsLuajit())
 let s:use_lume = fennel#GetOption('use_lume', 1)
 
 " }}}
