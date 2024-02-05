@@ -1,90 +1,110 @@
+<!-- panvimdoc-ignore-start -->
+
 # vim-fennel-syntax
 
-Vim syntax highlighting for [Fennel][1].
+Yet another Vim syntax highlighting plugin for [Fennel][1].
+
+![screenshot](_assets/example.png)
+
 This is a personal fork from the original [fennel.vim][2].
 
-![Screenshot](_assets/example.png)
+## Requirements
+
+It would work with any recent or even older version of Vim/Neovim.
 
 ## Installation
 
-Use your favorite package manager. For example using [Paq][3]:
+Use any Vim/Neovim package manager. An example using [Paq][3] for Neovim:
 
 ```lua
-require'paq-nvim' {
+require'paq' {
+  ..., -- other plugins
   'mnacamura/vim-fennel-syntax',
+  ..., -- other plugins
 }
 ```
 
-## Options
+<!-- panvimdoc-ignore-end -->
 
-For all options, if both global and buffer local ones are defined, the
-buffer local one takes precedence.
+<!-- panvimdoc-include-comment
 
-### `fennel_lua_version`
+```vimdoc
+Maintainer: NAKAMURA Mitsuhiro <m.nacamura@gmail.com>
+URL: https://github.com/mnacamura/vim-fennel-syntax
+License: MIT
+```
+
+-->
+
+## Configuration
+
+This plugin will automatically configure most options for your environment.
+To configure manually, you can use the following global/buffer-local variables.
+
+### Options
+
+| Option                                    | Description                        | Type   | Default value |
+| :-                                        | :-                                 | :-     | :-            |
+| [fennel_lua_version](#fennel_lua_version) | Lua version to highlight literals. | string | auto-detected |
+| [fennel_use_luajit](#fennel_use_luajit)   | Highlight LuaJIT extentions.       | bool   | auto-detected |
+| [fennel_use_lume](#fennel_use_lume)       | Highlight Lume keywords.           | bool   | `1`           |
+
+#### `fennel_lua_version`
 
 Highlight literals and keywords for the given Lua version.
 Supports `5.1`, `5.2`, `5.3`, and `5.4`.
-If not set, it will be inferred and set automatically by invoking `lua -v`
-command.
+If this variable is not set, the plugin automatically infers it
+by invoking `lua -v` command.
 
 ```vim
-let g:fennel_lua_version = '5.4'  " default: inferred from environment
+let g:fennel_lua_version = '5.4'
 ```
 
-If `g:fennel_lua_version` and `b:fennel_lua_version` are not set and `lua` is
-not found in path, it defaults to `5.1`.
+Override it by defining buffer local `b:fennel_lua_version`.
 
-### `fennel_use_luajit`
+> [!NOTE]
+> If neither `g:fennel_lua_version` nor `b:fennel_lua_version` is set
+> and `lua` is not found in path, it defaults to `5.1`.
+
+#### `fennel_use_luajit`
 
 Highlight literals and keywords extended in [LuaJIT][5].
-If not set, it will be inferred and set automatically by invoking `lua -v`
-command.
+If this variable is not set, the plugin automatically infers it
+by invoking `lua -v` command.
 
 ```vim
-let g:fennel_use_luajit = 0  " default: inferred from environment
+let g:fennel_use_luajit = 0
 ```
 
-If `g:fennel_use_luajit` and `b:fennel_use_luajit` are not set and
-`lua` (LuaJIT) is not found in path, it defaults to `0`.
+Override it by defining buffer local `b:fennel_use_luajit`.
 
-### `fennel_use_lume`
+> [!NOTE]
+> If neither `g:fennel_use_luajit` nor `b:fennel_use_luajit` is set
+> and `lua` (LuaJIT) is not found in path, it defaults to `0`.
+
+#### `fennel_use_lume`
 
 Highlight keywords provided by [Lume][4].
+It defaults to `1`.
 
 ```vim
-let g:fennel_use_lume = 1  " default: 1
+let g:fennel_use_lume = 1
 ```
 
-## Change log
+Override it by defining buffer local `b:fennel_use_lume`.
 
-### Unreleased
-
-* Support `accumulate` macro
-
-### [0.2][v0.2] (2021-06-20)
-
-* Add option `{g,b}:fennel_lua_version`
-* Add option `{g,b}:fennel_use_luajit`
-* Fix `\ddd` in string literal
-* Add missing `\<CR>` in string literal
-* Add correct highlight for string/numeric literals for each Lua version
-
-### [0.1][v0.1] (2021-06-13)
-
-* Support Fennel 0.9.2
-* Support Lua string literals up to version 5.4
-* Support Lua numeric literals up to version 5.4
+<!-- panvimdoc-ignore-start -->
 
 ## License
 
 [MIT](LICENSE)
+
+<!-- panvimdoc-ignore-end -->
 
 [1]: https://fennel-lang.org/
 [2]: https://github.com/bakpakin/fennel.vim/
 [3]: https://github.com/savq/paq-nvim/
 [4]: https://github.com/rxi/lume/
 [5]: https://luajit.org/extensions.html
-[v0.1]: https://github.com/mnacamura/vim-fennel-syntax/tree/v0.1
-[v0.2]: https://github.com/mnacamura/vim-fennel-syntax/tree/v0.2
 
 <!-- vim: set tw=78 spell: -->
