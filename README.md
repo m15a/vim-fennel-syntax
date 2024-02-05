@@ -3,7 +3,7 @@
 Vim syntax highlighting for [Fennel][1].
 This is a personal fork from the original [fennel.vim][2].
 
-![Screenshot](./preview.png)
+![Screenshot](_assets/example.png)
 
 ## Installation
 
