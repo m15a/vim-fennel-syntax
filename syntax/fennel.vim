@@ -169,11 +169,14 @@ syn keyword fennelSpecialForm collect icollect
 syn keyword fennelSpecialForm accumulate
 " 1.1.0
 syn keyword fennelSpecialForm match-try
+" 1.2.0
+syn keyword fennelSpecialForm fcollect
 
 " Auxiliary syntaxes {{{2
 syn match fennelAuxSyntax /\$\([1-9]\|\.\.\.\)\?/
 syn keyword fennelAuxSyntax ... _ &
 syn keyword fennelAuxSyntax &as
+syn keyword fennelAuxSyntax &into &until
 " Pattern prefix `?foo` or guard syntax `(matched ? (pred matched)` used in `match` 
 syn match fennelAuxSyntax /\<?\ze\([^[:space:]\n"'(),;@\[\]\\`{}~]\|\>\)/ contained containedin=fennelIdentifier
 " Special suffix for gensym in macro

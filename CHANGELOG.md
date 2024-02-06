@@ -7,6 +7,8 @@
 - More granular highlighting for string escape sequences:
   - `\z` and `\x..` are supported by Lua>=5.2 or LuaJIT, highlighted as error otherwise.
   - `\u{..}` is supported by Lua>=5.3, highlighted as error otherwise.
+- Support `fcollect` macro (Fennel 1.2.0)
+- Support `&into` and `&until` keywords in loops (Fennel 1.2.0).
 - Support `match-try` macro (Fennel 1.1.0).
 - Support `accumulate` macro (Fennel 0.10.0).
 
