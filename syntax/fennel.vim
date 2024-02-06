@@ -46,12 +46,12 @@ syn keyword fennelConstant nil
 " Identifier, symbol, and keyword {{{2
 "
 " <identifier> -> <initial> <subsequent> *
-" where <initial> -> [^#:0-9[:space:]\n"'(),;@\[\]\\`{}~]
-"       <subsequent> ->   [^[:space:]\n"'(),;@\[\]\\`{}~]
-syn match fennelIdentifier /[^#:0-9[:space:]\n"'(),;@\[\]\\`{}~][^[:space:]\n"'(),;@\[\]\\`{}~]*/
+" where <initial> -> [^#&:0-9[:space:]\n"'(),;@\[\]\\`{}~]
+"       <subsequent> ->   [^&[:space:]\n"'(),;@\[\]\\`{}~]
+syn match fennelIdentifier /[^#&:0-9[:space:]\n"'(),;@\[\]\\`{}~][^&[:space:]\n"'(),;@\[\]\\`{}~]*/
 syn match fennelLuaTableItemAccessor /\./ contained containedin=fennelIdentifier
 syn match fennelLuaMethodCall /:/ contained containedin=fennelIdentifier
-syn match fennelSymbol /[^#:0-9[:space:]\n"'(),;@\[\]\\`{}~][^[:space:]\n"'(),;@\[\]\\`{}~]*/ contained
+syn match fennelSymbol /[^#&:0-9[:space:]\n"'(),;@\[\]\\`{}~][^&[:space:]\n"'(),;@\[\]\\`{}~]*/ contained
 " <keyword> -> : <subsequent> +
 " Keyword such as ::: is accepted by Fennel! 
 syn match fennelKeyword /:[^[:space:]\n"'(),;@\[\]\\`{}~]\+/
@@ -151,27 +151,38 @@ syn cluster fennelExpressions contains=fennelSpecialForm,fennelAuxSyntax,fennelL
 " Special forms {{{2
 syn match fennelSpecialForm /\%^\@<!#\ze[^[:space:]\n);@\]\\}~]/
 syn keyword fennelSpecialForm % * + - -> ->> -?> -?>> . .. / // : < <= = > >= ^
-syn keyword fennelSpecialForm and comment do doc doto each eval-compiler fn for global hashfn if
+syn keyword fennelSpecialForm and comment do doto each eval-compiler fn for hashfn if
 syn keyword fennelSpecialForm include lambda length let local lua macro macros match not not= or
-syn keyword fennelSpecialForm partial quote require-macros set set-forcibly! tset values var when
+syn keyword fennelSpecialForm partial quote set set-forcibly! tset values var when
 syn keyword fennelSpecialForm while ~= λ
 " Compiler environment
 " TODO: Would be better to highlight these items only inside compiler environment
 syn keyword fennelSpecialForm list sym list? sym? table? sequence? gensym varg? multi-sym? view assert-compile
-syn keyword fennelSpecialForm in-scope? macroexpand
+syn keyword fennelSpecialForm in-scope? macroexpand comment? get-scope
 " 0.4.0
-syn keyword fennelSpecialForm import-macros rshift lshift bor band bnot and bxor pick-values pick-args
+syn keyword fennelSpecialForm import-macros rshift lshift bor band bnot and bxor pick-values
 " 0.4.2
 syn keyword fennelSpecialForm with-open
 " 0.8.0
 syn keyword fennelSpecialForm collect icollect
-" 0.9.3 / ???
+" 0.9.0
+syn keyword fennelSpecialForm ?.
+" 0.10.0
 syn keyword fennelSpecialForm accumulate
+" 1.1.0
+syn keyword fennelSpecialForm match-try
+" 1.2.0
+syn keyword fennelSpecialForm fcollect
+" 1.3.0
+syn keyword fennelSpecialForm case case-try faccumulate
+" 1.4.0
+syn keyword fennelSpecialForm tail! assert-repl
 
 " Auxiliary syntaxes {{{2
 syn match fennelAuxSyntax /\$\([1-9]\|\.\.\.\)\?/
 syn keyword fennelAuxSyntax ... _ &
 syn keyword fennelAuxSyntax &as
+syn keyword fennelAuxSyntax &into &until
 " Pattern prefix `?foo` or guard syntax `(matched ? (pred matched)` used in `match` 
 syn match fennelAuxSyntax /\<?\ze\([^[:space:]\n"'(),;@\[\]\\`{}~]\|\>\)/ contained containedin=fennelIdentifier
 " Special suffix for gensym in macro

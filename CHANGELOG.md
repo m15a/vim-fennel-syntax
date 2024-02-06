@@ -4,10 +4,26 @@
 
 ### Added
 
+- Support Fennel 1.4.0:
+  - `tail!` and `assert-repl` macros (Fennel 1.4.0)
+  - `case`, `case-try`, and `faccumulate` macros (Fennel 1.3.0)
+  - `fcollect` macro (Fennel 1.2.0)
+  - `&into` and `&until` keywords in loops (Fennel 1.2.0)
+  - `match-try` macro (Fennel 1.1.0)
+  - `accumulate` macro (Fennel 0.10.0)
 - More granular highlighting for string escape sequences:
   - `\z` and `\x..` are supported by Lua>=5.2 or LuaJIT, highlighted as error otherwise.
   - `\u{..}` is supported by Lua>=5.3, highlighted as error otherwise.
-- Support `accumulate` macro.
+
+### Fixed
+
+- Support missing `?.`, `comment?`, and `get-scope`.
+- Remove highlight for deprecated special forms / operators:
+  - `global` (Fennel 1.1.0)
+  - `doc` (Fennel 1.0.0; replaced with `,doc`)
+  - `pick-args` (Fennel 0.10.0)
+  - `require-macros` (Fennel 0.4.0)
+- `&` in identifier is now highlighted as error (Fennel 1.0.0).
 
 ## [0.2][v0.2] (2021-06-20)
 
