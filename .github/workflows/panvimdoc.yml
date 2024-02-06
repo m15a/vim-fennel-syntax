@@ -1,0 +1,19 @@
+name: Generate help
+
+on: [push]
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: kdheepak/panvimdoc@main
+        with:
+          vimdoc: fennel-syntax
+          description: Yet another syntax highlighting plugin for Fennel.
+          toc: false
+          shiftheadinglevelby: -1
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "docs(vim): auto generate help"
+          branch: ${{ github.head_ref }}
