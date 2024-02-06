@@ -153,7 +153,7 @@ syn match fennelSpecialForm /\%^\@<!#\ze[^[:space:]\n);@\]\\}~]/
 syn keyword fennelSpecialForm % * + - -> ->> -?> -?>> . .. / // : < <= = > >= ^
 syn keyword fennelSpecialForm and comment do doto each eval-compiler fn for hashfn if
 syn keyword fennelSpecialForm include lambda length let local lua macro macros match not not= or
-syn keyword fennelSpecialForm partial quote require-macros set set-forcibly! tset values var when
+syn keyword fennelSpecialForm partial quote set set-forcibly! tset values var when
 syn keyword fennelSpecialForm while ~= λ
 " Compiler environment
 " TODO: Would be better to highlight these items only inside compiler environment
