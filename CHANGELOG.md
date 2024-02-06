@@ -11,6 +11,8 @@
 
 ### Fixed
 
+- `&` in identifier is now highlighted as error (Fennel 1.0.0).
+- Remove highlight for `doc` since it has been replaced with `,doc` (Fennel 1.0.0)
 - Remove highlight for `pick-args` since it has been deprecated (Fennel 0.10.0)
 
 ## [0.2][v0.2] (2021-06-20)

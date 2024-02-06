@@ -46,12 +46,12 @@ syn keyword fennelConstant nil
 " Identifier, symbol, and keyword {{{2
 "
 " <identifier> -> <initial> <subsequent> *
-" where <initial> -> [^#:0-9[:space:]\n"'(),;@\[\]\\`{}~]
-"       <subsequent> ->   [^[:space:]\n"'(),;@\[\]\\`{}~]
-syn match fennelIdentifier /[^#:0-9[:space:]\n"'(),;@\[\]\\`{}~][^[:space:]\n"'(),;@\[\]\\`{}~]*/
+" where <initial> -> [^#&:0-9[:space:]\n"'(),;@\[\]\\`{}~]
+"       <subsequent> ->   [^&[:space:]\n"'(),;@\[\]\\`{}~]
+syn match fennelIdentifier /[^#&:0-9[:space:]\n"'(),;@\[\]\\`{}~][^&[:space:]\n"'(),;@\[\]\\`{}~]*/
 syn match fennelLuaTableItemAccessor /\./ contained containedin=fennelIdentifier
 syn match fennelLuaMethodCall /:/ contained containedin=fennelIdentifier
-syn match fennelSymbol /[^#:0-9[:space:]\n"'(),;@\[\]\\`{}~][^[:space:]\n"'(),;@\[\]\\`{}~]*/ contained
+syn match fennelSymbol /[^#&:0-9[:space:]\n"'(),;@\[\]\\`{}~][^&[:space:]\n"'(),;@\[\]\\`{}~]*/ contained
 " <keyword> -> : <subsequent> +
 " Keyword such as ::: is accepted by Fennel! 
 syn match fennelKeyword /:[^[:space:]\n"'(),;@\[\]\\`{}~]\+/
@@ -151,7 +151,7 @@ syn cluster fennelExpressions contains=fennelSpecialForm,fennelAuxSyntax,fennelL
 " Special forms {{{2
 syn match fennelSpecialForm /\%^\@<!#\ze[^[:space:]\n);@\]\\}~]/
 syn keyword fennelSpecialForm % * + - -> ->> -?> -?>> . .. / // : < <= = > >= ^
-syn keyword fennelSpecialForm and comment do doc doto each eval-compiler fn for global hashfn if
+syn keyword fennelSpecialForm and comment do doto each eval-compiler fn for global hashfn if
 syn keyword fennelSpecialForm include lambda length let local lua macro macros match not not= or
 syn keyword fennelSpecialForm partial quote require-macros set set-forcibly! tset values var when
 syn keyword fennelSpecialForm while ~= λ
