@@ -158,13 +158,15 @@ syn keyword fennelSpecialForm while ~= λ
 " Compiler environment
 " TODO: Would be better to highlight these items only inside compiler environment
 syn keyword fennelSpecialForm list sym list? sym? table? sequence? gensym varg? multi-sym? view assert-compile
-syn keyword fennelSpecialForm in-scope? macroexpand
+syn keyword fennelSpecialForm in-scope? macroexpand comment? get-scope
 " 0.4.0
 syn keyword fennelSpecialForm import-macros rshift lshift bor band bnot and bxor pick-values
 " 0.4.2
 syn keyword fennelSpecialForm with-open
 " 0.8.0
 syn keyword fennelSpecialForm collect icollect
+" 0.9.0
+syn keyword fennelSpecialForm ?.
 " 0.10.0
 syn keyword fennelSpecialForm accumulate
 " 1.1.0

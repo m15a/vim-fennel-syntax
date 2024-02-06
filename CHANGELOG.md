@@ -16,6 +16,7 @@
 
 ### Fixed
 
+- Support missing `?.`, `comment?`, and `get-scope`
 - Remove highlight for `global` since it has been deprecated (Fennel 1.1.0)
 - `&` in identifier is now highlighted as error (Fennel 1.0.0).
 - Remove highlight for `doc` since it has been replaced with `,doc` (Fennel 1.0.0)
