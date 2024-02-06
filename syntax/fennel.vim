@@ -160,7 +160,7 @@ syn keyword fennelSpecialForm while ~= λ
 syn keyword fennelSpecialForm list sym list? sym? table? sequence? gensym varg? multi-sym? view assert-compile
 syn keyword fennelSpecialForm in-scope? macroexpand
 " 0.4.0
-syn keyword fennelSpecialForm import-macros rshift lshift bor band bnot and bxor pick-values pick-args
+syn keyword fennelSpecialForm import-macros rshift lshift bor band bnot and bxor pick-values
 " 0.4.2
 syn keyword fennelSpecialForm with-open
 " 0.8.0

@@ -9,6 +9,10 @@
   - `\u{..}` is supported by Lua>=5.3, highlighted as error otherwise.
 - Support `accumulate` macro.
 
+### Fixed
+
+- Remove highlight for `pick-args` since it has been deprecated (Fennel 0.10.0)
+
 ## [0.2][v0.2] (2021-06-20)
 
 ### Added
