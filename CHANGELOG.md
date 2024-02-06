@@ -7,10 +7,12 @@
 - More granular highlighting for string escape sequences:
   - `\z` and `\x..` are supported by Lua>=5.2 or LuaJIT, highlighted as error otherwise.
   - `\u{..}` is supported by Lua>=5.3, highlighted as error otherwise.
-- Support `accumulate` macro.
+- Support `match-try` macro (Fennel 1.1.0).
+- Support `accumulate` macro (Fennel 0.10.0).
 
 ### Fixed
 
+- Remove highlight for `global` since it has been deprecated (Fennel 1.1.0)
 - `&` in identifier is now highlighted as error (Fennel 1.0.0).
 - Remove highlight for `doc` since it has been replaced with `,doc` (Fennel 1.0.0)
 - Remove highlight for `pick-args` since it has been deprecated (Fennel 0.10.0)

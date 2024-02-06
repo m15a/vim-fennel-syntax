@@ -151,7 +151,7 @@ syn cluster fennelExpressions contains=fennelSpecialForm,fennelAuxSyntax,fennelL
 " Special forms {{{2
 syn match fennelSpecialForm /\%^\@<!#\ze[^[:space:]\n);@\]\\}~]/
 syn keyword fennelSpecialForm % * + - -> ->> -?> -?>> . .. / // : < <= = > >= ^
-syn keyword fennelSpecialForm and comment do doto each eval-compiler fn for global hashfn if
+syn keyword fennelSpecialForm and comment do doto each eval-compiler fn for hashfn if
 syn keyword fennelSpecialForm include lambda length let local lua macro macros match not not= or
 syn keyword fennelSpecialForm partial quote require-macros set set-forcibly! tset values var when
 syn keyword fennelSpecialForm while ~= λ
@@ -165,8 +165,10 @@ syn keyword fennelSpecialForm import-macros rshift lshift bor band bnot and bxor
 syn keyword fennelSpecialForm with-open
 " 0.8.0
 syn keyword fennelSpecialForm collect icollect
-" 0.9.3 / ???
+" 0.10.0
 syn keyword fennelSpecialForm accumulate
+" 1.1.0
+syn keyword fennelSpecialForm match-try
 
 " Auxiliary syntaxes {{{2
 syn match fennelAuxSyntax /\$\([1-9]\|\.\.\.\)\?/
