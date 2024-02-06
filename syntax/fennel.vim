@@ -173,6 +173,8 @@ syn keyword fennelSpecialForm match-try
 syn keyword fennelSpecialForm fcollect
 " 1.3.0
 syn keyword fennelSpecialForm case case-try faccumulate
+" 1.4.0
+syn keyword fennelSpecialForm tail! assert-repl
 
 " Auxiliary syntaxes {{{2
 syn match fennelAuxSyntax /\$\([1-9]\|\.\.\.\)\?/
