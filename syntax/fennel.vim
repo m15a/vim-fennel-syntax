@@ -1,6 +1,6 @@
 " Vim syntax file
 " Language: Fennel
-" Last Change: 2021-07-08
+" Last Change: 2024-02-06
 " Original Maintainer: Calvin Rose
 " Maintainer: Mitsuhiro Nakamura <m.nacamura@gmail.com>
 " URL: https://github.com/mnacamura/vim-fennel-syntax
@@ -69,16 +69,21 @@ endif
 
 " String {{{2
 syn region fennelString matchgroup=fennelStringDelimiter start=/"/ skip=/\\\\\|\\"/ end=/"/ contains=@fennelEscapeChars,@Spell
-syn cluster fennelEscapeChars contains=fennelEscapeChar,fennelEscapeMnemonic,fennelEscapeMnemonicZ,fennelEscapeCharCode
+syn cluster fennelEscapeChars contains=fennelEscapeChar,fennelEscapeMnemonic,fennelEscapeMnemonicZ,fennelEscapeMnemonicZError,fennelEscapeCharCode,fennelEscapeCharCodeError
 syn match fennelEscapeChar /\\[\\"'\n]/ contained
 syn match fennelEscapeMnemonic /\\[abfnrtv]/ contained
 syn match fennelEscapeCharCode /\\\%(25[0-5]\|2[0-4][0-9]\|\%(\%([01]\)\?[0-9]\)\?[0-9]\)/ contained
 if s:use_luajit || s:lua_version >=# '5.2'
   syn match fennelEscapeMnemonicZ /\\z/ contained
   syn match fennelEscapeCharCode '\\x[[:xdigit:]]\{2}' contained
+else
+  syn match fennelEscapeMnemonicZError /\\z/ contained
+  syn match fennelEscapeCharCodeError '\\x[[:xdigit:]]\{2}' contained
 endif
 if s:lua_version >=# '5.3'
   syn match fennelEscapeCharCode '\\u{[[:xdigit:]]\+}' contained
+else
+  syn match fennelEscapeCharCodeError '\\u{[[:xdigit:]]\+}' contained
 endif
 
 " Compound data {{{1
@@ -218,7 +223,9 @@ hi def link fennelStringDelimiter fennelDelimiter
 hi def link fennelEscapeChar Character
 hi def link fennelEscapeMnemonic Character
 hi def link fennelEscapeMnemonicZ fennelComment
+hi def link fennelEscapeMnemonicZError fennelError
 hi def link fennelEscapeCharCode Character
+hi def link fennelEscapeCharCodeError fennelError
 hi def link fennelQuote fennelSpecialForm
 hi def link fennelQuasiQuote fennelSpecialForm
 hi def link fennelUnquote fennelAuxSyntax
