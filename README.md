@@ -3,6 +3,7 @@
 # vim-fennel-syntax
 
 ![Vim][script-badge]
+[![CI][ci-badge]][ci-jobs]
 
 Yet another Vim syntax highlighting plugin for [Fennel][1].
 
@@ -120,6 +121,8 @@ Override it by defining buffer local `b:fennel_use_lume`.
 <!-- panvimdoc-ignore-end -->
 
 [script-badge]: https://img.shields.io/badge/Made%20with%20Vimscript-019733.svg?logo=vim&style=flat-square
+[ci-badge]: https://img.shields.io/github/actions/workflow/status/mnacamura/vim-fennel-syntax/ci.yml?logo=github&label=CI&style=flat-square
+[ci-jobs]: https://github.com/mnacamura/vim-fennel-syntax/actions/workflows/ci.yml
 [1]: https://fennel-lang.org/
 [2]: https://github.com/bakpakin/fennel.vim/
 [3]: https://github.com/savq/paq-nvim/

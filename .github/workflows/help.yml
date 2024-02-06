@@ -1,9 +1,9 @@
-name: Generate help
+name: Help
 
 on: [push]
 
 jobs:
-  docs:
+  generate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
