@@ -1,58 +1,76 @@
-*fennel-syntax.txt*        *vim-fennel-syntax*         Last Change: 2021-07-07
+*fennel-syntax.txt*         Yet another syntax highlighting plugin for Fennel.
 
-                                            *fennel-syntax* *ft-fennel-syntax*
-
-Maintainer: Mitsuhiro Nakamura <m.nacamura@gmail.com>
+Maintainer: NAKAMURA Mitsuhiro <m.nacamura@gmail.com>
 URL: https://github.com/mnacamura/vim-fennel-syntax
 License: MIT
 
-Syntax highlighting for Fennel.
 
 ==============================================================================
-OPTIONS                                                *fennel-syntax-options*
+1. Configuration                                 *fennel-syntax-configuration*
 
-For all options, if both global and buffer local ones are defined, the buffer
-local one takes precedence.
+This plugin will automatically configure most options for your environment. To
+configure manually, you can use the following global/buffer-local variables.
 
-*g:fennel_lua_version*     Highlight literals and keywords for the given Lua
-*b:fennel_lua_version*     version. Supports `5.1`, `5.2`, `5.3`, and `5.4`.
-                         If not set, it will be inferred and set
-                         automatically by invoking `lua -v` command.
->
-    let g:fennel_lua_version = '5.4'  " default: inferred from environment
+
+OPTIONS                                  *fennel-syntax-configuration-options*
+
+  --------------------------------------------------------------------------
+  Option               Description       Type              Default value
+  -------------------- ----------------- ----------------- -----------------
+  fennel_lua_version   Lua version to    string            auto-detected
+                       highlight                           
+                       literals.                           
+
+  fennel_use_luajit    Highlight LuaJIT  bool              auto-detected
+                       extentions.                         
+
+  fennel_use_lume      Highlight Lume    bool              1
+                       keywords.                           
+  --------------------------------------------------------------------------
+
+FENNEL_LUA_VERSION ~
+
+Highlight literals and keywords for the given Lua version. Supports `5.1`,
+`5.2`, `5.3`, and `5.4`. If this variable is not set, the plugin automatically
+infers it by invoking `lua -v` command.
+
+>vim
+    let g:fennel_lua_version = '5.4'
 <
-                         If `g:fennel_lua_version` and `b:fennel_lua_version` 
-                         are not set and `lua` is not found in path, it
-                         defaults to `5.1`.
 
-*g:fennel_use_luajit*      Highlight literals and keywords extended in LuaJIT.
-*b:fennel_use_luajit*      If not set, it will be inferred and set
-                         automatically by invoking `lua -v` command.
->
-    let g:fennel_use_luajit = 0  " default: inferred from environment
-<
-                         If `g:fennel_use_luajit` and `b:fennel_use_luajit` 
-                         are not set and `lua` (LuaJIT) is not found in path,
-                         it defaults to `0`.
+Override it by defining buffer local `b:fennel_lua_version`.
 
-*g:fennel_use_lume*        Highlight keywords provided by Lume.
-*b:fennel_use_lume*
->
-    let g:fennel_use_lume = 1  " default: 1
+
+  [!NOTE] If neither `g:fennel_lua_version` nor `b:fennel_lua_version` is set and
+  `lua` is not found in path, it defaults to `5.1`.
+
+FENNEL_USE_LUAJIT ~
+
+Highlight literals and keywords extended in LuaJIT
+<https://luajit.org/extensions.html>. If this variable is not set, the plugin
+automatically infers it by invoking `lua -v` command.
+
+>vim
+    let g:fennel_use_luajit = 0
 <
 
-==============================================================================
-CHANGELOG                                            *fennel-syntax-changelog*
+Override it by defining buffer local `b:fennel_use_luajit`.
 
-Unreleased             * Support `accumulate` macro
-0.2      2021-06-20    * Add option `{g,b}:fennel_lua_version`
-                       * Add option `{g,b}:fennel_use_luajit`
-                       * Fix `\ddd` in string literal
-                       * Add missing `\<CR>` in string literal
-                       * Add correct highlight for string/numeric literals
-                         for each Lua version
-0.1      2021-06-13    * Support Fennel 0.9.2
-                       * Support Lua string literals up to version 5.4
-                       * Support Lua numeric literals up to version 5.4
 
- vim:tw=78:et:ft=help:norl:
+  [!NOTE] If neither `g:fennel_use_luajit` nor `b:fennel_use_luajit` is set and
+  `lua` (LuaJIT) is not found in path, it defaults to `0`.
+
+FENNEL_USE_LUME ~
+
+Highlight keywords provided by Lume <https://github.com/rxi/lume/>. It defaults
+to `1`.
+
+>vim
+    let g:fennel_use_lume = 1
+<
+
+Override it by defining buffer local `b:fennel_use_lume`.
+
+Generated by panvimdoc <https://github.com/kdheepak/panvimdoc>
+
+vim:tw=78:ts=8:noet:ft=help:norl:
