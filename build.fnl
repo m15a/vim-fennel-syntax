@@ -223,6 +223,13 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Commands
 
+(fn lint []
+  "Lint Vim scripts."
+  (let [out io.stderr
+        cmd "vint **/*.vim"] 
+    (out:write "Run " cmd "\n")
+    (os.execute cmd)))
+
 (fn build-lua-keywords []
   "Build syntax/fennel-lua.vim by scraping Lua reference manuals."
   (let [target "syntax/fennel-lua.vim"
@@ -264,9 +271,11 @@
 (fn main []
   (let [command (. arg 1)]
     (match command
+      :lint (lint)
       :lua-keywords (build-lua-keywords)
       _ (usage "<command> [<arg> ...]"
                "Commands:"
+               "    lint\tLint Vim scripts."
                "    lua-keywords\tBuild syntax/fennel-lua.vim by scraping Lua reference manuals."))))
 
 (main)
