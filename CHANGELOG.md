@@ -4,6 +4,9 @@
 
 ### Added
 
+- More granular highlighting for string escape sequences:
+  - `\z` and `\x..` are supported by Lua>=5.2 or LuaJIT, highlighted as error otherwise.
+  - `\u{..}` is supported by Lua>=5.3, highlighted as error otherwise.
 - Support `accumulate` macro.
 
 ## [0.2][v0.2] (2021-06-20)
