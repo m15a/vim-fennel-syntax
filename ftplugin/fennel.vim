@@ -18,6 +18,9 @@ set cpo&vim
 setl iskeyword=@,33,35-38,42-43,45-58,60-63,94-95,124
 " 32: SPACE
 " 34: "
+" NOTE: `&` (38) is not permitted in identifiers (Fennel 1.0.0).
+" However, here we set `&` in iskeyword because there are a
+" couple of reserved keywords containing `&` (e.g., `&until`).
 " 39: '
 " 40,41: ()
 " 44: ,
