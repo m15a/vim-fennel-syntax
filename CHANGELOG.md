@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Fixed
+
+- Special forms indent: `case`, `case-try`, `match-try`, `fcollect`, `faccumulate`
+
 ## [1.0.0][v1.0.0] (2024-02-06)
 
 ### Added
