@@ -47,10 +47,10 @@ setl commentstring=;\ %s
 setl lisp
 
 setl lispwords=fn,lambda,λ,let
-setl lispwords+=match
+setl lispwords+=match,match-try,case,case-try
 setl lispwords+=with-open
-setl lispwords+=collect,icollect
-setl lispwords+=accumulate
+setl lispwords+=collect,icollect,fcollect
+setl lispwords+=accumulate,faccumulate
 setl lispwords+=when,each,for,while,doto,macro
 
 if strlen(&omnifunc) == 0
