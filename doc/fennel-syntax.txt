@@ -1,7 +1,7 @@
 *fennel-syntax.txt*         Yet another syntax highlighting plugin for Fennel.
 
-Maintainer: NAKAMURA Mitsuhiro <m.nacamura@gmail.com>
-URL: https://github.com/mnacamura/vim-fennel-syntax
+Maintainer: NACAMURA Mitsuhiro <m15@m15a.dev>
+URL: https://github.com/m15a/vim-fennel-syntax
 License: MIT
 
 

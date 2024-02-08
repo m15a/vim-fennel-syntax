@@ -1,9 +1,9 @@
 " Vim indent file
 " Language: Fennel
-" Last Change: 2021-06-13
+" Last Change: 2024-02-08
 " Original Maintainer: Calvin Rose
-" Maintainer: Mitsuhiro Nakamura <m.nacamura@gmail.com>
-" URL: https://github.com/mnacamura/vim-fennel-syntax
+" Maintainer: NACAMURA Mitsuhiro <m15@m15a.dev>
+" URL: https://github.com/m15a/vim-fennel-syntax
 " License: MIT
 
 if exists('b:did_indent')

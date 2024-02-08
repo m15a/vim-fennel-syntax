@@ -54,7 +54,7 @@
 - Support Lua string literals up to version 5.4.
 - Support Lua numeric literals up to version 5.4.
 
-[v1.0.1]: https://github.com/mnacamura/vim-fennel-syntax/releases/tag/v1.0.1
-[v1.0.0]: https://github.com/mnacamura/vim-fennel-syntax/releases/tag/v1.0.0
-[v0.2]: https://github.com/mnacamura/vim-fennel-syntax/tree/v0.2
-[v0.1]: https://github.com/mnacamura/vim-fennel-syntax/tree/v0.1
+[v1.0.1]: https://github.com/m15a/vim-fennel-syntax/releases/tag/v1.0.1
+[v1.0.0]: https://github.com/m15a/vim-fennel-syntax/releases/tag/v1.0.0
+[v0.2]: https://github.com/m15a/vim-fennel-syntax/tree/v0.2
+[v0.1]: https://github.com/m15a/vim-fennel-syntax/tree/v0.1

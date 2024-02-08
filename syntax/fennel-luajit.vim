@@ -1,8 +1,8 @@
 " Vim syntax file
 " Language: Fennel
-" Last Change: 2021-07-08
-" Maintainer: Mitsuhiro Nakamura <m.nacamura@gmail.com>
-" URL: https://github.com/mnacamura/vim-fennel-syntax
+" Last Change: 2024-02-08
+" Maintainer: NACAMURA Mitsuhiro <m15@m15a.dev>
+" URL: https://github.com/m15a/vim-fennel-syntax
 " License: MIT
 
 if !exists('b:did_fennel_syntax')

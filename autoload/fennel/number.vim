@@ -1,7 +1,7 @@
 " Helper functions for fennel-syntax plugin
-" Last Change: 2021-06-20
-" Author: Mitsuhiro Nakamura <m.nacamura@gmail.com>
-" URL: https://github.com/mnacamura/vim-fennel-syntax
+" Last Change: 2024-02-08
+" Author: NACAMURA Mitsuhiro <m15@m15a.dev>
+" URL: https://github.com/m15a/vim-fennel-syntax
 " License: MIT
 
 if exists('g:autoloaded_fennel_number')
