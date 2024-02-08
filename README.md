@@ -15,13 +15,13 @@ This is a personal fork from the original [fennel.vim][2].
 
 ## Features
 
-- **100% Vimscript**
+- **100% Vim script**
   - Both Vim and Neovim users can enjoy this plugin.
 - **Attentive highlighting**
   - Hash function literal `#(+ $1 $2)` is supported.
   - Shebang line `#!/usr/bin/env fennel` is highlighted as comment.
   - And more!
-- **Granular version support**
+- **Granular Lua version support**
   - Depending on your Lua version, it differently highlights literals
     and keywords, so that you can easily find syntax errors relevant
     to Lua version difference [^1].
@@ -122,7 +122,7 @@ Override it by defining buffer local `b:fennel_use_lume`.
 
 <!-- panvimdoc-ignore-end -->
 
-[script-badge]: https://img.shields.io/badge/Made%20with%20Vimscript-019733.svg?logo=vim&style=flat-square
+[script-badge]: https://img.shields.io/badge/Made%20with%20Vim%20script-019733.svg?logo=vim&style=flat-square
 [ci-badge]: https://img.shields.io/github/actions/workflow/status/m15a/vim-fennel-syntax/ci.yml?logo=github&label=CI&style=flat-square
 [ci-jobs]: https://github.com/m15a/vim-fennel-syntax/actions/workflows/ci.yml
 [release-badge]: https://img.shields.io/github/release/m15a/vim-fennel-syntax.svg?style=flat-square
