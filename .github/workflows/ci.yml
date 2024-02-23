@@ -18,4 +18,4 @@ jobs:
 
       - name: Run linter
         run: |
-          nix develop --command bash -c "./build.fnl lint"
+          nix develop --command bash -c "./build.fnl check-format"
