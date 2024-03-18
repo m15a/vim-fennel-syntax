@@ -16,4 +16,3 @@ jobs:
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "docs(vim): auto generate help"
-          branch: ${{ github.head_ref }}
