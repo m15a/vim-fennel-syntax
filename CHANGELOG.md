@@ -6,7 +6,8 @@
 
 ### Fixed
 
-- Special forms indent: `case`, `case-try`, `match-try`, `fcollect`, `faccumulate`
+- Special forms indent: `case`, `case-try`, `match-try`, `fcollect`,
+  `faccumulate`
 
 ## [1.0.0][v1.0.0] (2024-02-06)
 
@@ -20,7 +21,8 @@
   - `match-try` macro (Fennel 1.1.0)
   - `accumulate` macro (Fennel 0.10.0)
 - More granular highlighting for string escape sequences:
-  - `\z` and `\x..` are supported by Lua>=5.2 or LuaJIT, highlighted as error otherwise.
+  - `\z` and `\x..` are supported by Lua>=5.2 or LuaJIT, highlighted as
+    error otherwise.
   - `\u{..}` is supported by Lua>=5.3, highlighted as error otherwise.
 
 ### Fixed
@@ -58,3 +60,5 @@
 [v1.0.0]: https://github.com/m15a/vim-fennel-syntax/releases/tag/v1.0.0
 [v0.2]: https://github.com/m15a/vim-fennel-syntax/tree/v0.2
 [v0.1]: https://github.com/m15a/vim-fennel-syntax/tree/v0.1
+
+<!-- vim: set tw=72 spell: -->

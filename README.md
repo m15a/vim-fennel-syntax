@@ -23,8 +23,8 @@ This is a personal fork from the original [fennel.vim][2].
   - And more!
 - **Granular Lua version support**
   - Depending on your Lua version, it differently highlights literals
-    and keywords, so that you can easily find syntax errors relevant
-    to Lua version difference [^1].
+    and keywords, so that you can easily find syntax errors relevant to
+    Lua version difference [^1].
 
 [^1]: For example, hex numeric literal with exponent such as `0xA23p-4`
 is supported by Lua 5.2 or later.
@@ -35,7 +35,8 @@ It would work with any recent or even older version of Vim/Neovim.
 
 ## Installation
 
-Use any Vim/Neovim package manager. An example using [Paq][3] for Neovim:
+Use any Vim/Neovim package manager. An example using [Paq][3] for
+Neovim:
 
 ```lua
 require'paq' {
@@ -59,8 +60,9 @@ License: MIT
 
 ## Configuration
 
-This plugin will automatically configure most options for your environment.
-To configure manually, you can use the following global/buffer-local variables.
+This plugin will automatically configure most options for your
+environment. To configure manually, you can use the following
+global/buffer-local variables.
 
 ### Options
 
@@ -135,4 +137,4 @@ Override it by defining buffer local `b:fennel_use_lume`.
 [4]: https://github.com/rxi/lume/
 [5]: https://luajit.org/extensions.html
 
-<!-- vim: set tw=78 spell: -->
+<!-- vim: set tw=72 spell: -->
