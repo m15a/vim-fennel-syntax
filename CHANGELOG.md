@@ -1,20 +1,28 @@
 # Changelog
 
-## Unreleased
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog][1], and this project adheres
+to [Semantic Versioning][2].
+
+[1]: https://keepachangelog.com/en/1.1.0/
+[2]: https://semver.org/spec/v2.0.0.html
+
+## [Unreleased]
 
 ### Added
 
 - Support Fennel 1.5.1:
   - Literal syntax `.inf`, `-.inf`, `.nan`, and `-.nan` (Fennel 1.5.1) 
 
-## [1.0.1][v1.0.1] (2024-02-07)
+## [1.0.1] - 2024-02-07
 
 ### Fixed
 
 - Special forms indent: `case`, `case-try`, `match-try`, `fcollect`,
   `faccumulate`
 
-## [1.0.0][v1.0.0] (2024-02-06)
+## [1.0.0] - 2024-02-06
 
 ### Added
 
@@ -40,7 +48,7 @@
   - `require-macros` (Fennel 0.4.0)
 - `&` in identifier is now highlighted as error (Fennel 1.0.0).
 
-## [0.2][v0.2] (2021-06-20)
+## [0.2] - 2021-06-20
 
 ### Added
 
@@ -53,7 +61,7 @@
 - Add missing `\<CR>` in string literal.
 - Fix `\ddd` in string literal.
 
-## [0.1][v0.1] (2021-06-13)
+## [0.1] - 2021-06-13
 
 ### Added
 
@@ -61,9 +69,10 @@
 - Support Lua string literals up to version 5.4.
 - Support Lua numeric literals up to version 5.4.
 
-[v1.0.1]: https://github.com/m15a/vim-fennel-syntax/releases/tag/v1.0.1
-[v1.0.0]: https://github.com/m15a/vim-fennel-syntax/releases/tag/v1.0.0
-[v0.2]: https://github.com/m15a/vim-fennel-syntax/tree/v0.2
-[v0.1]: https://github.com/m15a/vim-fennel-syntax/tree/v0.1
+[Unreleased]: https://github.com/m15a/vim-fennel-syntax/compare/v1.0.1...HEAD
+[1.0.1]: https://github.com/m15a/vim-fennel-syntax/compare/v1.0.0...v1.0.1
+[1.0.0]: https://github.com/m15a/vim-fennel-syntax/compare/v0.2...v1.0.0
+[0.2]: https://github.com/m15a/vim-fennel-syntax/compare/v0.1...v0.2
+[0.1]: https://github.com/m15a/vim-fennel-syntax/releases/tag/v0.1
 
-<!-- vim: set tw=72 spell: -->
+<!-- vim: set tw=72 spell nowrap: -->
