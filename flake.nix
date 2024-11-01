@@ -59,6 +59,7 @@
                 nixfmt-rfc-style
                 vim-vint
                 fennel
+                fennel-ls
               ]
               ++ (with fennel.lua.pkgs; [
                 readline
