@@ -1,6 +1,6 @@
 " Vim syntax file
 " Language: Fennel
-" Last Change: 2024-02-08
+" Last Change: 2024-11-01
 " Original Maintainer: Calvin Rose
 " Maintainer: NACAMURA Mitsuhiro <m15@m15a.dev>
 " URL: https://github.com/m15a/vim-fennel-syntax
@@ -66,6 +66,8 @@ if s:use_luajit || s:lua_version >=# '5.2'
 else
   exe 'syn match fennelNumber /' . fennel#number#HexInt() . '/'
 endif
+" 1.5.1
+syn keyword fennelNumber .inf -.inf .nan -.nan
 
 " String {{{2
 syn region fennelString matchgroup=fennelStringDelimiter start=/"/ skip=/\\\\\|\\"/ end=/"/ contains=@fennelEscapeChars,@Spell

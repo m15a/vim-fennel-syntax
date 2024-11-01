@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### Added
+
+- Support Fennel 1.5.1:
+  - Literal syntax `.inf`, `-.inf`, `.nan`, and `-.nan` (Fennel 1.5.1) 
+
 ## [1.0.1][v1.0.1] (2024-02-07)
 
 ### Fixed
