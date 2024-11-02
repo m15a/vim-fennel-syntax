@@ -50,7 +50,7 @@
       {
         devShells.default =
           let
-            fennel = pkgs.fennel-luajit;
+            fennel = pkgs.fennel-lua5_3;
           in
           pkgs.mkShell {
             buildInputs =
@@ -59,7 +59,7 @@
                 nixfmt-rfc-style
                 vim-vint
                 fennel
-                fennel-ls
+                fennel-ls-unstable
               ]
               ++ (with fennel.lua.pkgs; [
                 readline
