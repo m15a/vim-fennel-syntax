@@ -15,6 +15,10 @@ to [Semantic Versioning][2].
 - Support Fennel 1.5.1:
   - Literal syntax `.inf`, `-.inf`, `.nan`, and `-.nan` (Fennel 1.5.1) 
 
+### Fixed
+
+- Highlight quoted `&`, `&as`, `&into`, and `&until` as symbols.
+
 ## [1.0.1] - 2024-02-07
 
 ### Fixed
