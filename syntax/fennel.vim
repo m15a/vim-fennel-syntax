@@ -186,6 +186,8 @@ syn match fennelAuxSyntax /\$\([1-9]\|\.\.\.\)\?/
 syn keyword fennelAuxSyntax ... _ &
 syn keyword fennelAuxSyntax &as
 syn keyword fennelAuxSyntax &into &until
+" `catch` keyword in `case-try` and `match-try`
+syn keyword fennelAuxSyntax catch
 " Pattern prefix `?foo` or guard syntax `(matched ? (pred matched)` used in `match` 
 syn match fennelAuxSyntax /\<?\ze\([^[:space:]\n"'(),;@\[\]\\`{}~]\|\>\)/ contained containedin=fennelIdentifier
 " Special suffix for gensym in macro

@@ -18,6 +18,7 @@ to [Semantic Versioning][2].
 ### Fixed
 
 - Highlight quoted `&`, `&as`, `&into`, and `&until` as symbols.
+- Highlight `catch` keyword in `case-try` and `match-try` forms.
 
 ## [1.0.1] - 2024-02-07
 
