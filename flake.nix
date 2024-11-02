@@ -66,8 +66,8 @@
                 luasec
                 gumbo
               ]);
-            FENNEL_PATH = "./_fnl/?.fnl;./_fnl/?/init.fnl";
-            FENNEL_MACRO_PATH = "./_fnl/?.fnl;./_fnl/?/init.fnl";
+            FENNEL_PATH = "./?.fnl;./?/init.fnl;./tools/?.fnl;./tools/?/init.fnl";
+            FENNEL_MACRO_PATH = "./?.fnl;./?/init-macros.fnl;./tools/?.fnl;./tools/?/init-macros.fnl";
           };
       }
     );
