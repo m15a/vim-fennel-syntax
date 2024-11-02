@@ -2,29 +2,31 @@
 
 # vim-fennel-syntax
 
-![Vim][script-badge]
 [![CI][ci-badge]][ci-jobs]
 [![Release][release-badge]][release-list]
 [![Fennel][fennel-badge]][fennel-homepage]
 
+[ci-badge]: https://img.shields.io/github/actions/workflow/status/m15a/vim-fennel-syntax/ci.yml?logo=github&label=CI&style=flat-square
+[ci-jobs]: https://github.com/m15a/vim-fennel-syntax/actions/workflows/ci.yml
+[release-badge]: https://img.shields.io/github/release/m15a/vim-fennel-syntax.svg?style=flat-square
+[release-list]: https://github.com/m15a/vim-fennel-syntax/releases
+[fennel-badge]: https://img.shields.io/badge/Fennel-v1.5.1-fff3d7.svg?style=flat-square
+[fennel-homepage]: https://fennel-lang.org/
+
 Yet another Vim syntax highlighting plugin for [Fennel][1].
 
-![screenshot](_assets/example.png)
+![Screenshot](_assets/example.png)
 
-This is a personal fork from the original [fennel.vim][2].
+This is a fork from the original [fennel.vim][2].
 
 ## Features
 
-- **100% Vim script**
-  - Both Vim and Neovim users can enjoy this plugin.
-- **Attentive highlighting**
-  - Hash function literal `#(+ $1 $2)` is supported.
-  - Shebang line `#!/usr/bin/env fennel` is highlighted as comment.
-  - And more!
-- **Granular Lua version support**
-  - Depending on your Lua version, it differently highlights literals
-    and keywords, so that you can easily find syntax errors relevant to
-    Lua version difference [^1].
+- **100% Vim script**: Both Vim and Neovim users can enjoy this plugin.
+- **Attentive highlighting**: Hash function literal `#(+ $1 $2)`,
+    shebang line `#!/usr/bin/env fennel`, and more.
+- **Granular Lua version support**: Depending on your Lua version, it
+    highlights literals and keywords differently, so that you can easily
+    find syntax errors relevant to Lua version difference [^1].
 
 [^1]: For example, hex numeric literal with exponent such as `0xA23p-4`
 is supported by Lua 5.2 or later.
@@ -61,7 +63,7 @@ License: MIT
 ## Configuration
 
 This plugin will automatically configure most options for your
-environment. To configure manually, you can use the following
+environment. To configure options manually, you can use the following
 global/buffer-local variables.
 
 ### Options
@@ -74,47 +76,45 @@ global/buffer-local variables.
 
 #### `fennel_lua_version`
 
-Highlight literals and keywords for the given Lua version.
-Supports `5.1`, `5.2`, `5.3`, and `5.4`.
-If this variable is not set, the plugin automatically infers it
-by invoking `lua -v` command.
+Highlight literals and keywords for the given Lua version. It supports
+`5.1`, `5.2`, `5.3`, and `5.4`. Unless configured manually, it will be
+inferred automatically by invoking `lua -v`.
 
 ```vim
 let g:fennel_lua_version = '5.4'
 ```
 
-Override it by defining buffer local `b:fennel_lua_version`.
+Override it by setting buffer local `b:fennel_lua_version`.
 
 > [!NOTE]
 > If neither `g:fennel_lua_version` nor `b:fennel_lua_version` is set
-> and `lua` is not found in path, it defaults to `5.1`.
+> and `lua` is not found in your `PATH`, it defaults to `5.1`.
 
 #### `fennel_use_luajit`
 
-Highlight literals and keywords extended in [LuaJIT][5].
-If this variable is not set, the plugin automatically infers it
-by invoking `lua -v` command.
+Highlight literals and keywords extended in [LuaJIT][5]. Unless
+configured manually, it will be inferred automatically by invoking
+`lua -v`.
 
 ```vim
 let g:fennel_use_luajit = 0
 ```
 
-Override it by defining buffer local `b:fennel_use_luajit`.
+Override it by setting buffer local `b:fennel_use_luajit`.
 
 > [!NOTE]
 > If neither `g:fennel_use_luajit` nor `b:fennel_use_luajit` is set
-> and `lua` (LuaJIT) is not found in path, it defaults to `0`.
+> and `lua` (LuaJIT) is not found in your `PATH`, it defaults to `0`.
 
 #### `fennel_use_lume`
 
-Highlight keywords provided by [Lume][4].
-It defaults to `1`.
+Highlight keywords provided by [Lume][4]. It defaults to `1`.
 
 ```vim
 let g:fennel_use_lume = 1
 ```
 
-Override it by defining buffer local `b:fennel_use_lume`.
+Override it by setting buffer local `b:fennel_use_lume`.
 
 <!-- panvimdoc-ignore-start -->
 
@@ -124,17 +124,10 @@ Override it by defining buffer local `b:fennel_use_lume`.
 
 <!-- panvimdoc-ignore-end -->
 
-[script-badge]: https://img.shields.io/badge/Made%20with%20Vim%20script-019733.svg?logo=vim&style=flat-square
-[ci-badge]: https://img.shields.io/github/actions/workflow/status/m15a/vim-fennel-syntax/ci.yml?logo=github&label=CI&style=flat-square
-[ci-jobs]: https://github.com/m15a/vim-fennel-syntax/actions/workflows/ci.yml
-[release-badge]: https://img.shields.io/github/release/m15a/vim-fennel-syntax.svg?style=flat-square
-[release-list]: https://github.com/m15a/vim-fennel-syntax/releases
-[fennel-badge]: https://img.shields.io/badge/Fennel-v1.5.1-fff3d7.svg?style=flat-square
-[fennel-homepage]: https://fennel-lang.org/
 [1]: https://fennel-lang.org/
 [2]: https://github.com/bakpakin/fennel.vim/
 [3]: https://github.com/savq/paq-nvim/
 [4]: https://github.com/rxi/lume/
 [5]: https://luajit.org/extensions.html
 
-<!-- vim: set tw=72 spell: -->
+<!-- vim: set tw=72 spell nowrap: -->
