@@ -1,6 +1,6 @@
 " Vim syntax file
 " Language: Fennel
-" Last Change: 2024-11-01
+" Last Change: 2024-11-02
 " Original Maintainer: Calvin Rose
 " Maintainer: NACAMURA Mitsuhiro <m15@m15a.dev>
 " URL: https://github.com/m15a/vim-fennel-syntax
@@ -52,6 +52,7 @@ syn match fennelIdentifier /[^#&:0-9[:space:]\n"'(),;@\[\]\\`{}~][^&[:space:]\n"
 syn match fennelLuaTableItemAccessor /\./ contained containedin=fennelIdentifier
 syn match fennelLuaMethodCall /:/ contained containedin=fennelIdentifier
 syn match fennelSymbol /[^#&:0-9[:space:]\n"'(),;@\[\]\\`{}~][^&[:space:]\n"'(),;@\[\]\\`{}~]*/ contained
+syn keyword fennelSymbol & &as &into &until
 " <keyword> -> : <subsequent> +
 " Keyword such as ::: is accepted by Fennel! 
 syn match fennelKeyword /:[^[:space:]\n"'(),;@\[\]\\`{}~]\+/
