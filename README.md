@@ -69,7 +69,7 @@ global (`g:*`) or buffer-local (`b:*`) variables.
 |-------------------------------------------|----------------------------------------------------------|---------|---------------|
 | [fennel_lua_version](#fennel_lua_version) | The Lua version used for highlighting literals/keywords. | string  | auto-detected |
 | [fennel_use_luajit](#fennel_use_luajit)   | Enable highlighting for LuaJIT extentions.               | boolean | auto-detected |
-| [fennel_use_lume](#fennel_use_lume)       | Enable highlighting for Lume keywords.                   | boolean | `1` (True)    |
+| [fennel_use_lume](#fennel_use_lume)       | Enable highlighting for Lume keywords.                   | boolean | `1` (true)    |
 
 #### `fennel_lua_version`
 
