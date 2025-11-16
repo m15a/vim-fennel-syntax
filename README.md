@@ -2,43 +2,40 @@
 
 # vim-fennel-syntax
 
-[![CI][ci-badge]][ci-jobs]
-[![Release][release-badge]][release-list]
-[![Fennel][fennel-badge]][fennel-homepage]
+This is a Vim syntax highlighting plugin for [Fennel][1],
+forked and enhanced from the original [fennel.vim][2].
 
-[ci-badge]: https://img.shields.io/github/actions/workflow/status/m15a/vim-fennel-syntax/ci.yml?logo=github&label=CI&style=flat-square
-[ci-jobs]: https://github.com/m15a/vim-fennel-syntax/actions/workflows/ci.yml
-[release-badge]: https://img.shields.io/github/release/m15a/vim-fennel-syntax.svg?style=flat-square
-[release-list]: https://github.com/m15a/vim-fennel-syntax/releases
-[fennel-badge]: https://img.shields.io/badge/Fennel-v1.5.1-fff3d7.svg?style=flat-square
-[fennel-homepage]: https://fennel-lang.org/
+[![status]][check]
+[![Fennel][fbadge]][1]
 
-Yet another Vim syntax highlighting plugin for [Fennel][1].
+[status]: https://img.shields.io/github/actions/workflow/status/m15a/vim-fennel-syntax/check.yml?logo=github&label=status&style=flat-square
+[check]: https://github.com/m15a/vim-fennel-syntax/actions/workflows/check.yml
+[fbadge]: https://img.shields.io/badge/Fennel-v1.5.1-fff3d7.svg?style=flat-square
 
 ![Screenshot](_assets/example.png)
 
-This is a fork from the original [fennel.vim][2].
-
 ## Features
 
-- **100% Vim script**: Both Vim and Neovim users can enjoy this plugin.
-- **Attentive highlighting**: Hash function literal `#(+ $1 $2)`,
-    shebang line `#!/usr/bin/env fennel`, and more.
-- **Granular Lua version support**: Depending on your Lua version, it
-    highlights literals and keywords differently, so that you can easily
-    find syntax errors relevant to Lua version difference [^1].
+- **Pure Vim script**:
+  Built entirely with Vim script, making it accessible to both Vim
+  and Neovim users.
+- **Comprehensive highlighting**:
+  Provides attentive highlighting for advanced syntax, including:
+    - Hash function literals (e.g., `#(+ $1 $2)`)
+    - Shebang lines (e.g., `#!/usr/bin/env fennel`)
+    - And more.
+- **Granular Lua version support**:
+  Highlights literals and keywords differently based on your Lua
+  version. This helps you easily spot potential syntax errors related
+  to Lua version differences [^1].
 
-[^1]: For example, hex numeric literal with exponent such as `0xA23p-4`
-is supported by Lua 5.2 or later.
-
-## Requirements
-
-It would work with any recent or even older version of Vim/Neovim.
+[^1]: For example, hex numeric literals with exponents (e.g.,
+`0xA23p-4`) are only supported in Lua 5.2 and later.
 
 ## Installation
 
-Use any Vim/Neovim package manager. An example using [Paq][3] for
-Neovim:
+Use your preferred Vim/Neovim package manager. Here is an example using
+[Paq][3] for Neovim:
 
 ```lua
 require'paq' {
@@ -62,72 +59,69 @@ License: MIT
 
 ## Configuration
 
-This plugin will automatically configure most options for your
-environment. To configure options manually, you can use the following
-global/buffer-local variables.
+This plugin will automatically configure most options based on your
+environment. To customize options manually, you can set the following
+global (`g:*`) or buffer-local (`b:*`) variables.
 
 ### Options
 
-| Option                                    | Description                        | Type   | Default value |
-| :-                                        | :-                                 | :-     | :-            |
-| [fennel_lua_version](#fennel_lua_version) | Lua version to highlight literals. | string | auto-detected |
-| [fennel_use_luajit](#fennel_use_luajit)   | Highlight LuaJIT extentions.       | bool   | auto-detected |
-| [fennel_use_lume](#fennel_use_lume)       | Highlight Lume keywords.           | bool   | `1`           |
+| Option                                    | Description                                              | Type    | Default value |
+|-------------------------------------------|----------------------------------------------------------|---------|---------------|
+| [fennel_lua_version](#fennel_lua_version) | The Lua version used for highlighting literals/keywords. | string  | auto-detected |
+| [fennel_use_luajit](#fennel_use_luajit)   | Enable highlighting for LuaJIT extentions.               | boolean | auto-detected |
+| [fennel_use_lume](#fennel_use_lume)       | Enable highlighting for Lume keywords.                   | boolean | `1` (True)    |
 
 #### `fennel_lua_version`
 
-Highlight literals and keywords for the given Lua version. It supports
-`5.1`, `5.2`, `5.3`, and `5.4`. Unless configured manually, it will be
-inferred automatically by invoking `lua -v`.
+Specifies the Lua version (`5.1`, `5.2`, `5.3`, or `5.4`) for
+highlighting corresponding literals and keywords. If not set manually,
+it is inferred automatically by invoking `lua -v`.
 
 ```vim
 let g:fennel_lua_version = '5.4'
 ```
 
-Override it by setting buffer local `b:fennel_lua_version`.
-
 > [!NOTE]
-> If neither `g:fennel_lua_version` nor `b:fennel_lua_version` is set
-> and `lua` is not found in your `PATH`, it defaults to `5.1`.
+> If neither `g:fennel_lua_version` nor `b:fennel_lua_version` is set,
+> and the Lua executable is not found in your `PATH`, the default
+> version used is `5.1`.
 
 #### `fennel_use_luajit`
 
-Highlight literals and keywords extended in [LuaJIT][5]. Unless
-configured manually, it will be inferred automatically by invoking
+Enables highlighting for literals and keywords extended by [LuaJIT][4].
+If not configured manually, it is inferred automatically by invoking
 `lua -v`.
 
 ```vim
 let g:fennel_use_luajit = 0
 ```
 
-Override it by setting buffer local `b:fennel_use_luajit`.
-
 > [!NOTE]
-> If neither `g:fennel_use_luajit` nor `b:fennel_use_luajit` is set
-> and `lua` (LuaJIT) is not found in your `PATH`, it defaults to `0`.
+> If neither `g:fennel_use_luajit` nor `b:fennel_use_luajit` is set,
+> and the LuaJIT executable is not found in your `PATH`, it defaults
+> to `0` (false).
 
 #### `fennel_use_lume`
 
-Highlight keywords provided by [Lume][4]. It defaults to `1`.
+Enable highlighting for keywords provided by the [Lume][5] library.
+The default value is `1` (true).
 
 ```vim
 let g:fennel_use_lume = 1
 ```
 
-Override it by setting buffer local `b:fennel_use_lume`.
-
 <!-- panvimdoc-ignore-start -->
 
 ## License
 
-[MIT](LICENSE)
+[The MIT license](LICENSE).
 
 <!-- panvimdoc-ignore-end -->
 
 [1]: https://fennel-lang.org/
 [2]: https://github.com/bakpakin/fennel.vim/
 [3]: https://github.com/savq/paq-nvim/
-[4]: https://github.com/rxi/lume/
-[5]: https://luajit.org/extensions.html
+[4]: https://luajit.org/extensions.html
+[5]: https://github.com/rxi/lume/
 
 <!-- vim: set tw=72 spell nowrap: -->
