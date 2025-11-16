@@ -20,7 +20,7 @@ jobs:
           description: Yet another syntax highlighting plugin for Fennel
           toc: false
           shiftheadinglevelby: -1
-        run: |
+      - run: |
           git add doc/*.txt
           if git diff-index --quiet HEAD --; then
             : Nothing to commit
