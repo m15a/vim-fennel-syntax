@@ -10,6 +10,11 @@ to [Semantic Versioning][2].
 
 ## [Unreleased]
 
+### Added
+
+- Support for Fennel 1.6.0:
+  - Detection for the new macro file extension `.fnlm`.
+
 ## [1.1.0] - 2024-11-02
 
 ### Added

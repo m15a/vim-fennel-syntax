@@ -10,7 +10,7 @@ forked and enhanced from the original [fennel.vim][2].
 
 [status]: https://img.shields.io/github/actions/workflow/status/m15a/vim-fennel-syntax/check.yml?logo=github&label=status&style=flat-square
 [check]: https://github.com/m15a/vim-fennel-syntax/actions/workflows/check.yml
-[fbadge]: https://img.shields.io/badge/Fennel-v1.5.1-fff3d7.svg?style=flat-square
+[fbadge]: https://img.shields.io/badge/Fennel-v1.6.0-fff3d7.svg?style=flat-square
 
 ![Screenshot](_assets/example.png)
 
