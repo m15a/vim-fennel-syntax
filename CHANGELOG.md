@@ -10,6 +10,8 @@ to [Semantic Versioning][2].
 
 ## [Unreleased]
 
+## [1.2.0] - 2025-11-16
+
 ### Added
 
 - Support for Fennel 1.6.0:
@@ -84,7 +86,8 @@ to [Semantic Versioning][2].
 - Support for Lua string literals up to version 5.4
 - Support for Lua numeric literals up to version 5.4
 
-[Unreleased]: https://github.com/m15a/vim-fennel-syntax/compare/v1.1.0...HEAD
+[Unreleased]: https://github.com/m15a/vim-fennel-syntax/compare/v1.2.0...HEAD
+[1.2.0]: https://github.com/m15a/vim-fennel-syntax/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/m15a/vim-fennel-syntax/compare/v1.0.1...v1.1.0
 [1.0.1]: https://github.com/m15a/vim-fennel-syntax/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/m15a/vim-fennel-syntax/compare/v0.2...v1.0.0
