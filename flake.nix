@@ -79,6 +79,10 @@
       };
     in
     {
+      overlays.default = final: prev: {
+        inherit (overlay final prev) m15aVimPlugins;
+      };
+
       packages = forDefaultSystems (pkgs: {
         default = pkgs.m15aVimPlugins.${pname};
       });

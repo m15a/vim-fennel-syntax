@@ -34,6 +34,8 @@ forked and enhanced from the original [fennel.vim][2].
 
 ## Installation
 
+### Using Vim/Neovim plugin manager
+
 Use your preferred Vim/Neovim package manager. Here is an example using
 [Paq][3] for Neovim:
 
@@ -42,6 +44,53 @@ require'paq' {
   ..., -- other plugins
   'm15a/vim-fennel-syntax',
   ..., -- other plugins
+}
+```
+
+### Using Nix flake
+
+This repository provides a Nix flake for the plugin.
+By using the provided overlay, you can add this plugin to your
+Vim/Neovim configuration. The plugin package is available at
+the `pkgs.m15aVimPlugins.vim-fennel-syntax` attribute path.
+
+The following example shows how to configure Neovim with
+this plugin enabled in `flake.nix`:
+
+```nix
+{
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    flake-utils.url = "github:numtide/flake-utils";
+    vim-fennel-syntax.url = "github:m15a/vim-fennel-syntax";
+  };
+  outputs =
+    {
+      nixpkgs,
+      flake-utils,
+      vim-fennel-syntax,
+      ...
+    }:
+    flake-utils.lib.eachDefaultSystem (
+      system:
+      let
+        pkgs = import nixpkgs {
+          inherit system;
+          overlays = [ vim-fennel-syntax.overlays.default ];
+        };
+      in
+      {
+        packages.default = pkgs.neovim.override {
+          configure = {
+            packages.example = with pkgs.m15aVimPlugins; {
+              start = [
+                vim-fennel-syntax
+              ];
+            };
+          };
+        };
+      }
+    );
 }
 ```
 
