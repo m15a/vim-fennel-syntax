@@ -54,7 +54,7 @@
                 src = ./.;
                 meta = {
                   description = "Yet another Vim syntax highlighting plugin for Fennel";
-                  license = licenses.bsd3;
+                  license = licenses.mit;
                   homepage = "https://github.com/m15a/${pname}";
                 };
               };
