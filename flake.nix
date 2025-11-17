@@ -45,16 +45,19 @@
         };
 
         m15aVimPlugins =
-          with final.lib;
-          makeExtensible (
-            _:
-            recurseIntoAttrs {
+          let
+            inherit (final) lib;
+            super =
+              prev.m15aVimPlugins or (lib.makeExtensible (_: lib.recurseIntoAttrs { }));
+          in
+          super.extend (
+            _: _: {
               ${pname} = final.vimUtils.buildVimPlugin {
                 inherit pname version;
                 src = ./.;
                 meta = {
                   description = "Yet another Vim syntax highlighting plugin for Fennel";
-                  license = licenses.mit;
+                  license = lib.licenses.mit;
                   homepage = "https://github.com/m15a/${pname}";
                 };
               };
