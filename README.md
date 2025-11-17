@@ -64,7 +64,6 @@ this plugin enabled in `flake.nix`:
     flake-utils.url = "github:numtide/flake-utils";
     vim-fennel-syntax.url = "github:m15a/vim-fennel-syntax";
   };
-
   outputs =
     {
       nixpkgs,
