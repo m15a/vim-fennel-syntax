@@ -64,6 +64,7 @@ this plugin enabled in `flake.nix`:
     flake-utils.url = "github:numtide/flake-utils";
     vim-fennel-syntax.url = "github:m15a/vim-fennel-syntax";
   };
+
   outputs =
     {
       nixpkgs,
@@ -82,9 +83,9 @@ this plugin enabled in `flake.nix`:
       {
         packages.default = pkgs.neovim.override {
           configure = {
-            packages.example = with pkgs.m15aVimPlugins; {
+            packages.example = {
               start = [
-                vim-fennel-syntax
+                pkgs.m15aVimPlugins.vim-fennel-syntax
               ];
             };
           };
