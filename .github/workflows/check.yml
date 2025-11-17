@@ -13,4 +13,4 @@ jobs:
       - uses: actions/checkout@v5
       - uses: cachix/install-nix-action@v31
       - run: |
-          nix develop .#formatting -c bash -c "vint **/*.vim"
+          nix flake check --all-systems

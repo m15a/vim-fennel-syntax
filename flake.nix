@@ -2,14 +2,20 @@
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
   outputs =
-    { nixpkgs, ... }:
+    { self, nixpkgs, ... }:
     let
+      pname = "vim-fennel-syntax";
+      version = "${version_base}+sha.${version_sha}";
+      version_base = "1.2.0";
+      version_sha = self.shortRev or self.dirtyShortRev or "unknown";
+
       defaultSystems = [
         "x86_64-linux"
         "x86_64-darwin"
         "aarch64-linux"
         "aarch64-darwin"
       ];
+
       forDefaultSystems =
         f:
         nixpkgs.lib.genAttrs defaultSystems (
@@ -21,6 +27,7 @@
             }
           )
         );
+
       overlay = final: prev: {
         luajit = prev.luajit.override {
           packageOverrides = self: super: {
@@ -36,17 +43,71 @@
             };
           };
         };
+
+        m15aVimPlugins = (prev.m15aVimPlugins or { }) // {
+          ${pname} = final.vimUtils.buildVimPlugin {
+            inherit pname version;
+            src = ./.;
+            meta = with final.lib; {
+              description = "Yet another Vim syntax highlighting plugin for Fennel";
+              license = licenses.bsd3;
+              homepage = "https://github.com/m15a/${pname}";
+            };
+          };
+        };
+
+        formatter = final.writeShellApplication {
+          name = "${pname}-formatter";
+          runtimeInputs = with final; [
+            nixfmt-rfc-style
+            vim-vint
+          ];
+          text = ''
+            mapfile -t files < <(git ls-files --exclude-standard)
+            for file in "''${files[@]}"; do
+                case "''${file##*.}" in
+                    nix)
+                        nixfmt -w80 "$file"
+                        ;;
+                    vim)
+                        vint "$file"
+                        ;;
+                esac
+            done
+          '';
+        };
       };
     in
     {
-      devShells = forDefaultSystems (pkgs: rec {
-        formatting = pkgs.mkShell {
-          packages = with pkgs; [
-            vim-vint
-          ];
-        };
+      packages = forDefaultSystems (pkgs: {
+        default = pkgs.m15aVimPlugins.${pname};
+      });
+
+      checks = forDefaultSystems (pkgs: {
+        package = pkgs.m15aVimPlugins.${pname};
+
+        formatting =
+          pkgs.runCommandLocal "check-formatting"
+            {
+              buildInputs = [
+                pkgs.gitMinimal
+                pkgs.formatter
+              ];
+            }
+            ''
+              cp -r --no-preserve=mode ${self} source
+              cd source
+              git init --quiet && git add .
+              ${pkgs.formatter.name}
+              test $? -ne 0 && exit 1
+              touch $out
+            '';
+      });
+
+      formatter = forDefaultSystems (pkgs: pkgs.formatter);
+
+      devShells = forDefaultSystems (pkgs: {
         default = pkgs.mkShell {
-          inputsFrom = [ formatting ];
           packages = with pkgs; [
             (luajit.withPackages (
               ps: with ps; [
