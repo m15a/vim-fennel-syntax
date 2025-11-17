@@ -44,17 +44,22 @@
           };
         };
 
-        m15aVimPlugins = (prev.m15aVimPlugins or { }) // {
-          ${pname} = final.vimUtils.buildVimPlugin {
-            inherit pname version;
-            src = ./.;
-            meta = with final.lib; {
-              description = "Yet another Vim syntax highlighting plugin for Fennel";
-              license = licenses.bsd3;
-              homepage = "https://github.com/m15a/${pname}";
-            };
-          };
-        };
+        m15aVimPlugins =
+          with final.lib;
+          makeExtensible (
+            _:
+            recurseIntoAttrs {
+              ${pname} = final.vimUtils.buildVimPlugin {
+                inherit pname version;
+                src = ./.;
+                meta = {
+                  description = "Yet another Vim syntax highlighting plugin for Fennel";
+                  license = licenses.bsd3;
+                  homepage = "https://github.com/m15a/${pname}";
+                };
+              };
+            }
+          );
 
         formatter = final.writeShellApplication {
           name = "${pname}-formatter";
