@@ -1,10 +1,12 @@
 " Vim syntax file
 " Language: Fennel
-" Last Change: 2024-11-02
+" Last Change: 2025-11-17
 " Original Maintainer: Calvin Rose
 " Maintainer: NACAMURA Mitsuhiro <m15@m15a.dev>
 " URL: https://github.com/m15a/vim-fennel-syntax
 " License: MIT
+
+scriptencoding utf-8
 
 if exists('b:burrent_byntax')
   finish
