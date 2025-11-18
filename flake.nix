@@ -5,6 +5,7 @@
     { self, nixpkgs, ... }:
     let
       pname = "vim-fennel-syntax";
+
       version = "${version_base}+sha.${version_sha}";
       version_base = "1.2.0";
       version_sha = self.shortRev or self.dirtyShortRev or "unknown";
@@ -23,12 +24,15 @@
           f (
             import nixpkgs {
               inherit system;
-              overlays = [ overlay ];
+              overlays = [
+                devOverlay
+                overlay
+              ];
             }
           )
         );
 
-      overlay = final: prev: {
+      devOverlay = final: prev: {
         luajit = prev.luajit.override {
           packageOverrides = self: super: {
             gumbo = self.buildLuarocksPackage rec {
@@ -43,7 +47,29 @@
             };
           };
         };
+        formatter = final.writeShellApplication {
+          name = "${pname}-formatter";
+          runtimeInputs = with final; [
+            vim-vint
+            nixfmt-rfc-style
+          ];
+          text = ''
+            mapfile -t files < <(git ls-files --exclude-standard)
+            for file in "''${files[@]}"; do
+                case "''${file##*.}" in
+                    vim)
+                        vint "$file" &
+                        ;;
+                    nix)
+                        nixfmt -w80 "$file" &
+                        ;;
+                esac
+            done
+          '';
+        };
+      };
 
+      overlay = final: prev: {
         m15aVimPlugins =
           let
             inherit (final) lib;
@@ -63,33 +89,10 @@
               };
             }
           );
-
-        formatter = final.writeShellApplication {
-          name = "${pname}-formatter";
-          runtimeInputs = with final; [
-            nixfmt-rfc-style
-            vim-vint
-          ];
-          text = ''
-            mapfile -t files < <(git ls-files --exclude-standard)
-            for file in "''${files[@]}"; do
-                case "''${file##*.}" in
-                    nix)
-                        nixfmt -w80 "$file"
-                        ;;
-                    vim)
-                        vint "$file"
-                        ;;
-                esac
-            done
-          '';
-        };
       };
     in
     {
-      overlays.default = final: prev: {
-        inherit (overlay final prev) m15aVimPlugins;
-      };
+      overlays.default = overlay;
 
       packages = forDefaultSystems (pkgs: {
         default = pkgs.m15aVimPlugins.${pname};
