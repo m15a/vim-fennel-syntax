@@ -10,16 +10,16 @@
       version_base = "1.2.0";
       version_sha = self.shortRev or self.dirtyShortRev or "unknown";
 
-      defaultSystems = [
-        "x86_64-linux"
-        "x86_64-darwin"
-        "aarch64-linux"
+      systems = [
         "aarch64-darwin"
+        "aarch64-linux"
+        "x86_64-darwin"
+        "x86_64-linux"
       ];
 
-      forDefaultSystems =
+      forSystems =
         f:
-        nixpkgs.lib.genAttrs defaultSystems (
+        nixpkgs.lib.genAttrs systems (
           system:
           f (
             import nixpkgs {
@@ -94,11 +94,11 @@
     {
       overlays.default = overlay;
 
-      packages = forDefaultSystems (pkgs: {
+      packages = forSystems (pkgs: {
         default = pkgs.m15aVimPlugins.${pname};
       });
 
-      checks = forDefaultSystems (pkgs: {
+      checks = forSystems (pkgs: {
         package = pkgs.m15aVimPlugins.${pname};
 
         formatting =
@@ -119,9 +119,9 @@
             '';
       });
 
-      formatter = forDefaultSystems (pkgs: pkgs.formatter);
+      formatter = forSystems (pkgs: pkgs.formatter);
 
-      devShells = forDefaultSystems (pkgs: {
+      devShells = forSystems (pkgs: {
         default = pkgs.mkShell {
           packages = with pkgs; [
             (luajit.withPackages (
