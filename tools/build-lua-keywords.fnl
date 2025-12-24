@@ -112,7 +112,10 @@
 
 (local lua_ (let [mt {}]
               (set mt.__index mt)
-              (set mt.versions {:5.1 true :5.2 true :5.3 true :5.4 true})
+              (set mt.versions {:5.1 true
+                                :5.2 true
+                                :5.3 true
+                                :5.4 true})
               (fn mt.version? [self x]
                 (let [x (tostring x)]
                   (or (. self.versions x) false)))
