@@ -12,6 +12,7 @@ to [Semantic Versioning][2].
 
 ### Added
 
+- Support for Lua 5.5
 - Nix flake overlay containing `m15aVimPlugins.vim-fennel-syntax`.
 
 ## [1.2.0] - 2025-11-16

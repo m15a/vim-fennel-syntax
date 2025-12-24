@@ -115,7 +115,8 @@
               (set mt.versions {:5.1 true
                                 :5.2 true
                                 :5.3 true
-                                :5.4 true})
+                                :5.4 true
+                                :5.5 true})
               (fn mt.version? [self x]
                 (let [x (tostring x)]
                   (or (. self.versions x) false)))
