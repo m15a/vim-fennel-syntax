@@ -7,7 +7,7 @@
       pname = "vim-fennel-syntax";
 
       version = "${version_base}+sha.${version_sha}";
-      version_base = "1.2.0";
+      version_base = "1.3.0";
       version_sha = self.shortRev or self.dirtyShortRev or "unknown";
 
       systems = [
