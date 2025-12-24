@@ -122,7 +122,7 @@ global (`g:*`) or buffer-local (`b:*`) variables.
 
 #### `fennel_lua_version`
 
-Specifies the Lua version (`5.1`, `5.2`, `5.3`, or `5.4`) for
+Specifies the Lua version (`5.1`, `5.2`, `5.3`, `5.4`, or `5.5`) for
 highlighting corresponding literals and keywords. If not set manually,
 it is inferred automatically by invoking `lua -v`.
 
