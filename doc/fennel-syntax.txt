@@ -30,9 +30,9 @@ OPTIONS                                  *fennel-syntax-configuration-options*
 
 FENNEL_LUA_VERSION ~
 
-Specifies the Lua version (`5.1`, `5.2`, `5.3`, or `5.4`) for highlighting
-corresponding literals and keywords. If not set manually, it is inferred
-automatically by invoking `lua -v`.
+Specifies the Lua version (`5.1`, `5.2`, `5.3`, `5.4`, or `5.5`) for
+highlighting corresponding literals and keywords. If not set manually, it is
+inferred automatically by invoking `lua -v`.
 
 >vim
     let g:fennel_lua_version = '5.4'
