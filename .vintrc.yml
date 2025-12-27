@@ -1,9 +1,0 @@
-cmdargs:
-  color: true
-  severity: style_problem
-
-policies:
-  ProhibitAbbreviationOption:
-    enabled: false
-  ProhibitAutocmdWithNoGroup:
-    enabled: false
